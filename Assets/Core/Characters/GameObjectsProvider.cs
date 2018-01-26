@@ -9,8 +9,6 @@ public class GameObjectsProvider
 	{
 		{typeof(Wizard), "Characters/Wizard"},
 		{typeof(Warrior), "Characters/Warrior"},
-		{typeof(Transmission), "Characters/Transmission"},
-		{typeof(CameraController), "Characters/Camera"},
 	};
 
 	public GameObject GetCharacterPrefab<T>() where T : class
