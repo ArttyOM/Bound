@@ -21,6 +21,12 @@ public class CharacterKeyboardController : CharacterControllerBase
 	{
 	}
 
+	public override void SetMinMaxDistances(float min, float max)
+	{
+		
+		
+	}
+
 	public void Update()
 	{
 		var targetTransform = new Vector3();
@@ -55,7 +61,7 @@ public class CharacterKeyboardController : CharacterControllerBase
 		_characterCachedTransform.position = targetTransform;
 	}
 
-	public CharacterKeyboardController(float min, float max) : base(min, max)
+	public CharacterKeyboardController(float min, float max)
 	{
 		_maxDistance = max;
 		_minDistance = min;

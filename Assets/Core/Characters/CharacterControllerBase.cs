@@ -8,5 +8,5 @@ public abstract class CharacterControllerBase : MonoBehaviour
 
 	public abstract void DisableControl();
 
-	public abstract SetMinMaxDistances(float min, float max);
+	public abstract void SetMinMaxDistances(float min, float max);
 }

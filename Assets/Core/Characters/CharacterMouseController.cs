@@ -19,6 +19,11 @@ public class CharacterMouseController : CharacterControllerBase
 	{
 	}
 
+	public override void SetMinMaxDistances(float min, float max)
+	{
+		
+	}
+
 	public void Update()
 	{
 		var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -26,9 +31,5 @@ public class CharacterMouseController : CharacterControllerBase
 		
 		if (Input.GetMouseButton(0))
 			_characterCachedTransform.position += _characterCachedTransform.up * _character.Speed;
-	}
-
-	public CharacterMouseController(float min, float max) : base(min, max)
-	{
 	}
 }
