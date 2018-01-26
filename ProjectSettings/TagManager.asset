@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Transmission
+    uniqueID: 4224168315
+    locked: 0
+  - name: Characters
+    uniqueID: 1709734251
+    locked: 0
