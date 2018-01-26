@@ -17,4 +17,4 @@ MonoBehaviour:
   PathfindingCeilSize: 0
   LevelWidth: 20
   LevelHeight: 20
-  GenerationCell: 1
+  GenerationCell: 10
