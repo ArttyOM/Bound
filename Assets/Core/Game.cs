@@ -28,7 +28,8 @@ public class Game : MonoBehaviour {
     {
         level = GameObject.Find("Level").GetComponent<Level>();
         grid = GameObject.Find("Grid").GetComponent<AI.GridScript>();
-        config = ServiceLocator.Instance.Resolve<GameSettingsProvider>().GetSettings();
+        config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
+	    ServiceLocator.Instance.RegisterSingleton(this);
     }
 
     // Use this for initialization

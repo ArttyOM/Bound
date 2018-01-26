@@ -12,8 +12,8 @@ public class Level : MonoBehaviour {
 
     public void GenerateNew()
     {
-        var config = ServiceLocator.Instance.Resolve<GameSettingsProvider>().GetSettings();
-        var gen = ServiceLocator.Instance.Resolve<DummyGenerator>();
+        var config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
+        var gen = ServiceLocator.Instance.ResolveService<DummyGenerator>();
 
         var typ = Random.RandomRange(0, 2) == 0 ? LevelType.Forest : LevelType.Dungeon;
 

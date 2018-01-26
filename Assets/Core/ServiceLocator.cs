@@ -16,16 +16,36 @@ public class ServiceLocator
 		{typeof(GameSettingsProvider), new GameSettingsProvider()},
 		{typeof(GameObjectsProvider), new GameObjectsProvider()},
         {typeof(BackgroundsProvider), new BackgroundsProvider()},
-        {typeof(Game), new Game()},
         {typeof(DummyGenerator), new DummyGenerator()},
     };
 
-	public T Resolve<T>() where T : class
+	private Dictionary<Type, object> _singletons = new Dictionary<Type, object>();
+	
+	public T ResolveService<T>() where T : class
 	{
 		if (_services.ContainsKey(typeof(T)))
 			return _services[typeof(T)] as T;
 
 		Debug.LogError("Register service!");
 		return null;
+	}
+
+	public T ResolveSingleton<T>() where T : class
+	{
+		if (_singletons.ContainsKey(typeof(T)))
+			return _singletons[typeof(T)] as T;
+
+		Debug.LogError("Register singleton!");
+		return null;
+	}
+	
+	public void RegisterSingleton(object instance)
+	{
+		var type = instance.GetType();
+		if(_singletons.ContainsKey(type))
+			Debug.LogError("Already registered");
+		
+		_singletons.Add(type, instance);
+		Debug.Log("Singleton " + type.Name + " registered");
 	}
 }

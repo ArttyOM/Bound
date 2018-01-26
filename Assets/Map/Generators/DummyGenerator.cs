@@ -8,8 +8,8 @@ public class DummyGenerator : AbstractGenerator
 
     override protected void GenerateLevel(Level level, LevelType typ)
     {
-        var config = ServiceLocator.Instance.Resolve<GameSettingsProvider>().GetSettings();
-        var backs = ServiceLocator.Instance.Resolve<BackgroundsProvider>().GetValue(typ);
+        var config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
+        var backs = ServiceLocator.Instance.ResolveService<BackgroundsProvider>().GetValue(typ);
         for (int x = 0; x < config.LevelWidth; x++)
             for (int y = 0; y < config.LevelHeight; y++)
                 level.Data[x, y] = backs.GetItem(Random.RandomRange(0, 2) == 0 ? WallType.Wall : WallType.Floor, x, y);
