@@ -11,6 +11,10 @@ namespace Assets.Core.Characters
 
 		private Transform _warriorTransform;
 		private Transform _wizardTransform;
+
+		private Rigidbody2D _warriorRigidbody2D;
+		private Rigidbody2D _wizardRigidbody2D;
+		
 		private GameSettings _settings;
 		
 		public void Awake()
@@ -19,6 +23,8 @@ namespace Assets.Core.Characters
 			_settings = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
 			_warriorTransform = _warrior.transform;
 			_wizardTransform = _wizard.transform;
+			_warriorRigidbody2D = _warrior.GetComponent<Rigidbody2D>();
+			_wizardRigidbody2D = _wizard.GetComponent<Rigidbody2D>();
 		}
 
 		private void Update()
@@ -50,9 +56,13 @@ namespace Assets.Core.Characters
 		{
 			var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			_wizardTransform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - _wizardTransform.position);
-		
-			if (Input.GetMouseButton(0))
-				_wizardTransform.position += _wizardTransform.up * _wizard.Speed;
+
+			var targetPosition = _wizardTransform.position + _wizardTransform.up * _wizard.Speed;
+			
+			if (Input.GetMouseButton(0) && ((Vector2) mousePos - (Vector2) _wizardTransform.position).sqrMagnitude > 0.2f * 0.2f)
+				_wizardRigidbody2D.MovePosition(targetPosition);
+			else
+				_wizardRigidbody2D.MovePosition(_wizardTransform.position);
 		}
 		
 		private void UpdateFirstCharacterPosition()
@@ -79,9 +89,7 @@ namespace Assets.Core.Characters
 				? Mathf.Sqrt(_warrior.Speed * _warrior.Speed / 2f)
 				: _warrior.Speed;
 
-			targetTransform = _warriorTransform.position + targetTransform * speed;
-		
-			_warriorTransform.position = targetTransform;
+			_warriorRigidbody2D.MovePosition(_warriorTransform.position + targetTransform * speed);
 		}
 	}
 }
