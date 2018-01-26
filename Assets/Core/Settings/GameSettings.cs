@@ -11,4 +11,7 @@ public class GameSettings: ScriptableObject
     /// Размер клетки сетки
     /// </summary>
     public float PathfindingCeilSize;
+    public int LevelWidth;
+    public int LevelHeight;
+    public int GenerationCell;
 }

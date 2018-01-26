@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 
-namespace Assets
-{
 	public class GameSettingsProvider
 	{
 		private string path = "Settings";
@@ -12,4 +10,3 @@ namespace Assets
 			return _gameSettings ?? (_gameSettings = Resources.Load<GameSettings>(path));
 		}
 	}
-}
