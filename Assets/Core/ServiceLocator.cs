@@ -42,9 +42,12 @@ public class ServiceLocator
 	public void RegisterSingleton(object instance)
 	{
 		var type = instance.GetType();
-		if(_singletons.ContainsKey(type))
+		if (_singletons.ContainsKey(type))
+		{
 			Debug.LogError("Already registered");
-		
+			return;
+		}
+
 		_singletons.Add(type, instance);
 		Debug.Log("Singleton " + type.Name + " registered");
 	}
