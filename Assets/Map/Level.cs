@@ -6,6 +6,9 @@ public class Level : MonoBehaviour {
 
     public GameObject[,] Data;
 
+    public Vector2 start;
+    public Vector2 finish;
+
 
     // Use this for initialization
     void Start()
