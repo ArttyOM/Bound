@@ -15,8 +15,7 @@ namespace AI
         /// <summary>
         /// Размер сетки
         /// </summary>
-        [SerializeField]
-        private Vector2 gridSize;
+        public Vector2 gridSize;
 
         /// <summary>
         /// Размер клетки   
@@ -51,7 +50,7 @@ namespace AI
         /// <summary>
         /// Задаёт сетку
         /// </summary>
-        private void InitGrid()
+        public void InitGrid()
         {
             cellSize = ServiceLocator.Instance.Resolve<GameSettingsProvider>().GetSettings().PathfindingCellSize;
             sizeX = (int)Mathf.Ceil(gridSize.x / cellSize);
