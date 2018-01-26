@@ -1,17 +1,18 @@
-﻿public class CharacterMouseController: ICharacterController
+﻿public class CharacterMouseController : CharacterControllerBase
 {
-	public void SetControlledCharacter(Character character)
+	public override void SetControlledCharacter(Character character)
 	{
-		throw new System.NotImplementedException();
 	}
 
-	public void EnableControl()
+	public override void EnableControl()
 	{
-		throw new System.NotImplementedException();
 	}
 
-	public void DisableControl()
+	public override void DisableControl()
 	{
-		throw new System.NotImplementedException();
+	}
+
+	public void Update()
+	{
 	}
 }

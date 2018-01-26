@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets;
 using UnityEngine;
 
 public class ServiceLocator
@@ -15,6 +14,7 @@ public class ServiceLocator
 	private Dictionary<Type, object> _services = new Dictionary<Type, object>
 	{
 		{typeof(GameSettingsProvider), new GameSettingsProvider()},
+		{typeof(CharactersService), new CharactersService()},
 	};
 
 	public T Resolve<T>() where T : class
