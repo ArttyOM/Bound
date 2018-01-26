@@ -6,4 +6,9 @@ public class GameSettings: ScriptableObject
 	public float TransmissionMaxLength;
 
 	public float TransmissionMinLength;
+
+    public int LevelWidth;
+    public int LevelHeight;
+    public int GenerationCell;
+
 }

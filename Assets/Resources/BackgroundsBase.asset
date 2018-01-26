@@ -8,11 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f5e9d83ce977124e84a8b1519a3517a, type: 3}
-  m_Name: Settings
+  m_Script: {fileID: 11500000, guid: 327ae6d7ff52894439d9f0ae6002a907, type: 3}
+  m_Name: Backgrounds
   m_EditorClassIdentifier: 
-  TransmissionMaxLength: 100
-  TransmissionMinLength: 10
-  LevelWidth: 10
-  LevelHeight: 10
-  GenerationCell: 1
+  data: []
