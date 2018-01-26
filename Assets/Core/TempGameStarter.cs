@@ -6,6 +6,7 @@ public class TempGameStarter : MonoBehaviour
 	private void Start()
 	{
 		var gameObjectsResolverService = ServiceLocator.Instance.Resolve<GameObjectsResolver>();
+		var settings = ServiceLocator.Instance.Resolve<GameSettingsProvider>().GetSettings();
 		
 		var wizard = Instantiate(gameObjectsResolverService.GetCharacterPrefab<Wizard>())
 			.GetComponent<Character>();
@@ -13,7 +14,11 @@ public class TempGameStarter : MonoBehaviour
 			.GetComponent<Character>();
 		var transmission = Instantiate(gameObjectsResolverService.GetCharacterPrefab<Transmission>())
 			.GetComponent<Transmission>();
+		var camera = Instantiate(gameObjectsResolverService.GetCharacterPrefab<CameraController>())
+			.GetComponent<CameraController>();
 		
 		transmission.SetCharacters(wizard, warrior);
+		camera.SetCharacters(wizard, warrior);
+		camera.SetHeight(settings.CameraHeight);
 	}
 }
