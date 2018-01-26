@@ -59,7 +59,7 @@ namespace AI
         /// </summary>
         public void InitGrid()
         {
-            cellSize = ServiceLocator.Instance.Resolve<GameSettingsProvider>().GetSettings().PathfindingCellSize;
+            cellSize = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings().PathfindingCellSize;
             sizeX = (int)Mathf.Ceil(gridSize.x / cellSize);
             sizeY = (int)Mathf.Ceil(gridSize.y / cellSize);
 

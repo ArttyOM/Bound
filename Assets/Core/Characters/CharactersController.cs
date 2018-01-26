@@ -3,9 +3,9 @@
 namespace Assets.Core.Characters
 {
 	public class CharactersController: MonoBehaviour
-	{
-		[SerializeField] private Character _wizard;
-		[SerializeField] private Character _warrior;
+	{		
+		public Character _wizard;
+		public Character _warrior;
 		[SerializeField] private LineRenderer _transmission;
 		[SerializeField] private Transform _cameraTransform;
 
@@ -15,7 +15,8 @@ namespace Assets.Core.Characters
 		
 		public void Awake()
 		{
-			_settings = ServiceLocator.Instance.Resolve<GameSettingsProvider>().GetSettings();
+			ServiceLocator.Instance.RegisterSingleton(this);
+			_settings = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
 			_warriorTransform = _warrior.transform;
 			_wizardTransform = _wizard.transform;
 		}

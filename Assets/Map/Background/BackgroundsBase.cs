@@ -11,7 +11,7 @@ public class BackgroundsBase : ScriptableObject {
 
     public GameObject GetItem(WallType typ, int ax, int ay)
     {
-        var config = ServiceLocator.Instance.Resolve<GameSettingsProvider>().GetSettings();
+        var config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
         var result = Instantiate(data[(int)typ]);
         result.transform.position = (new Vector2(ax, ay)) * config.GenerationCell;
         result.transform.localScale = (new Vector2(1, 1)) * config.GenerationCell;
