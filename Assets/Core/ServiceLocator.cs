@@ -15,7 +15,9 @@ public class ServiceLocator
 	{
 		{typeof(GameSettingsProvider), new GameSettingsProvider()},
 		{typeof(CharactersService), new CharactersService()},
-	};
+        {typeof(BackgroundsProvider), new BackgroundsProvider()},
+        {typeof(DummyGenerator), new DummyGenerator()},
+    };
 
 	public T Resolve<T>() where T : class
 	{
