@@ -8,11 +8,4 @@ public class Character : MonoBehaviour
 	public int Damage;
 
 	public float Speed;
-
-	public CharacterControllerBase Controller;
-
-	public void Awake()
-	{
-		Controller.SetControlledCharacter(this);
-	}
 }
