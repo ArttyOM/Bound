@@ -7,8 +7,11 @@ public class GameSettings: ScriptableObject
 
 	public float TransmissionMinLength;
 
+    /// <summary>
+    /// Размер клетки сетки
+    /// </summary>
+    public float PathfindingCeilSize;
     public int LevelWidth;
     public int LevelHeight;
     public int GenerationCell;
-
 }
