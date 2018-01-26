@@ -10,7 +10,7 @@ namespace AI {
         private bool isUpdated;
         private int index;
         private float lastUpdateTime = -10;
-        private float delta;
+        private float delta = 0.2f;
 
         // Use this for initialization
         void Start() {
@@ -19,12 +19,15 @@ namespace AI {
 
         private IEnumerator FollowPath()
         {
-            
-        }
-
-        IEnumerator UpdatePath()
-        {
-            
+            int currentIndex = 0;
+            while (transform.position != path[path.Count - 1])
+            {
+                if (path[currentIndex] == transform.position)
+                    currentIndex++;
+                transform.position = Vector3.MoveTowards(transform.position, path[currentIndex],
+                    Speed * Time.deltaTime);
+                yield return null;
+            }
         }
 
         /// <summary>
@@ -46,6 +49,11 @@ namespace AI {
                 if (lastUpdateTime + delta < Time.time)
                 {
                     destination = value;
+                    lastUpdateTime = Time.time;
+                    StopAllCoroutines();
+                    path = GridScript.Path(transform.position, destination);
+                    if (path != null && path.Count != 0)
+                        StartCoroutine(FollowPath());
                 }
             }
         }
