@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class AbstractGenerator  {
 
-    abstract protected void GenerateLevel(Level level);
+    abstract protected void GenerateLevel(Level level, LevelType typ);
 
-    public void Apply(Level level)
+    public void Apply(Level level, LevelType typ)
     {
-        GenerateLevel(level);
+        GenerateLevel(level, typ);
     }
 
 }

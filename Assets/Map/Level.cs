@@ -9,6 +9,8 @@ public class Level : MonoBehaviour {
     public Vector2 start;
     public Vector2 finish;
 
+    public LevelType Typ;
+
 
     // Use this for initialization
     void Start()
@@ -16,7 +18,7 @@ public class Level : MonoBehaviour {
         var config = ServiceLocator.Instance.Resolve<GameSettingsProvider>().GetSettings();
         var gen = ServiceLocator.Instance.Resolve<DummyGenerator>();
         Data = new GameObject[config.LevelWidth, config.LevelHeight];
-        gen.Apply(this);
+        gen.Apply(this, Typ);
     }
 
     // Update is called once per frame
