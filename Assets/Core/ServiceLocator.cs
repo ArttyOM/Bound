@@ -16,6 +16,7 @@ public class ServiceLocator
 		{typeof(GameSettingsProvider), new GameSettingsProvider()},
 		{typeof(GameObjectsProvider), new GameObjectsProvider()},
         {typeof(BackgroundsProvider), new BackgroundsProvider()},
+        {typeof(Game), new Game()},
         {typeof(DummyGenerator), new DummyGenerator()},
     };
 
