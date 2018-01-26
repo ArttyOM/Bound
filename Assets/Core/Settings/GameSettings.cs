@@ -6,4 +6,9 @@ public class GameSettings: ScriptableObject
 	public float TransmissionMaxLength;
 
 	public float TransmissionMinLength;
+
+    /// <summary>
+    /// Размер клетки сетки
+    /// </summary>
+    public float PathfindingCeilSize;
 }
