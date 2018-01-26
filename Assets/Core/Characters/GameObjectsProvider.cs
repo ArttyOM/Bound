@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Assets.Core.Characters;
 using UnityEngine;
 
-public class GameObjectsResolver
+public class GameObjectsProvider
 {
 	private Dictionary<Type, string> _characterPathMapper = new Dictionary<Type, string>
 	{

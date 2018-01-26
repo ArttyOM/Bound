@@ -5,7 +5,7 @@ public class TempGameStarter : MonoBehaviour
 {
 	private void Start()
 	{
-		var gameObjectsResolverService = ServiceLocator.Instance.Resolve<GameObjectsResolver>();
+		var gameObjectsResolverService = ServiceLocator.Instance.Resolve<GameObjectsProvider>();
 		var settings = ServiceLocator.Instance.Resolve<GameSettingsProvider>().GetSettings();
 		
 		var wizard = Instantiate(gameObjectsResolverService.GetCharacterPrefab<Wizard>())
