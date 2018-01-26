@@ -9,14 +9,16 @@ public class Level : MonoBehaviour {
     public Vector2 start;
     public Vector2 finish;
 
-    public LevelType Typ;
 
     public void GenerateNew()
     {
         var config = ServiceLocator.Instance.Resolve<GameSettingsProvider>().GetSettings();
         var gen = ServiceLocator.Instance.Resolve<DummyGenerator>();
+
+        var typ = Random.RandomRange(0, 2) == 0 ? LevelType.Forest : LevelType.Dungeon;
+
         Data = new GameObject[config.LevelWidth, config.LevelHeight];
-        gen.Apply(this, Typ);
+        gen.Apply(this, typ);
     }
 
 
