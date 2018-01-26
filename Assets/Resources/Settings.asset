@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransmissionMaxLength: 100
   TransmissionMinLength: 10
-  LevelWidth: 10
-  LevelHeight: 10
+  PathfindingCeilSize: 0
+  LevelWidth: 20
+  LevelHeight: 20
   GenerationCell: 1
