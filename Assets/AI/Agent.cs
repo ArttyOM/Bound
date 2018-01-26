@@ -10,7 +10,7 @@ namespace AI {
         private bool isUpdated;
         private int index;
         private float lastUpdateTime = -10;
-        private float delta = 0.2f;
+        private float delta = 0.3f;
 
         // Use this for initialization
         void Start() {
