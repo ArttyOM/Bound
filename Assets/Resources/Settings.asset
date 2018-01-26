@@ -14,6 +14,7 @@ MonoBehaviour:
   TransmissionMaxLength: 100
   TransmissionMinLength: 10
   PathfindingCellSize: 0.5
-  LevelWidth: 10
-  LevelHeight: 10
+  CameraHeight: -10
+  LevelWidth: 20
+  LevelHeight: 20
   GenerationCell: 1

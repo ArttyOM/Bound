@@ -1,17 +1,30 @@
-﻿public class CharacterMouseController: ICharacterController
+﻿using UnityEngine;
+
+public class CharacterMouseController : CharacterControllerBase
 {
-	public void SetControlledCharacter(Character character)
+	private Character _character;
+	private Transform _characterCachedTransform;
+
+	public override void SetControlledCharacter(Character character)
 	{
-		throw new System.NotImplementedException();
+		_character = character;
+		_characterCachedTransform = character.transform;
 	}
 
-	public void EnableControl()
+	public override void EnableControl()
 	{
-		throw new System.NotImplementedException();
 	}
 
-	public void DisableControl()
+	public override void DisableControl()
 	{
-		throw new System.NotImplementedException();
+	}
+
+	public void Update()
+	{
+		var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		_characterCachedTransform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - _characterCachedTransform.position);
+		
+		if (Input.GetMouseButton(0))
+			_characterCachedTransform.position += _characterCachedTransform.up * _character.Speed;
 	}
 }

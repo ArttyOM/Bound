@@ -1,10 +1,18 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Character : MonoBehaviour
 {
-	public string name { get; set; }
+	public string Name;
 
-	public float damage { get; set; }
+	public int Damage;
 
-	public float speed { get; set; }
+	public float Speed;
+
+	public CharacterControllerBase Controller;
+
+	public void Awake()
+	{
+		Controller.SetControlledCharacter(this);
+	}
 }

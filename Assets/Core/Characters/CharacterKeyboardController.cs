@@ -1,17 +1,36 @@
-﻿public class CharacterKeyboardController:ICharacterController
+﻿using UnityEngine;
+
+public class CharacterKeyboardController : CharacterControllerBase
 {
-	public void SetControlledCharacter(Character character)
+	private Character _character;
+	private Transform _characterCachedTransform;
+	
+	public override void SetControlledCharacter(Character character)
 	{
-		throw new System.NotImplementedException();
+		_character = character;
+		_characterCachedTransform = character.transform;
 	}
 
-	public void EnableControl()
+	public override void EnableControl()
 	{
-		throw new System.NotImplementedException();
 	}
 
-	public void DisableControl()
+	public override void DisableControl()
 	{
-		throw new System.NotImplementedException();
+	}
+	
+	public void Update()
+	{
+		if (Input.GetKey(KeyCode.W))
+			_characterCachedTransform.position += Vector3.up * _character.Speed;
+		
+		if (Input.GetKey(KeyCode.S))
+			_characterCachedTransform.position += Vector3.down * _character.Speed;
+		
+		if (Input.GetKey(KeyCode.A)) 
+			_characterCachedTransform.position += Vector3.left * _character.Speed;
+		
+		if (Input.GetKey(KeyCode.D)) 
+			_characterCachedTransform.position += Vector3.right * _character.Speed;
 	}
 }
