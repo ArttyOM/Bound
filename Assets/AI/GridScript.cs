@@ -14,8 +14,7 @@ namespace AI
         /// <summary>
         /// Размер сетки
         /// </summary>
-        [SerializeField]
-        private Vector2 gridSize;
+        public Vector2 gridSize;
 
         /// <summary>
         /// Размер клетки   

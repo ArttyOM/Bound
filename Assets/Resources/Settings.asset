@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5e9d83ce977124e84a8b1519a3517a, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  TransmissionMaxLength: 100
-  TransmissionMinLength: 10
-  CameraHeight: 0
-  PathfindingCellSize: 0.3
+  TransmissionMaxLength: 5
+  TransmissionMinLength: 1
+  CameraHeight: -10
+  PathfindingCellSize: 0.5
   LevelWidth: 20
   LevelHeight: 20
   GenerationCell: 10
