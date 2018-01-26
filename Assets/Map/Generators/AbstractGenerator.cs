@@ -10,8 +10,8 @@ public abstract class AbstractGenerator  {
     {
         Vector2 start;
         Vector2 finish;
-        var config = ServiceLocator.Instance.Resolve<GameSettingsProvider>().GetSettings();
-        var backs = ServiceLocator.Instance.Resolve<BackgroundsProvider>().GetValue(typ);
+        var config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
+        var backs = ServiceLocator.Instance.ResolveService<BackgroundsProvider>().GetValue(typ);
 
         var data = new WallType[config.LevelWidth, config.LevelHeight];
         GenerateLevel(level, typ, out start, out finish, ref data);
