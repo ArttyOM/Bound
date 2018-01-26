@@ -14,7 +14,7 @@ public class ServiceLocator
 	private Dictionary<Type, object> _services = new Dictionary<Type, object>
 	{
 		{typeof(GameSettingsProvider), new GameSettingsProvider()},
-		{typeof(CharactersService), new CharactersService()},
+		{typeof(GameObjectsResolver), new GameObjectsResolver()},
         {typeof(BackgroundsProvider), new BackgroundsProvider()},
         {typeof(DummyGenerator), new DummyGenerator()},
     };
