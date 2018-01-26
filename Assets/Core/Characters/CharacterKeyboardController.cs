@@ -1,10 +1,11 @@
-﻿using NUnit.Framework.Constraints;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CharacterKeyboardController : CharacterControllerBase
 {
 	private Character _character;
 	private Transform _characterCachedTransform;
+	private float _maxDistance;
+	private float _minDistance;
 
 	public override void SetControlledCharacter(Character character)
 	{
@@ -18,6 +19,12 @@ public class CharacterKeyboardController : CharacterControllerBase
 
 	public override void DisableControl()
 	{
+	}
+
+	public override void SetMinMaxDistances(float min, float max)
+	{
+		
+		
 	}
 
 	public void Update()
@@ -44,8 +51,19 @@ public class CharacterKeyboardController : CharacterControllerBase
 			? Mathf.Sqrt(_character.Speed * _character.Speed / 2f)
 			: _character.Speed;
 
+//		if ((targetTransform - _characterCachedTransform.position).sqrMagnitude < _maxDistance * _maxDistance)
+//		{
+//			
+//		}
+		
 		targetTransform = _characterCachedTransform.position + targetTransform * speed;
 
 		_characterCachedTransform.position = targetTransform;
+	}
+
+	public CharacterKeyboardController(float min, float max)
+	{
+		_maxDistance = max;
+		_minDistance = min;
 	}
 }

@@ -11,14 +11,18 @@ public class Level : MonoBehaviour {
 
     public LevelType Typ;
 
-
-    // Use this for initialization
-    void Start()
+    public void GenerateNew()
     {
         var config = ServiceLocator.Instance.Resolve<GameSettingsProvider>().GetSettings();
         var gen = ServiceLocator.Instance.Resolve<DummyGenerator>();
         Data = new GameObject[config.LevelWidth, config.LevelHeight];
         gen.Apply(this, Typ);
+    }
+
+
+    // Use this for initialization
+    void Start()
+    {
     }
 
     // Update is called once per frame

@@ -19,6 +19,11 @@ public class CharacterMouseController : CharacterControllerBase
 	{
 	}
 
+	public override void SetMinMaxDistances(float min, float max)
+	{
+		
+	}
+
 	public void Update()
 	{
 		var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
