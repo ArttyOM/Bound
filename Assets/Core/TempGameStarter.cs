@@ -20,5 +20,6 @@ public class TempGameStarter : MonoBehaviour
 		transmission.SetCharacters(wizard, warrior);
 		camera.SetCharacters(wizard, warrior);
 		camera.SetHeight(settings.CameraHeight);
+		camera.
 	}
 }
