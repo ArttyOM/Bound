@@ -14,7 +14,8 @@ MonoBehaviour:
   TransmissionMaxLength: 5
   TransmissionMinLength: 1
   CameraHeight: -10
-  PathfindingCellSize: 0.5
+  PathfindingCellSize: 0.32
   LevelWidth: 20
   LevelHeight: 20
   GenerationCell: 10
+  EnemyStandardSpeed: 5

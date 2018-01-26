@@ -6,7 +6,6 @@ namespace AI
 {
     public class GridScript : MonoBehaviour
     {
-
         /// <summary>
         /// Главный объект
         /// </summary>
@@ -45,6 +44,14 @@ namespace AI
                 InitGrid();
             }
         }
+
+        public static List<Vector3> Path(Vector3 start, Vector3 finish)
+        {
+            if (instance != null)
+                return instance.FindPath(start, finish);
+            else
+                return null;
+        } 
 
 
         /// <summary>
@@ -88,10 +95,13 @@ namespace AI
         /// <param name="point">Точка</param>
         /// <param name="i">Строка</param>
         /// <param name="j">Столбец</param>
-        private void GetIndexiesFromPoint(Vector3 point, out int i, out int j)
+        private bool GetIndexiesFromPoint(Vector3 point, out int i, out int j)
         {
             j = Mathf.RoundToInt((point.x /  (transform.position.x + sizeX * cellSize)) * sizeX) + sizeX / 2;
             i = Mathf.RoundToInt((point.y / (transform.position.y + sizeY * cellSize)) * sizeY) + sizeY / 2;
+            if (i >= 0 && i < sizeY && j >= 0 && j < sizeX)
+                return true;
+            return false;
         }
 
         /// <summary>
@@ -187,9 +197,11 @@ namespace AI
                     prevHash[i, j] = -1;
 
             int startI, startJ;
-            GetIndexiesFromPoint(start, out startI, out startJ);
+            
             int finishI, finishJ;
-            GetIndexiesFromPoint(finish, out finishI, out finishJ);
+            if (!GetIndexiesFromPoint(finish, out finishI, out finishJ)
+                || !GetIndexiesFromPoint(start, out startI, out startJ))
+                return null;
 
             if (!walkable[startI, startJ] || !walkable[finishI, finishJ])
                 return null;
@@ -246,7 +258,6 @@ namespace AI
 
             while (!(currI == startI && currJ == startJ))
             {
-                //print(currI + " " + currJ + "\n" + startI + " " + startJ); 
                 int tmpHash = prevHash[currI, currJ];
                 GetIndexesFromHash(tmpHash, out currI, out currJ);
                 path.Add(GetPointFromIndexies(currI, currJ));
