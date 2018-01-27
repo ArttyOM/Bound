@@ -8,7 +8,6 @@ public class UIManager : MonoBehaviour {
 	[SerializeField] private SettingPopup settingPopup;
 	[SerializeField] private SettingPopup startMenu;
 
-	private int _scores = 0;
 	[SerializeField] private Text scoreLabel;
 
 	[SerializeField] private Slider healthMageSlider;
@@ -94,9 +93,9 @@ public class UIManager : MonoBehaviour {
 
 	public void OnScoreIncreased()
 	{
-		_scores++;
-		scoreLabel.text = "Score: " + _scores.ToString ();
-	}
+        var game = ServiceLocator.Instance.ResolveSingleton<Game>();
+		scoreLabel.text = System.String.Format("Towers: {0} / {1}", game.DestroyedTowers, game.TotalTowers);
+    }
 	//public void ExitGame(){
 		//Application.Quit ();
 	//	SceneManager.Quit();

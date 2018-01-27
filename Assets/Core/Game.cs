@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour {
 
@@ -14,14 +15,27 @@ public class Game : MonoBehaviour {
     public int DestroyedTowers;
     public List<Tower> Towers;
 
+    public Text TheLabel;
+
+    public void UpdateLabel()
+    {
+        Messenger.Broadcast(GameEvent.SCORE_INCREASED);
+    }
+
+
+
     public void TowerBroken()
     {
         DestroyedTowers++;
+        UpdateLabel();
+
     }
 
     public void NewGame()
     {
         NextLevel();
+        UpdateLabel();
+
     }
 
 
@@ -62,6 +76,5 @@ public class Game : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+    }
 }
