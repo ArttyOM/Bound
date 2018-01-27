@@ -7,13 +7,17 @@ public class AntnestGenerator : AbstractGenerator
 {
     int nx;
     int ny;
+    Side start_side;
+    Level level;
 
     enum Side { North, South, East, West};
 
-    const int CFG_START_PATHS = 5;
-    const int CFG_START_PATH_LENGTH = 10;
+    const int CFG_START_PATHS = 0;
+    const int CFG_START_PATH_LENGTH = 100;
     const int CFG_MID_PATHS = 5;
-    const int CFG_MID_PATH_LENGTH = 10;
+    const int CFG_MID_PATH_LENGTH = 100;
+    const int PREVENT_OPENING = 700;
+    const int TENSION = 50;
 
     Side opposite(Side side)
     {
@@ -27,8 +31,38 @@ public class AntnestGenerator : AbstractGenerator
         return Side.South;
     }
 
-    Side RandomSide()
+    Side RandomSide(VectorMyInt frompos)
     {
+        int[] nwalls = new int[4]{ 0, 0, 0, 0 };
+        int sum = 0;
+        for(int i=0; i<4; i++)
+        {
+            nwalls[i] = 100;
+            Side side = (Side)i;
+            VectorMyInt apos = frompos;
+            one_step(ref apos, side);
+            if (at_border(apos).HasValue)
+                nwalls[i] += 1*PREVENT_OPENING;
+            else
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    Side side2 = (Side)j;
+                    VectorMyInt apos2 = apos;
+                    one_step(ref apos2, side);
+                    if (!level.CellPassable(apos2))
+                        nwalls[i]+= PREVENT_OPENING;
+                }
+            }
+            sum += nwalls[i];
+        }
+        int choice = Random.Range(0, sum);
+        for (int i = 0; i < 4; i++)
+        {
+            choice -= nwalls[i];
+            if (choice < 0)
+                return (Side)i;
+        }
         return (Side)Random.Range(0, 4);
     }
 
@@ -106,77 +140,66 @@ public class AntnestGenerator : AbstractGenerator
         }
     }
 
-    void apply(Level level, VectorMyInt pos)
+    void apply(VectorMyInt pos)
     {
         level.CellTypes[pos.x, pos.y] = CellType.Floor;
     }
 
 
-    void add_path(Level level, VectorMyInt start, int length)
+    VectorMyInt add_path(VectorMyInt start, int length, bool is_main)
     {
         Side? detect = at_border(start);
         VectorMyInt apos = start;
-        for(int i=0; i<length; i++)
+        bool enough = true;
+        int i = 0;
+        do
         {
-            Side step = detect.HasValue ? opposite(detect.Value) : RandomSide();
-//            if (step == start_side && Random.Range(0, 2) == 0)
-//                continue;
+            i++;
+            Side step = detect.HasValue ? opposite(detect.Value) : RandomSide(apos);
+            //            if (step == start_side && Random.Range(0, 2) == 0)
+            //                continue;
+            if (is_main && step == start_side && Random.Range(0, 100) < TENSION)
+                continue;
+
             one_step(ref apos, step);
-            apply(level, apos);
+            apply(apos);
             detect = at_border(apos);
-            //            Debug.Log(apos);
-        };
+            if (is_main)
+                enough = detect.HasValue && (detect != start_side);
+            else
+                enough = i > length;
+        }while(!enough);
+        return apos;
     }
 
 
-    override protected void GenerateLevel(Level level, LevelType typ, out VectorMyInt start, out VectorMyInt finish)
+    override protected void GenerateLevel(Level alevel, LevelType typ, out VectorMyInt start, out VectorMyInt finish)
     {
         var config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
+        level = alevel;
         nx = config.LevelWidth;
         ny = config.LevelHeight;
         //fill with walls
         for (int x = 0; x < nx; x++)
             for (int y = 0; y < ny; y++)
                 level.CellTypes[x, y] = CellType.Wall;
-        //select starting side
-        var start_side = RandomSide();
+        //select starting 
+        start_side = (Side)Random.Range(0, 4); ;
         //draw one random path
-        var apos = StartAtSide(start_side);
-        apply(level, apos);
-        start = apos;
-        Side step = opposite(start_side);
-        one_step(ref apos, step);
-        apply(level, apos);
-        Side prev = step;
-        Side? detect = null;
-        do
-        {
-            if (detect == start_side)
-                step = opposite(start_side);
-            else
-                step = RandomSide();
-//            if (step == opposite(prev))
-//                continue;
-            if (step == start_side && Random.Range(0, 2) == 0)
-                continue;
-            one_step(ref apos, step);
-            apply(level, apos);
-            prev = step;
-            detect = at_border(apos);
-//            Debug.Log(apos);
-        } while (detect == null || detect == start_side);
-        finish = apos;
-
+        start = StartAtSide(start_side);
+        apply(start);
+        finish = add_path(start, 1, true);
 
         //additional start paths
         for (int i = 0; i < CFG_START_PATHS; i++)
-            add_path(level, start, CFG_START_PATH_LENGTH);
+            add_path(start, (config.LevelHeight + config.LevelWidth) * CFG_START_PATH_LENGTH / 100, false);
 
+        for (int i = 0; i < CFG_MID_PATHS; i++)
+        { 
+            add_path(level.RandomIntPlace(), (config.LevelHeight + config.LevelWidth) * CFG_MID_PATH_LENGTH / 100, false);
+        }
 
-
-
-
-        level.CellTypes[apos.x, apos.y] = CellType.Exit;
+        level.CellTypes[finish.x, finish.y] = CellType.Exit;
     }
 
 }

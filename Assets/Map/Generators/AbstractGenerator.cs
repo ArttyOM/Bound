@@ -23,7 +23,7 @@ public struct VectorMyInt {
 
 public abstract class AbstractGenerator  {
 
-    abstract protected void GenerateLevel(Level level, LevelType typ, out VectorMyInt start, out VectorMyInt finish);
+    abstract protected void GenerateLevel(Level alevel, LevelType typ, out VectorMyInt start, out VectorMyInt finish);
 
 
     public void Apply(Level level, LevelType typ)
