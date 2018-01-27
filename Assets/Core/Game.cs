@@ -12,6 +12,7 @@ public class Game : MonoBehaviour {
 
     public int TotalTowers;
     public int DestroyedTowers;
+    public List<Tower> Towers;
 
     public void TowerBroken()
     {

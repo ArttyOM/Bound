@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Name: Settings
   m_EditorClassIdentifier: 
   TransmissionMaxLength: 10
-  TransmissionMinLength: 2
+  TransmissionMinLength: 0.5
   TransmissionMinThreshold: 0.5
   TransmissionMaxThreshold: 1
   TransmissionBreakDamage: 5
   CameraHeight: -10
   PathfindingCellSize: 0.2
-  LevelWidth: 20
-  LevelHeight: 20
+  LevelWidth: 40
+  LevelHeight: 40
   GenerationCell: 5
   EnemyStandardSpeed: 5
   StandardEnemySize: 0.6
