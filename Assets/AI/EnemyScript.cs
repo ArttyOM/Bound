@@ -14,7 +14,7 @@ public class EnemyScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         agent = GetComponent<Agent>();
-        agent.Speed = 5;
+        agent.Speed = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings().EnemyStandardSpeed; ;
         player = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 	

@@ -12,6 +12,11 @@ namespace AI
         private static GridScript instance;
 
         /// <summary>
+        /// Стандартная скорость врага
+        /// </summary>
+        private float standardEnemySize = 1;
+
+        /// <summary>
         /// Размер сетки
         /// </summary>
         public Vector2 gridSize;
@@ -30,9 +35,6 @@ namespace AI
         /// Для каждой клетки можно ли её пройти
         /// </summary>
         private bool[,] walkable;
-
-        public Vector3 start;
-        public Vector3 finish;
 
         // Use this for initialization
         void Start()
@@ -59,7 +61,13 @@ namespace AI
         /// </summary>
         public void InitGrid()
         {
-            cellSize = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings().PathfindingCellSize;
+            LayerMask layer = ServiceLocator.Instance.ResolveService<GameSettingsProvider>()
+                .GetSettings().NotWalkableMask;
+            cellSize = ServiceLocator.Instance.ResolveService<GameSettingsProvider>()
+                .GetSettings().PathfindingCellSize;
+            standardEnemySize = ServiceLocator.Instance.ResolveService<GameSettingsProvider>()
+                .GetSettings().StandardEnemySize;
+
             sizeX = (int)Mathf.Ceil(gridSize.x / cellSize);
             sizeY = (int)Mathf.Ceil(gridSize.y / cellSize);
 
@@ -69,7 +77,7 @@ namespace AI
                 for (int j = 0; j < sizeX; j++)
                 {
                     RaycastHit2D raycastHitInfo = Physics2D.BoxCast(GetCoord(i, j),
-                        new Vector2(cellSize, cellSize), 0, Vector2.zero);
+                        new Vector2(standardEnemySize, standardEnemySize), 0, Vector2.zero, 0,layerMask:layer);
 
                     if (raycastHitInfo.collider == null)
                         walkable[i, j] = true;
@@ -274,39 +282,61 @@ namespace AI
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawWireCube(transform.position, new Vector3(gridSize.x, gridSize.y, 0.1f));
-            
+
             if (walkable != null)
             {
-                int ii, iii, jj, jjj;
-                GetIndexiesFromPoint(start, out ii, out jj);
-                GetIndexiesFromPoint(finish, out iii, out jjj);
                 for (int i = 0; i < sizeY; i++)
                     for (int j = 0; j < sizeX; j++)
                     {
-                        if (i == ii && j == jj)
-                            Gizmos.color = Color.black;
-                        else if (i == iii && j == jjj)
-                            Gizmos.color = Color.cyan;
-                        else if (walkable[i, j])
+                        if (walkable[i, j])
                             Gizmos.color = Color.green;
                         else
                             Gizmos.color = Color.red;
 
                         Gizmos.DrawCube(GetCoord(i, j), Vector3.one * cellSize * 0.9f);
                     }
-
-                List<Vector3> path = FindPath(start, finish);
-                if (path != null)
-                {
-                    foreach(Vector3 point in path)
-                    {
-                        Gizmos.color = Color.magenta;
-                        Gizmos.DrawCube(point, Vector3.one * cellSize * 0.9f);
-                    }
-                }
             }
-            Gizmos.color = Color.black;
-            Gizmos.DrawCube(start, Vector3.one * 0.2f);
         }
+
+        #region Наверно оптимизация для поиска путей
+
+        /// <summary>
+        /// Очередь агентов
+        /// </summary>
+        private Queue<Agent> agentsQueue = new Queue<Agent>();
+
+        /// <summary>
+        /// Добавить агента в очередь
+        /// </summary>
+        /// <param name="agent">Агент</param>
+        public static void AddToQueue(Agent agent)
+        {
+            instance.agentsQueue.Enqueue(agent);
+            if (!instance.isFindPathes)
+                instance.StartCoroutine(instance.FindPathes());
+        }
+
+        /// <summary>
+        /// Ищет ли пути
+        /// </summary>
+        private bool isFindPathes = false;
+
+        /// <summary>
+        /// Искать пути
+        /// </summary>
+        /// <returns></returns>
+        private System.Collections.IEnumerator FindPathes()
+        {
+            isFindPathes = true;
+            while (!(agentsQueue.Count == 0))
+            {
+                Agent current = agentsQueue.Dequeue();
+                current.SetPath(FindPath(current.transform.position, current.Destination));
+                yield return null;
+            }
+            isFindPathes = false;
+        }
+
+        #endregion
     }
 }

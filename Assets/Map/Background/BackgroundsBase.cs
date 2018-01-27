@@ -9,7 +9,7 @@ public class BackgroundsBase : ScriptableObject {
     [SerializeField]
     GameObject[] data;
 
-    public GameObject GetItem(WallType typ, int ax, int ay)
+    public GameObject GetItem(CellType typ, int ax, int ay)
     {
         var config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
         var result = Instantiate(data[(int)typ]);

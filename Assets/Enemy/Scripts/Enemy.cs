@@ -2,5 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class Enemy {
 
-public enum WallType { Floor, Wall };
+	public GameObject enemyType;
+	public float spawnFrequency;
+}

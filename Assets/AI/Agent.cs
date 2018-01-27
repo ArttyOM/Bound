@@ -6,15 +6,14 @@ namespace AI {
     public class Agent : MonoBehaviour {
 
         private Vector3 destination;
-        private List<Vector3> path, newPath;
-        private bool isUpdated;
-        private int index;
+        private List<Vector3> path;
         private float lastUpdateTime = -10;
-        private float delta = 0.3f;
+        private float delta;
 
         // Use this for initialization
         void Start() {
-            
+            delta = ServiceLocator.Instance.ResolveService<GameSettingsProvider>()
+                .GetSettings().PathfindingUpdateDelta;
         }
 
         /// <summary>
@@ -75,14 +74,23 @@ namespace AI {
                     destination = value;
                     lastUpdateTime = Time.time;
                     StopAllCoroutines();
-                    path = GridScript.Path(transform.position, destination);
-                    if (path != null && path.Count != 0)
-                        StartCoroutine(FollowPath());
+                    GridScript.AddToQueue(this);
                 }
             }
         }
 
-        private void OnDrawGizmosSelected()
+        /// <summary>
+        /// Задаёт путь
+        /// </summary>
+        /// <param name="path"></param>
+        public void SetPath(List<Vector3> path)
+        {
+            this.path = path;
+            if (path != null && path.Count != 0)
+                StartCoroutine(FollowPath());
+        }
+
+        /*private void OnDrawGizmosSelected()
         {
             if (path != null)
             {
@@ -94,6 +102,6 @@ namespace AI {
             }
             Gizmos.color = Color.green;
             Gizmos.DrawCube(destination, Vector3.one / 2);
-        }
+        }*/
     }
 }

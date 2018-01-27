@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class Level : MonoBehaviour {
 
-    public WallType[,] CellTypes;
+    public CellType[,] CellTypes;
     public GameObject[,] Data;
 
     public Vector2 start;
     public Vector2 finish;
 
+    bool CellPassable(CellType typ)
+    {
+        return typ != CellType.Wall;
+    }
+
 
     public void GenerateNew()
     {
         var config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
-        var gen = ServiceLocator.Instance.ResolveService<DummyGenerator>();
+        var gen = ServiceLocator.Instance.ResolveService<AntnestGenerator>();
 
         var typ = Random.Range(0, 2) == 0 ? LevelType.Forest : LevelType.Dungeon;
-        CellTypes = new WallType[config.LevelWidth, config.LevelHeight];
+        CellTypes = new CellType[config.LevelWidth, config.LevelHeight];
         Data = new GameObject[config.LevelWidth, config.LevelHeight];
         gen.Apply(this, typ);
     }
@@ -30,7 +35,7 @@ public class Level : MonoBehaviour {
         {
             x = Random.Range(0, config.LevelWidth);
             y = Random.Range(0, config.LevelHeight);
-        } while (CellTypes[x, y] != WallType.Floor);
+        } while (!CellPassable(CellTypes[x, y]));
         return new Vector2(x * config.GenerationCell + Random.Range(0.0f, 1.0f), y * config.GenerationCell + Random.Range(0.0f, 1.0f));
     }
 

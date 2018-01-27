@@ -27,4 +27,18 @@ public class GameSettings: ScriptableObject
     /// Скорость врагов по умолчанию
     /// </summary>
     public float EnemyStandardSpeed;
+    /// <summary>
+    /// Размер врага
+    /// </summary>
+    public float StandardEnemySize;
+
+    /// <summary>
+    /// Непроходимые объекты
+    /// </summary>
+    public LayerMask NotWalkableMask;
+
+    /// <summary>
+    /// Промежуток, через который можно обновлять путь
+    /// </summary>
+    public float PathfindingUpdateDelta;
 }
