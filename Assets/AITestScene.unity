@@ -214,6 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 411887786}
   - component: {fileID: 411887787}
+  - component: {fileID: 411887788}
   m_Layer: 0
   m_Name: TmpPlayer
   m_TagString: Player
@@ -245,6 +246,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd2ab85984fc77a43adcb72169bdc794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &411887788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 411887785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d05a122d8790745a2b8df11a9d8c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  Damage: 0
+  Speed: 0
+  Health: 0
+  LastDir: {x: 0, y: 0}
+  Abilities: []
 --- !u!1001 &444611624
 Prefab:
   m_ObjectHideFlags: 0
@@ -829,6 +847,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2031206351}
   - component: {fileID: 2031206350}
+  - component: {fileID: 2031206352}
   m_Layer: 0
   m_Name: TmpPlayer (1)
   m_TagString: Player
@@ -860,6 +879,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2031206352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2031206349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d05a122d8790745a2b8df11a9d8c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  Damage: 0
+  Speed: 0
+  Health: 0
+  LastDir: {x: 0, y: 0}
+  Abilities: []
 --- !u!1001 &2083927321
 Prefab:
   m_ObjectHideFlags: 0

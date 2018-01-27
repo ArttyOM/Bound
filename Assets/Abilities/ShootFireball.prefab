@@ -53,5 +53,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   Cooldown: 1
-  attacKeyCode: 0
-  Projectile: {fileID: 1341736886187308, guid: d101a98fab29c9e438f78bc59df25884, type: 2}
+  attacKeyCode: 113
+  Projectile: {fileID: 1428432336032028, guid: 91fcc7fc39456f146ad35bce42d27715, type: 2}
