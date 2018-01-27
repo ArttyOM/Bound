@@ -632,6 +632,20 @@ GameObject:
   m_PrefabParentObject: {fileID: 1099268055668676, guid: 429bf687159e73347ac43a23c1ec0495,
     type: 2}
   m_PrefabInternal: {fileID: 917283507}
+--- !u!114 &917283510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 917283509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c93a427c9ad08674e83b3a497512c68b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transmission: {fileID: 917283508}
+  _wizard: {fileID: 1150063154}
+  _warrior: {fileID: 215008062}
 --- !u!1 &1081495432
 GameObject:
   m_ObjectHideFlags: 0
