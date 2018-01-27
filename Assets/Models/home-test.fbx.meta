@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 30dc22e42266af44aa2dc74780c0b697
-timeCreated: 1517053203
+timeCreated: 1517079919
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -21,7 +21,22 @@ ModelImporter:
     4300000: Cube
     9500000: //RootNode
     10800000: Lamp
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: roof_home
+    second: {fileID: 2100000, guid: 4f299e039a992724d93c330439bedbb0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: walls_home
+    second: {fileID: 2100000, guid: 0ba16f83a80637648934201cecce699c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: windows_home
+    second: {fileID: 2100000, guid: aab50dbf80465d44e86596ecdff3d786, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

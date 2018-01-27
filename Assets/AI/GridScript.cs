@@ -84,7 +84,7 @@ namespace AI
             _top = transform.position.y + sizeY / 2 * cellSize;
             _right = transform.position.x + sizeX / 2 * cellSize;
             _bottom = transform.position.y - sizeY / 2 * cellSize;
-            _updateSize = Mathf.Min(sizeX, sizeY) / 10;
+            _updateSize = Mathf.Min(sizeX, sizeY) / 15;
 
             walkable = new bool[sizeY, sizeX];
             for (int i = 0; i < sizeY; i++)
@@ -285,7 +285,7 @@ namespace AI
         }
 
         /// <summary>
-        /// Находит путь
+        /// Находит путь НАХОДИТ ТОЛЬКО СЛЕДУЮЩИЙ ШАГ
         /// </summary>
         /// <param name="start">Откуда</param>
         /// <param name="number">Номер игрока</param>
@@ -309,13 +309,9 @@ namespace AI
                 GetPointFromIndexies(startI, startJ)
             };
 
-            int currentI = startI, currentJ = startJ;
-            while (tmp[currentI, currentJ] != -1)
-            {
-                int hash = tmp[currentI, currentJ];
-                GetIndexesFromHash(hash, out currentI, out currentJ);
-                path.Add(GetPointFromIndexies(currentI, currentJ));
-            }
+            int prevI, prevJ;
+            GetIndexesFromHash(tmp[startI, startJ], out prevI, out prevJ);
+            path.Add(GetPointFromIndexies(prevI, prevJ));
 
             return path;
         }
@@ -390,7 +386,7 @@ namespace AI
                 InitPathes(players[0].transform.position, out _prevHashFirst);
                 yield return null;
                 InitPathes(players[1].transform.position, out _prevHashSecond);
-                yield return null;
+                yield return new WaitForSeconds(0.3f);
             }
         }
 

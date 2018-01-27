@@ -16,13 +16,12 @@ MonoBehaviour:
     weight: 100
   Floors:
   - obj: {fileID: 1367147820844674, guid: ef06b1501f86e414b8e91970865c8ce5, type: 2}
+    weight: 50
+  - obj: {fileID: 1819430904851738, guid: d1c86b4cb4d317644b95abd90c9b35da, type: 2}
+    weight: 50
+  Exits:
+  - obj: {fileID: 1540957358835430, guid: ccf30e85a5a5a0c44aae8273c5d55152, type: 2}
     weight: 100
+  Towers:
   - obj: {fileID: 1299639408926680, guid: 8cc2bb66f5407184a9dd43177a622ff5, type: 2}
     weight: 1
-  - obj: {fileID: 1819430904851738, guid: d1c86b4cb4d317644b95abd90c9b35da, type: 2}
-    weight: 1
-  - obj: {fileID: 1540957358835430, guid: ccf30e85a5a5a0c44aae8273c5d55152, type: 2}
-    weight: 1
-  Exits:
-  - obj: {fileID: 1042442402744858, guid: c90408e1ad3c40f44baa892bc63af155, type: 2}
-    weight: 100
