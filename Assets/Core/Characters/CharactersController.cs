@@ -31,6 +31,8 @@ namespace Assets.Core.Characters
 			_warriorRigidbody2D = _warrior.GetComponent<Rigidbody2D>();
 			_wizardRigidbody2D = _wizard.GetComponent<Rigidbody2D>();
 
+            InitAbilities();
+
 			StartCoroutine(UpdateDamager());
 		}
 
@@ -87,10 +89,14 @@ namespace Assets.Core.Characters
 
 			var targetPosition = _warriorTransform.position + _warriorTransform.up * _warrior.Speed;
 
-			if (((Vector2) mousePos - (Vector2)_warriorTransform.position).sqrMagnitude > 0.2f * 0.2f &&
-			    WarriorNewPositionLessThenMaxLength(targetPosition))
+
+            _warrior.LastDir = (Vector2)mousePos - (Vector2)_warriorTransform.position;
+
+
+            if (((Vector2)mousePos - (Vector2)_warriorTransform.position).sqrMagnitude > 0.2f * 0.2f &&
+                WarriorNewPositionLessThenMaxLength(targetPosition))
                 _warriorRigidbody2D.MovePosition(targetPosition);
-			else
+            else
                 _warriorRigidbody2D.MovePosition(_warriorTransform.position);
 		}
 
@@ -139,11 +145,17 @@ namespace Assets.Core.Characters
 			if (right)
 				targetTransform += Vector3.right;
 
-			var speed = up && left || up && right || down && left || down && right
+            if (up || down || left || right)
+                _wizard.LastDir = targetTransform;
+
+
+            var speed = up && left || up && right || down && left || down && right
 				? Mathf.Sqrt(_wizard.Speed * _wizard.Speed / 2f)
 				: _wizard.Speed;
 
-			targetTransform = _wizardTransform.position + targetTransform * speed;
+
+
+                targetTransform = _wizardTransform.position + targetTransform * speed;
 
 			if (up || down || left || right)
 			{
@@ -172,5 +184,14 @@ namespace Assets.Core.Characters
             }
 
         }
+
+        void InitAbilities()
+        {
+            for (int i = 0; i < _warrior.Abilities.Count; i++)
+                _warrior.Abilities[i].owner = _warrior;
+            for (int i = 0; i < _wizard.Abilities.Count; i++)
+                _wizard.Abilities[i].owner = _wizard;
+        }
+
     }
 }

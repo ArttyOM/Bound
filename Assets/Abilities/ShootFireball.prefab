@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4639917586380558}
-  - component: {fileID: 114979239629870852}
+  - component: {fileID: 114521226763515706}
   m_Layer: 0
-  m_Name: RotateMage
+  m_Name: ShootFireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114979239629870852
+--- !u!114 &114521226763515706
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -48,7 +48,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1297006168128076}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c8f401b3a3948742863317219818d8c, type: 3}
+  m_Script: {fileID: 11500000, guid: a4fba93ba0855714380d5e74d5692f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 10
+  owner: {fileID: 0}
+  Cooldown: 1
+  Projectile: {fileID: 1428432336032028, guid: 91fcc7fc39456f146ad35bce42d27715, type: 2}

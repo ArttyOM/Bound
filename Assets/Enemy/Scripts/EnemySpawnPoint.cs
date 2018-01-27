@@ -44,7 +44,7 @@ public class EnemySpawnPoint : MonoBehaviour {
 			//Debug.Log(_chancePerTypeS[0]+" "+_chancePerTypeS[1]+" "+_chancePerTypeS[2]);
 			//_enemy = null;
 			//Debug.Log (temp);
-			Debug.Log(temp +" " + _enemy.name);
+			//Debug.Log(temp +" " + _enemy.name);
 			Instantiate (_enemy, this.transform.position, Quaternion.identity, enemyContainer.transform);
 			yield return new WaitForSeconds(T);
 		}
