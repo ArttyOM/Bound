@@ -30,7 +30,7 @@ public class Game : MonoBehaviour {
         level.GenerateNew();
         //update grid
         grid.transform.position = new Vector2(config.GenerationCell * config.LevelWidth / 2, config.GenerationCell * config.LevelHeight / 2);
-        grid.gridSize = new Vector2(1.0f * config.GenerationCell * config.LevelWidth / 2, 1.0f * config.GenerationCell * config.LevelHeight / 2);
+        grid.gridSize = new Vector2(1.0f * config.GenerationCell * config.LevelWidth, 1.0f * config.GenerationCell * config.LevelHeight);
         grid.InitGrid();
         //place players
         TeleportTo(level.start);
