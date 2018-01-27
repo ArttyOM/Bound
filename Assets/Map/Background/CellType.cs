@@ -3,4 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum WallType { Floor, Wall };
+public enum CellType { Floor, Wall, Exit };
+
