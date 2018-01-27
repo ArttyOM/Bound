@@ -40,7 +40,12 @@ public abstract class AbstractGenerator  {
             {
                 level.Data[x, y] = backs.GetItem(level, level.CellTypes[x, y], x, y);
                 if (level.CellTypes[x, y] == CellType.Tower)
-                    game.Towers.Add(level.Data[x, y].GetComponent<Tower>());
+                {
+                    var tower = level.Data[x, y].GetComponentInChildren<Tower>();
+                    tower.towerpos = (Vector2)level.Data[x, y].transform.position;
+                    game.Towers.Add(tower);
+                }
+
             }
         level.start = start.ToF() * config.GenerationCell + new Vector2(0.5f, 0.5f);
         level.finish = finish.ToF() * config.GenerationCell + new Vector2(0.5f, 0.5f);

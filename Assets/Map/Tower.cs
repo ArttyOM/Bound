@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-enum TowerStatus
+public enum TowerStatus
 {
     Waiting, Active, Breaking, Broken,
 }
@@ -15,7 +15,9 @@ public class Tower : MonoBehaviour {
     const float break_distance = 3.0f;
     const float break_time = 3.0f;
 
-    TowerStatus status = TowerStatus.Active;
+    public TowerStatus status = TowerStatus.Active;
+
+    public Vector2 towerpos;
     float breaking_started = 0.0f;
     EnemySpawnPoint spawn;
     Game game;
@@ -36,10 +38,14 @@ public class Tower : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float distance = Vector3.Distance(this.transform.position, transmission.transform.position);
+        float distance = Vector2.Distance(towerpos, game.PlayerPos());
 
         switch (status)
         {
+            case TowerStatus.Waiting:
+                if (distance < active_distance)
+                    SetStatus(TowerStatus.Active);
+                break;
             case TowerStatus.Active:
                 if (distance > active_distance)
                     SetStatus(TowerStatus.Waiting);
