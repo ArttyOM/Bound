@@ -18,6 +18,7 @@ public class BackgroundsProvider
         else
         {
             var result = Resources.Load<BackgroundsBase>(base_path + names[typ]);
+            result.Prepare();
             _values.Add(typ, result);
             return result;
         }
