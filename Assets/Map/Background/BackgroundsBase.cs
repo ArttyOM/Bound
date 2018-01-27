@@ -40,7 +40,7 @@ public class BackgroundsBase : ScriptableObject {
 
     }
 
-    public GameObject GetItem(CellType typ, int ax, int ay)
+    public GameObject GetItem(Level level, CellType typ, int ax, int ay)
     {
         var config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
         var alist = data[typ];
@@ -58,7 +58,7 @@ public class BackgroundsBase : ScriptableObject {
                 break;
             }
         }
-        var result = Instantiate(selected);
+        var result = Instantiate(selected, level.transform);
         result.transform.position = (new Vector2(ax, ay)) * config.GenerationCell;
         result.transform.localScale = (new Vector3(1, 1, 1)) * config.GenerationCell;
         return result;
