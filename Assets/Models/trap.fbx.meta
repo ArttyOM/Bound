@@ -1,24 +1,38 @@
 fileFormatVersion: 2
-guid: 30dc22e42266af44aa2dc74780c0b697
-timeCreated: 1517053203
+guid: 1e62c82cc04a0634e98863307a98e167
+timeCreated: 1517059149
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
-    100000: Camera
-    100002: Cube
-    100004: //RootNode
+    100000: center
+    100002: jaw1
+    100004: jaw2
     100006: Lamp
-    400000: Camera
-    400002: Cube
-    400004: //RootNode
+    100008: //RootNode
+    400000: center
+    400002: jaw1
+    400004: jaw2
     400006: Lamp
-    2000000: Camera
-    2300000: Cube
-    2300002: //RootNode
-    3300000: Cube
-    3300002: //RootNode
-    4300000: Cube
+    400008: //RootNode
+    2300000: center
+    2300002: jaw1
+    2300004: jaw2
+    3300000: center
+    3300002: jaw1
+    3300004: jaw2
+    4300000: center
+    4300002: jaw1
+    4300004: jaw2
+    7400000: center|jaw1Action
+    7400002: center|jaw2Action
+    7400004: jaw1|jaw1Action
+    7400006: jaw1|jaw2Action
+    7400008: Lamp|jaw1Action
+    7400010: Lamp|jaw2Action
+    7400012: jaw2|jaw1Action
+    7400014: jaw2|jaw2Action
+    9500000: //RootNode
     10800000: Lamp
   materials:
     importMaterials: 1

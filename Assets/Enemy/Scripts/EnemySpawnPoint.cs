@@ -6,6 +6,7 @@ public class EnemySpawnPoint : MonoBehaviour {
 	public bool isInVision = false;
 
 	public float T = 3f;
+	public GameObject enemyContainer;
 	public float[] chancePerType;
 	public GameObject[] enemyTypes;
 
@@ -39,7 +40,7 @@ public class EnemySpawnPoint : MonoBehaviour {
 			//_enemy = null;
 			//Debug.Log (temp);
 			Debug.Log(temp +" " + _enemy.name);
-			Instantiate (_enemy, this.transform.position, Quaternion.identity, this.transform);
+			Instantiate (_enemy, this.transform.position, Quaternion.identity, enemyContainer.transform);
 			yield return new WaitForSeconds(T);
 		}
 		while (!isInVision);
