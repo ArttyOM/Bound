@@ -105,8 +105,10 @@ namespace AI
         /// <param name="j">Столбец</param>
         private bool GetIndexiesFromPoint(Vector3 point, out int i, out int j)
         {
-            j = Mathf.RoundToInt((point.x /  (transform.position.x + sizeX * cellSize)) * sizeX) + sizeX / 2;
-            i = Mathf.RoundToInt((point.y / (transform.position.y + sizeY * cellSize)) * sizeY) + sizeY / 2;
+            j = Mathf.RoundToInt((point.x / (transform.position.x + sizeX * cellSize)) * sizeX)/* + sizeX / 2*/;
+            i = Mathf.RoundToInt((point.y / (transform.position.y + sizeY * cellSize)) * sizeY)/* + sizeY / 2*/;
+            //Debug.LogError(point);
+            //Debug.LogError(i + " " + j + " " + sizeX + " " + sizeY);
             if (i >= 0 && i < sizeY && j >= 0 && j < sizeX)
                 return true;
             return false;
@@ -209,10 +211,16 @@ namespace AI
             int finishI, finishJ;
             if (!GetIndexiesFromPoint(finish, out finishI, out finishJ)
                 || !GetIndexiesFromPoint(start, out startI, out startJ))
+            {
+                Debug.LogError("Nothing points!");
                 return null;
+            }
 
             if (!walkable[startI, startJ] || !walkable[finishI, finishJ])
+            {
+                Debug.LogError(walkable[startI, startJ] + " " + walkable[finishI, finishJ]);
                 return null;
+            }
 
             distance[startI, startJ] = 0;
             Heap<DijkstraInfo> heap = new Heap<DijkstraInfo>();
@@ -256,7 +264,10 @@ namespace AI
 
             // восстановление путей    
             if (prevHash[finishI, finishJ] == -1)
+            {
+                Debug.LogError("Looool");
                 return null;
+            }
 
             int currI = finishI, currJ = finishJ;
             List<Vector3> path = new List<Vector3>
@@ -293,7 +304,7 @@ namespace AI
                         else
                             Gizmos.color = Color.red;
 
-                        Gizmos.DrawCube(GetCoord(i, j), Vector3.one * cellSize * 0.9f);
+                        Gizmos.DrawLine(GetCoord(i, j), GetCoord(i, j) + Vector3.up * cellSize * 0.9f);
                     }
             }
         }
@@ -305,13 +316,20 @@ namespace AI
         /// </summary>
         private Queue<Agent> agentsQueue = new Queue<Agent>();
 
+        private HashSet<Agent> _currentAgents = new HashSet<Agent>();
+
         /// <summary>
         /// Добавить агента в очередь
         /// </summary>
         /// <param name="agent">Агент</param>
         public static void AddToQueue(Agent agent)
         {
-            instance.agentsQueue.Enqueue(agent);
+            if (!instance._currentAgents.Contains(agent))
+            {
+                instance._currentAgents.Add(agent);
+                instance.agentsQueue.Enqueue(agent);
+            }
+
             if (!instance.isFindPathes)
                 instance.StartCoroutine(instance.FindPathes());
         }
@@ -328,10 +346,14 @@ namespace AI
         private System.Collections.IEnumerator FindPathes()
         {
             isFindPathes = true;
-            while (!(agentsQueue.Count == 0))
+            while (agentsQueue.Count != 0)
             {
                 Agent current = agentsQueue.Dequeue();
-                current.SetPath(FindPath(current.transform.position, current.Destination));
+                List<Vector3> tmp = FindPath(current.transform.position, current.Destination);
+                current.SetPath(tmp);
+                if (tmp == null)
+                    Debug.LogError("NOOOO");
+                _currentAgents.Remove(current);
                 yield return null;
             }
             isFindPathes = false;

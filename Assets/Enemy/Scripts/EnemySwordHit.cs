@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemySwordHit : MonoBehaviour {
 
 	[SerializeField] private GameObject mage;
 	[SerializeField] private GameObject warrior;
 	[SerializeField] private GameObject thisEnemy;
+
+	public float chargeSpeed = 30f;
 	public float rotSpeed = .5f;
 	public float delayBeforeAttack = 1f;
-	public float maxDistanceToAttack = 2f;
+	public float maxDistanceToAttack = 4f;
 
 	private float _distanceToMage;
 	private float _distanceToWarrior;
@@ -47,19 +50,28 @@ public class EnemySwordHit : MonoBehaviour {
 			target = warrior;
 
 		Debug.Log (target.name);
-		Quaternion direction;
-		do {
-			direction = Quaternion.LookRotation (target.transform.position);
+		//Quaternion direction;
+
+		thisEnemy.transform.LookAt (target.transform);
+		//do {
+		//	direction = Quaternion.LookRotation (target.transform.position);
 
 			//transform T = this.transform.LookAt(target.transform);
-			thisEnemy.transform.LookAt (target.transform);
+		//	thisEnemy.transform.LookAt (target.transform);
 			//thisEnemy.transform.rotation = Quaternion.Lerp (transform.rotation, direction, rotSpeed * Time.deltaTime);
-			yield return null;
-		} while (false); // если чо-то не по плану, это тут
+		//	yield return null;
+		//} while (false); // если чо-то не по плану, это тут
 			
 		yield return new WaitForSeconds (delayBeforeAttack);// 1f по умолчанию
 
-		this.transform.LookAt (target.transform);
+		do {
+			Charge (chargeSpeed);
+		} while (true);
 
+		//this.transform.LookAt (target.transform);
+	}
+
+	void Charge (float speed){
+		thisEnemy.transform.Translate (0, 0, speed * Time.deltaTime);
 	}
 }

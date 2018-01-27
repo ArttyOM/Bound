@@ -20,7 +20,7 @@ namespace Assets.Core.Characters
 		
 		private WaitForSeconds _damagerUpdateRate = new WaitForSeconds(0.3f);
 
-		private Quaternion _warriorTargetRotation;
+		private Quaternion _wizardTargetRotation;
 		
 		public void Awake()
 		{
@@ -40,7 +40,9 @@ namespace Assets.Core.Characters
 			UpdateSecondCharacterPosition();
 			UpdateTransmission();
 			UpdateCamera();
-		}
+            ApplyAbilities();
+
+        }
 
 		private IEnumerator UpdateDamager()
 		{
@@ -80,21 +82,16 @@ namespace Assets.Core.Characters
 
 		private void UpdateSecondCharacterPosition()
 		{
-			var attack = Input.GetMouseButton(1);
 			var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			_wizardTransform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - _wizardTransform.position);
+			_warriorTransform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - _warriorTransform.position);
 
-			var targetPosition = _wizardTransform.position + _wizardTransform.up * _wizard.Speed;
+			var targetPosition = _warriorTransform.position + _warriorTransform.up * _warrior.Speed;
 
-			if (Input.GetMouseButton(0) &&
-			    ((Vector2) mousePos - (Vector2) _wizardTransform.position).sqrMagnitude > 0.2f * 0.2f &&
-			    WizardNewPositionLessThenMaxLength(targetPosition))
-				_wizardRigidbody2D.MovePosition(targetPosition);
+			if (((Vector2) mousePos - (Vector2)_warriorTransform.position).sqrMagnitude > 0.2f * 0.2f &&
+			    WarriorNewPositionLessThenMaxLength(targetPosition))
+                _warriorRigidbody2D.MovePosition(targetPosition);
 			else
-				_wizardRigidbody2D.MovePosition(_wizardTransform.position);
-			
-			if (attack)
-				Debug.Log("attack wiz");
+                _warriorRigidbody2D.MovePosition(_warriorTransform.position);
 		}
 
 		private bool WizardNewPositionLessThenMaxLength(Vector3 newPosition)
@@ -143,27 +140,37 @@ namespace Assets.Core.Characters
 				targetTransform += Vector3.right;
 
 			var speed = up && left || up && right || down && left || down && right
-				? Mathf.Sqrt(_warrior.Speed * _warrior.Speed / 2f)
-				: _warrior.Speed;
+				? Mathf.Sqrt(_wizard.Speed * _wizard.Speed / 2f)
+				: _wizard.Speed;
 
-			targetTransform = _warriorTransform.position + targetTransform * speed;
+			targetTransform = _wizardTransform.position + targetTransform * speed;
 
 			if (up || down || left || right)
 			{
-				_warriorTargetRotation = Quaternion.LookRotation(Vector3.forward, targetTransform - _warriorTransform.position);
+                _wizardTargetRotation = Quaternion.LookRotation(Vector3.forward, targetTransform - _wizardTransform.position);
 			}
-			
-			_warriorTransform.rotation =
-				Quaternion.Lerp(_warriorTransform.rotation, _warriorTargetRotation, 5f * Time.deltaTime);
 
-			if (WarriorNewPositionLessThenMaxLength(targetTransform))
+            _wizardTransform.rotation =
+				Quaternion.Lerp(_wizardTransform.rotation, _wizardTargetRotation, 5f * Time.deltaTime);
+
+			if (WizardNewPositionLessThenMaxLength(targetTransform))
 			{
-				_warriorRigidbody2D.MovePosition(targetTransform);
+				_wizardRigidbody2D.MovePosition(targetTransform);
 			}
-				
-			
-			if (attack)
-				Debug.Log("attack war");
 		}
-	}
+
+        void ApplyAbilities()
+        {
+            if (Input.GetMouseButton(0))
+                _warrior.Abilities[0].Perform();
+            if (Input.GetMouseButton(1))
+                _warrior.Abilities[1].Perform();
+            for(int i=1; i<12; i++)
+            {
+                if (Input.GetKey((KeyCode)((int)KeyCode.F1+i-1)))
+                    _wizard.Abilities[i-1].Perform();
+            }
+
+        }
+    }
 }
