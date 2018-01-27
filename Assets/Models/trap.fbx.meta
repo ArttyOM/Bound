@@ -1,9 +1,17 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: a654a76faadb8064b9c7fe111da29ace
+timeCreated: 1517061062
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+=======
 guid: 1e62c82cc04a0634e98863307a98e167
 timeCreated: 1517059149
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
+>>>>>>> ed8f3b89580f55ca724eac79de10ce0af0ec9c85
   fileIDToRecycleName:
     100000: center
     100002: jaw1
@@ -33,7 +41,10 @@ ModelImporter:
     7400012: jaw2|jaw1Action
     7400014: jaw2|jaw2Action
     9500000: //RootNode
+<<<<<<< HEAD
+=======
     10800000: Lamp
+>>>>>>> ed8f3b89580f55ca724eac79de10ce0af0ec9c85
   materials:
     importMaterials: 1
     materialName: 0
@@ -50,13 +61,20 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+<<<<<<< HEAD
+    animationCompression: 3
+=======
     animationCompression: 1
+>>>>>>> ed8f3b89580f55ca724eac79de10ce0af0ec9c85
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+<<<<<<< HEAD
+=======
     extraUserProperties: []
+>>>>>>> ed8f3b89580f55ca724eac79de10ce0af0ec9c85
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -64,10 +82,14 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+<<<<<<< HEAD
+    importBlendShapes: 1
+=======
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+>>>>>>> ed8f3b89580f55ca724eac79de10ce0af0ec9c85
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -83,8 +105,12 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+<<<<<<< HEAD
+  importAnimation: 0
+=======
     normalCalculationMode: 4
   importAnimation: 1
+>>>>>>> ed8f3b89580f55ca724eac79de10ce0af0ec9c85
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
@@ -100,7 +126,11 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+<<<<<<< HEAD
+    hasExtraRoot: 1
+=======
     hasExtraRoot: 0
+>>>>>>> ed8f3b89580f55ca724eac79de10ce0af0ec9c85
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
