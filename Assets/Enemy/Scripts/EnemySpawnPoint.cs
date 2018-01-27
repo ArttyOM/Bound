@@ -39,7 +39,7 @@ public class EnemySpawnPoint : MonoBehaviour {
 			//_enemy = null;
 			//Debug.Log (temp);
 			Debug.Log(temp +" " + _enemy.name);
-			Instantiate (_enemy, new Vector3(0,0,0),Quaternion.identity, this.transform);
+			Instantiate (_enemy, this.transform.position, Quaternion.identity, this.transform);
 			yield return new WaitForSeconds(T);
 		}
 		while (!isInVision);

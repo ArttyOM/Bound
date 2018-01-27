@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Name: Dungeon
   m_EditorClassIdentifier: 
   Walls:
-  - {fileID: 1817587035836168, guid: 5fd1e816a2f9f2d4f8c841458d0b05de, type: 2}
+  - obj: {fileID: 1817587035836168, guid: 5fd1e816a2f9f2d4f8c841458d0b05de, type: 2}
+    weight: 100
   Floors:
-  - {fileID: 1940483130787156, guid: ecf6d2148aa3cbf43b44644a35cb15a8, type: 2}
+  - obj: {fileID: 1940483130787156, guid: ecf6d2148aa3cbf43b44644a35cb15a8, type: 2}
+    weight: 100
+  - obj: {fileID: 1940483130787156, guid: 0623f555bb5343d49b83599bea9aff05, type: 2}
+    weight: 10
   Exits:
-  - {fileID: 1790464185396364, guid: 6a2d3e66e6a2e9e4eaa743b6b2a75615, type: 2}
+  - obj: {fileID: 1790464185396364, guid: 6a2d3e66e6a2e9e4eaa743b6b2a75615, type: 2}
+    weight: 100
