@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class Character : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Character : MonoBehaviour
 	public float Speed;
 
 	public float Health;
+
+    public List<AbstractAbility> Abilities;
 
 	public void DealDamage(float amount)
 	{

@@ -19,6 +19,8 @@ namespace Assets.Core.Characters
 		private GameSettings _settings;
 		
 		private WaitForSeconds _damagerUpdateRate = new WaitForSeconds(0.3f);
+
+		private Quaternion _warriorTargetRotation;
 		
 		public void Awake()
 		{
@@ -145,9 +147,20 @@ namespace Assets.Core.Characters
 				: _warrior.Speed;
 
 			targetTransform = _warriorTransform.position + targetTransform * speed;
+
+			if (up || down || left || right)
+			{
+				_warriorTargetRotation = Quaternion.LookRotation(Vector3.forward, targetTransform - _warriorTransform.position);
+			}
 			
+			_warriorTransform.rotation =
+				Quaternion.Lerp(_warriorTransform.rotation, _warriorTargetRotation, 5f * Time.deltaTime);
+
 			if (WarriorNewPositionLessThenMaxLength(targetTransform))
+			{
 				_warriorRigidbody2D.MovePosition(targetTransform);
+			}
+				
 			
 			if (attack)
 				Debug.Log("attack war");
