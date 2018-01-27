@@ -20,13 +20,4 @@ public class RangeEnemy : EnemyScript {
         _lastAttack = Time.time;
         yield break;
     }
-
-    private Vector2 Direction
-    {
-        get
-        {
-            return new Vector2(-Mathf.Sin(transform.eulerAngles.z * Mathf.Deg2Rad),
-                Mathf.Cos(transform.eulerAngles.z * Mathf.Deg2Rad));
-        }
-    }
 }

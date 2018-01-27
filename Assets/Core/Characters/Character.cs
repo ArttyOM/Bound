@@ -48,4 +48,16 @@ public class Character : MonoBehaviour
 		//Destroy (this.gameObject); //закомментил чтобы было проще тестить (не умирая)
 	}
 
+    /// <summary>
+    /// Получает направление
+    /// </summary>
+    public Vector2 Direction
+    {
+        get
+        {
+            return new Vector2(-Mathf.Sin(transform.eulerAngles.z * Mathf.Deg2Rad),
+                Mathf.Cos(transform.eulerAngles.z * Mathf.Deg2Rad));
+        }
+    }
+
 }
