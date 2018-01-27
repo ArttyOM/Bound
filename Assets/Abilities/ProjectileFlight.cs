@@ -22,6 +22,9 @@ public class ProjectileFlight : MonoBehaviour {
     public void StartWork()
     {
         direction = direction.normalized;
+        if (direction == Vector2.zero)
+            direction = Vector2.up;
+
         Vector3 rot = new Vector3();
         if (direction.y > 0)
             rot.z = Mathf.Acos(direction.x) * Mathf.Rad2Deg;
@@ -43,10 +46,11 @@ public class ProjectileFlight : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+    void Update()
+    {
         transform.position = transform.position
                              + new Vector3(direction.x, direction.y, 0.0f) * speed * Time.deltaTime;
-	}
+    }
 
     private void FixedUpdate()
     {
