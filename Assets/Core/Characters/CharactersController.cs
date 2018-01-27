@@ -78,6 +78,7 @@ namespace Assets.Core.Characters
 
 		private void UpdateSecondCharacterPosition()
 		{
+			var attack = Input.GetMouseButton(1);
 			var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			_wizardTransform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - _wizardTransform.position);
 
@@ -89,6 +90,9 @@ namespace Assets.Core.Characters
 				_wizardRigidbody2D.MovePosition(targetPosition);
 			else
 				_wizardRigidbody2D.MovePosition(_wizardTransform.position);
+			
+			if (attack)
+				Debug.Log("attack wiz");
 		}
 
 		private bool WizardNewPositionLessThenMaxLength(Vector3 newPosition)
@@ -122,6 +126,7 @@ namespace Assets.Core.Characters
 			var down = Input.GetKey(KeyCode.S);
 			var left = Input.GetKey(KeyCode.A);
 			var right = Input.GetKey(KeyCode.D);
+			var attack = Input.GetKey(KeyCode.Space);
 
 			if (up)
 				targetTransform += Vector3.up;
@@ -143,6 +148,9 @@ namespace Assets.Core.Characters
 			
 			if (WarriorNewPositionLessThenMaxLength(targetTransform))
 				_warriorRigidbody2D.MovePosition(targetTransform);
+			
+			if (attack)
+				Debug.Log("attack war");
 		}
 	}
 }
