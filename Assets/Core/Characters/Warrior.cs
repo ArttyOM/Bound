@@ -51,12 +51,13 @@ public class Warrior : Character
 
 		Collider2D[] hitColliders = Physics2D.OverlapCircleAll (transform.position, attackRadius);
 		foreach (Collider2D hitCollider in hitColliders) {
-
-			//Debug.Log (hitCollider.name);
-			if ((hitCollider.gameObject == mage)||(hitCollider.gameObject == this.gameObject)) {
-			}
-			else{
-				hitCollider.SendMessage ("DealDamage", attackdmg, SendMessageOptions.DontRequireReceiver);
+			Vector3 direction = hitCollider.transform.position;
+			if (Vector3.Dot (transform.forward, direction) > .5f) {
+				//Debug.Log (hitCollider.name);
+				if ((hitCollider.gameObject == mage) || (hitCollider.gameObject == this.gameObject)) {
+				} else {
+					hitCollider.SendMessage ("DealDamage", attackdmg, SendMessageOptions.DontRequireReceiver);
+				}
 			}
 		}      
 		yield return new WaitForSeconds(0.2f);

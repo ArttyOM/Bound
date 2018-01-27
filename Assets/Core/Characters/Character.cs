@@ -45,19 +45,7 @@ public class Character : MonoBehaviour
 		this.transform.Rotate (-75, 0, 0);
 
 		yield return new WaitForSeconds (1.5f);
-		//Destroy (this.gameObject); //закомментил чтобы было проще тестить (не умирая)
+		Destroy (this.gameObject); //закомментил чтобы было проще тестить (не умирая)
 	}
-
-    /// <summary>
-    /// Получает направление
-    /// </summary>
-    public Vector2 Direction
-    {
-        get
-        {
-            return new Vector2(-Mathf.Sin(transform.eulerAngles.z * Mathf.Deg2Rad),
-                Mathf.Cos(transform.eulerAngles.z * Mathf.Deg2Rad));
-        }
-    }
 
 }
