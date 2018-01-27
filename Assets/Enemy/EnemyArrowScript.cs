@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyArrowScript : MonoBehaviour
 {
@@ -11,16 +8,22 @@ public class EnemyArrowScript : MonoBehaviour
 
     [SerializeField] private float _speed;
 
+    private const float LIFE_TIME = 3.0f;
+
+    private float _bornTime;
+
     // Use this for initialization
 	void Start ()
 	{
-	    StartCoroutine(Die());
+	    _bornTime = Time.time;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
 	    transform.position += (Vector3) Direction * _speed * Time.deltaTime;
+        if (_bornTime + LIFE_TIME < Time.time)
+            Destroy(this.gameObject);
 	}
 
     void FixedUpdate()
@@ -31,14 +34,7 @@ public class EnemyArrowScript : MonoBehaviour
             if (hit.collider.tag == "Player")
             {
                 hit.collider.GetComponent<Character>().DealDamage(Damage);
-                //print("EEEE its attack");
             }
         }
-    }
-
-    IEnumerator Die()
-    {
-        yield return new WaitForSeconds(3f);
-        Destroy(this);
     }
 }
