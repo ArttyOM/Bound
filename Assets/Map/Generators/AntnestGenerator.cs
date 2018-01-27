@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class AntnestGenerator : AbstractGenerator
 {
     int nx;
     int ny;
 
     enum Side { North, South, East, West};
+
+    const int CFG_START_PATHS = 5;
+    const int CFG_START_PATH_LENGTH = 10;
+    const int CFG_MID_PATHS = 5;
+    const int CFG_MID_PATH_LENGTH = 10;
 
     Side opposite(Side side)
     {
@@ -36,39 +42,39 @@ public class AntnestGenerator : AbstractGenerator
         return Random.Range(1, ny - 1);
     }
 
-    Vector2Int RandomAtSide(Side side)
+    VectorMyInt RandomAtSide(Side side)
     {
         switch(side)
         {
             case Side.North:
-                return new Vector2Int(RandomX(), ny - 2);
+                return new VectorMyInt(RandomX(), ny - 2);
             case Side.South:
-                return new Vector2Int(RandomX(), 1);
+                return new VectorMyInt(RandomX(), 1);
             case Side.West:
-                return new Vector2Int(1, RandomY());
+                return new VectorMyInt(1, RandomY());
             default:
             //case Side.East:
-                return new Vector2Int(nx-2, RandomY());
+                return new VectorMyInt(nx-2, RandomY());
         }
     }
 
-    Vector2Int StartAtSide(Side side)
+    VectorMyInt StartAtSide(Side side)
     {
         switch (side)
         {
             case Side.North:
-                return new Vector2Int(nx/2, ny - 2);
+                return new VectorMyInt(nx/2, ny - 2);
             case Side.South:
-                return new Vector2Int(nx / 2, 1);
+                return new VectorMyInt(nx / 2, 1);
             case Side.West:
-                return new Vector2Int(1, ny/2);
+                return new VectorMyInt(1, ny/2);
             default:
                 //case Side.East:
-                return new Vector2Int(nx - 2, ny / 2);
+                return new VectorMyInt(nx - 2, ny / 2);
         }
     }
 
-    Side? at_border(Vector2Int v)
+    Side? at_border(VectorMyInt v)
     {
         if (v.x == 1)
             return Side.West;
@@ -81,7 +87,7 @@ public class AntnestGenerator : AbstractGenerator
         return null;
     }
 
-    void one_step(ref Vector2Int pos, Side side)
+    void one_step(ref VectorMyInt pos, Side side)
     {
         switch (side)
         {
@@ -100,12 +106,30 @@ public class AntnestGenerator : AbstractGenerator
         }
     }
 
-    void apply(Level level, Vector2Int pos)
+    void apply(Level level, VectorMyInt pos)
     {
         level.CellTypes[pos.x, pos.y] = CellType.Floor;
     }
 
-    override protected void GenerateLevel(Level level, LevelType typ, out Vector2Int start, out Vector2Int finish)
+
+    void add_path(Level level, VectorMyInt start, int length)
+    {
+        Side? detect = at_border(start);
+        VectorMyInt apos = start;
+        for(int i=0; i<length; i++)
+        {
+            Side step = detect.HasValue ? opposite(detect.Value) : RandomSide();
+//            if (step == start_side && Random.Range(0, 2) == 0)
+//                continue;
+            one_step(ref apos, step);
+            apply(level, apos);
+            detect = at_border(apos);
+            //            Debug.Log(apos);
+        };
+    }
+
+
+    override protected void GenerateLevel(Level level, LevelType typ, out VectorMyInt start, out VectorMyInt finish)
     {
         var config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
         nx = config.LevelWidth;
@@ -142,6 +166,16 @@ public class AntnestGenerator : AbstractGenerator
 //            Debug.Log(apos);
         } while (detect == null || detect == start_side);
         finish = apos;
+
+
+        //additional start paths
+        for (int i = 0; i < CFG_START_PATHS; i++)
+            add_path(level, start, CFG_START_PATH_LENGTH);
+
+
+
+
+
         level.CellTypes[apos.x, apos.y] = CellType.Exit;
     }
 
