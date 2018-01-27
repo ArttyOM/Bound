@@ -76,8 +76,8 @@ public class Game : MonoBehaviour {
 
     void UpdateArrow()
     {
-        Towers
-        Vector2 delta = 
+        //forTowers
+        //Vector2 delta = 
         TheArrow.transform.Rotate(new Vector3(0, 0, 1), 1);
     }
 
