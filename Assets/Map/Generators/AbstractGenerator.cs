@@ -36,7 +36,7 @@ public abstract class AbstractGenerator  {
         GenerateLevel(level, typ, out start, out finish);
         for (int x = 0; x < config.LevelWidth; x++)
             for (int y = 0; y < config.LevelHeight; y++)
-                level.Data[x, y] = backs.GetItem(level.CellTypes[x,y], x, y);
+                level.Data[x, y] = backs.GetItem(level, level.CellTypes[x,y], x, y);
         level.start = start.ToF() * config.GenerationCell + new Vector2(0.5f, 0.5f);
         level.finish = finish.ToF() * config.GenerationCell + new Vector2(0.5f, 0.5f);
     }
