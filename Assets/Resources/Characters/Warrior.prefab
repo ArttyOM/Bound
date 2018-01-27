@@ -55,6 +55,10 @@ MonoBehaviour:
   Name: Warrior
   Damage: 10
   Speed: 0.1
+  Health: 0
+  Abilities:
+  - {fileID: 114893587271217538, guid: fb179dcfda7373d4a910f24797e04dfc, type: 2}
+  - {fileID: 114979239629870852, guid: 946b8b6ba72914943bd98bd787a788da, type: 2}
 --- !u!212 &212505354637031094
 SpriteRenderer:
   m_ObjectHideFlags: 1
