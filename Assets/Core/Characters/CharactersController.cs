@@ -188,9 +188,14 @@ namespace Assets.Core.Characters
         void InitAbilities()
         {
             for (int i = 0; i < _warrior.Abilities.Count; i++)
+            {
                 _warrior.Abilities[i].owner = _warrior;
+            }
+
             for (int i = 0; i < _wizard.Abilities.Count; i++)
+            {
                 _wizard.Abilities[i].owner = _wizard;
+            }
         }
 
     }
