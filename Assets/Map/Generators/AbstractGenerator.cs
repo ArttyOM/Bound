@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class AbstractGenerator  {
 
-    abstract protected void GenerateLevel(Level level, LevelType typ, out Vector2 start, out Vector2 finish, ref WallType[,] data);
+    abstract protected void GenerateLevel(Level level, LevelType typ, out Vector2 start, out Vector2 finish);
 
     public void Apply(Level level, LevelType typ)
     {
@@ -13,15 +13,12 @@ public abstract class AbstractGenerator  {
         var config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
         var backs = ServiceLocator.Instance.ResolveService<BackgroundsProvider>().GetValue(typ);
 
-        var data = new WallType[config.LevelWidth, config.LevelHeight];
-        GenerateLevel(level, typ, out start, out finish, ref data);
+        GenerateLevel(level, typ, out start, out finish);
         for (int x = 0; x < config.LevelWidth; x++)
             for (int y = 0; y < config.LevelHeight; y++)
-                level.Data[x, y] = backs.GetItem(data[x,y], x, y);
-        level.start = new Vector2(0.5f, 0.5f);
-        level.finish = new Vector2(10.5f, 10.5f);
-        level.Data[0, 0] = backs.GetItem(WallType.Floor, 0, 0);
-        level.Data[10, 10] = backs.GetItem(WallType.Floor, 10, 10);
+                level.Data[x, y] = backs.GetItem(level.CellTypes[x,y], x, y);
+        level.start = start * config.GenerationCell;
+        level.finish = finish * config.GenerationCell;
     }
 
 }
