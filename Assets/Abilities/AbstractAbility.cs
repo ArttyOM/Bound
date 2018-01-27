@@ -45,6 +45,7 @@ public abstract class AbstractAbility : MonoBehaviour {
 	    {
 	        last_use = Time.time;
 	        Execute();
+            print("lol");
 	    }
 	}
 }
