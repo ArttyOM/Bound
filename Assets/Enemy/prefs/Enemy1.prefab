@@ -207,6 +207,7 @@ MonoBehaviour:
   LastDir: {x: 0, y: 0}
   Abilities: []
   _cooldown: 1
+  _attackDistance: 1
   _attackObj: {fileID: 1738844209751428, guid: 50dc8625a99934b4fb2fffaa7605b71e, type: 2}
 --- !u!212 &212213124797329894
 SpriteRenderer:

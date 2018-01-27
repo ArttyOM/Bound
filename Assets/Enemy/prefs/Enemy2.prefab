@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 212142708871601534}
   - component: {fileID: 58913728287080304}
   - component: {fileID: 114626915852041180}
-  - component: {fileID: 114480022574820322}
+  - component: {fileID: 114369211789755518}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Untagged
@@ -193,7 +193,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3.5
---- !u!114 &114480022574820322
+--- !u!114 &114369211789755518
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1872176811081784}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2569dce71f950e141a2ef6b6133e994f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8daddbefdfd7b9a449670fb02e958a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
@@ -211,7 +211,8 @@ MonoBehaviour:
   LastDir: {x: 0, y: 0}
   Abilities: []
   _cooldown: 1
-  _attackObj: {fileID: 1738844209751428, guid: 50dc8625a99934b4fb2fffaa7605b71e, type: 2}
+  _attackDistance: 7
+  _attackObj: {fileID: 1176697857229838, guid: 081b0f5dd1a54af4ca3da1020dd97185, type: 2}
 --- !u!114 &114626915852041180
 MonoBehaviour:
   m_ObjectHideFlags: 1

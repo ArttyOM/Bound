@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using AI;
 
 /// <summary>
-/// Тестовый класс
+/// Обычный вражеский класс(Ближник)
 /// </summary>
 [RequireComponent(typeof(Agent))]
 public class EnemyScript : Character{
@@ -14,16 +13,20 @@ public class EnemyScript : Character{
     private GameObject[] _players;
 
     [SerializeField]
-    private float _cooldown;
+    protected float _cooldown;
 
     [SerializeField]
-    private GameObject _attackObj;
+    protected float _attackDistance;
 
-    private bool _canAttack = false;
+    [SerializeField]
+    protected GameObject _attackObj;
 
-    private float _lastAttack = -10;
+    protected bool _canAttack = false;
 
-    private GameObject _currentAttackObj;
+    protected float _lastAttack = -10;
+
+    protected GameObject _currentAttackObj;
+
 
 	// Use this for initialization
 	void Start () {
@@ -40,7 +43,7 @@ public class EnemyScript : Character{
 	    {
 	        agent.Player = player.gameObject;
 	        agent.Destination = player.position;
-	        _canAttack = (transform.position - player.position).magnitude < 2;
+	        _canAttack = (transform.position - player.position).magnitude < _attackDistance;
 	    }
 	    else
         {
@@ -60,7 +63,7 @@ public class EnemyScript : Character{
     /// <summary>
     /// Атакует
     /// </summary>
-    private IEnumerator Attack()
+    protected virtual IEnumerator Attack()
     {
         _currentAttackObj = Instantiate(_attackObj, transform);
         _currentAttackObj.transform.localPosition = (Vector3)LastDir * 0.2f;
