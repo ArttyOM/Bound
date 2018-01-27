@@ -35,7 +35,7 @@ public class Level : MonoBehaviour {
     {
         var config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
         var pos = RandomIntPlace();
-        return new Vector2(pos.x * config.GenerationCell + Random.Range(0.0f, config.GenerationCell), pos.x * config.GenerationCell + Random.Range(0.0f, config.GenerationCell));
+        return new Vector2(pos.x * config.GenerationCell + Random.Range(0.0f, config.GenerationCell), pos.y * config.GenerationCell + Random.Range(0.0f, config.GenerationCell));
     }
 
     public VectorMyInt RandomIntPlace()
