@@ -22,7 +22,7 @@ MonoBehaviour:
   LevelHeight: 50
   GenerationCell: 5
   EnemyStandardSpeed: 5
-  StandardEnemySize: 0.5
+  StandardEnemySize: 0.6
   NotWalkableMask:
     serializedVersion: 2
     m_Bits: 1

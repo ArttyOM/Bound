@@ -242,6 +242,10 @@ namespace AI
    
                 if (!EqualFloat(minElement.dist, distance[elementI, elementJ]))
                     continue;
+
+                if (finishJ == elementJ && finishI == elementI)
+                    break;
+
                 float updateDist = distance[elementI, elementJ];
                 int[] delta = { -1, 0, 1 };
                 foreach (int dI in delta)
@@ -358,8 +362,6 @@ namespace AI
                 Agent current = agentsQueue.Dequeue();
                 List<Vector3> tmp = FindPath(current.transform.position, current.Destination);
                 current.SetPath(tmp);
-                if (tmp == null)
-                    Debug.LogError("NOOOO");
                 _currentAgents.Remove(current);
                 yield return null;
             }

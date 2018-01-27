@@ -9,6 +9,7 @@ namespace AI {
         private List<Vector3> path;
         private float lastUpdateTime = -10;
         private float delta;
+        private bool stopped = false;
 
         // Use this for initialization
         void Start() {
@@ -27,6 +28,8 @@ namespace AI {
             SetRotation(path[currentIndex]);
             while (transform.position != path[path.Count - 1])
             {
+                if (stopped)
+                    yield break;
                 if (path[currentIndex] == transform.position)
                 {
                     currentIndex++;
@@ -70,6 +73,7 @@ namespace AI {
             }
             set
             {
+                stopped = false;
                 if (lastUpdateTime + delta < Time.time)
                 {
                     destination = value;
@@ -103,6 +107,14 @@ namespace AI {
             }
             Gizmos.color = Color.green;
             Gizmos.DrawCube(destination, Vector3.one / 2);
+        }
+
+        /// <summary>
+        /// Останавливает агента
+        /// </summary>
+        public void Stop()
+        {
+            stopped = true;                               
         }
     }
 }
