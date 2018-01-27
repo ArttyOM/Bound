@@ -51,3 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0172149c42cfc46948e28184c77e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDistance: 70
+  minDIstance: 1
+  T: 3
+  chancePerType:
+  - 1
+  enemyTypes:
+  - {fileID: 1797891168200640, guid: 8fcbbd0902f756c4188617f29f03c1b9, type: 2}

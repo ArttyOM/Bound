@@ -6,6 +6,7 @@ public abstract class AbstractAbility : MonoBehaviour {
 
     abstract protected void Execute();
 
+    public Character owner;
 
     [SerializeField]
     float Cooldown;
@@ -26,6 +27,7 @@ public abstract class AbstractAbility : MonoBehaviour {
     {
         if (!Available()) return;
         last_use = Time.time;
+        Execute();
     }
 
 

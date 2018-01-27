@@ -1,3 +1,6 @@
-﻿public class Wizard : Character
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+public class Wizard : Character
 {
 }

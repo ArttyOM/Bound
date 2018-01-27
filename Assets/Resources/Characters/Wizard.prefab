@@ -198,9 +198,11 @@ MonoBehaviour:
   Damage: 100
   Speed: 0.1
   Health: 100
+  LastDir: {x: 0, y: 0}
   Abilities:
   - {fileID: 114465571821836356, guid: eb76c4e05f0be634fa4b882821229836, type: 2}
   - {fileID: 114983561377773096, guid: e12feb365f6c24a46a591314d874c550, type: 2}
+  - {fileID: 114521226763515706, guid: 14a7f0ffad002f4478360d5582334df1, type: 2}
 --- !u!212 &212171750411474396
 SpriteRenderer:
   m_ObjectHideFlags: 1
