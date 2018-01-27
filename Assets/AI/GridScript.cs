@@ -297,5 +297,46 @@ namespace AI
                     }
             }
         }
+
+        #region Наверно оптимизация для поиска путей
+
+        /// <summary>
+        /// Очередь агентов
+        /// </summary>
+        private Queue<Agent> agentsQueue = new Queue<Agent>();
+
+        /// <summary>
+        /// Добавить агента в очередь
+        /// </summary>
+        /// <param name="agent">Агент</param>
+        public static void AddToQueue(Agent agent)
+        {
+            instance.agentsQueue.Enqueue(agent);
+            if (!instance.isFindPathes)
+                instance.StartCoroutine(instance.FindPathes());
+        }
+
+        /// <summary>
+        /// Ищет ли пути
+        /// </summary>
+        private bool isFindPathes = false;
+
+        /// <summary>
+        /// Искать пути
+        /// </summary>
+        /// <returns></returns>
+        private System.Collections.IEnumerator FindPathes()
+        {
+            isFindPathes = true;
+            while (!(agentsQueue.Count == 0))
+            {
+                Agent current = agentsQueue.Dequeue();
+                current.SetPath(FindPath(current.transform.position, current.Destination));
+                yield return null;
+            }
+            isFindPathes = false;
+        }
+
+        #endregion
     }
 }
