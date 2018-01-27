@@ -21,4 +21,8 @@ public class GameSettings: ScriptableObject
     /// Скорость врагов по умолчанию
     /// </summary>
     public float EnemyStandardSpeed;
+    /// <summary>
+    /// Размер врага
+    /// </summary>
+    public float StandardEnemySize;
 }

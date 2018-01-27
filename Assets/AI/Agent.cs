@@ -82,7 +82,7 @@ namespace AI {
             }
         }
 
-        private void OnDrawGizmosSelected()
+        /*private void OnDrawGizmosSelected()
         {
             if (path != null)
             {
@@ -94,6 +94,6 @@ namespace AI {
             }
             Gizmos.color = Color.green;
             Gizmos.DrawCube(destination, Vector3.one / 2);
-        }
+        }*/
     }
 }

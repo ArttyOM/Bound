@@ -19,3 +19,4 @@ MonoBehaviour:
   LevelHeight: 20
   GenerationCell: 10
   EnemyStandardSpeed: 5
+  StandardEnemySize: 1
