@@ -36,6 +36,8 @@ namespace AI
         /// </summary>
         private bool[,] walkable;
 
+        private float _left, _top, _right, _bottom;
+
         // Use this for initialization
         void Start()
         {
@@ -70,6 +72,10 @@ namespace AI
 
             sizeX = (int)Mathf.Ceil(gridSize.x / cellSize);
             sizeY = (int)Mathf.Ceil(gridSize.y / cellSize);
+            _left = transform.position.x - sizeX / 2 * cellSize;
+            _top = transform.position.y + sizeY / 2 * cellSize;
+            _right = transform.position.x + sizeX / 2 * cellSize;
+            _bottom = transform.position.y - sizeY / 2 * cellSize;
 
             walkable = new bool[sizeY, sizeX];
             for (int i = 0; i < sizeY; i++)
@@ -105,10 +111,8 @@ namespace AI
         /// <param name="j">Столбец</param>
         private bool GetIndexiesFromPoint(Vector3 point, out int i, out int j)
         {
-            j = Mathf.RoundToInt((point.x / (transform.position.x + sizeX * cellSize)) * sizeX)/* + sizeX / 2*/;
-            i = Mathf.RoundToInt((point.y / (transform.position.y + sizeY * cellSize)) * sizeY)/* + sizeY / 2*/;
-            //Debug.LogError(point);
-            //Debug.LogError(i + " " + j + " " + sizeX + " " + sizeY);
+            j = Mathf.RoundToInt((point.x - _left) / (_right - _left) * sizeX);
+            i = Mathf.RoundToInt((point.y - _bottom) / (_top - _bottom) * sizeY);
             if (i >= 0 && i < sizeY && j >= 0 && j < sizeX)
                 return true;
             return false;
@@ -235,6 +239,10 @@ namespace AI
    
                 if (!EqualFloat(minElement.dist, distance[elementI, elementJ]))
                     continue;
+
+                if (finishJ == elementJ && finishI == elementI)
+                    break;
+
                 float updateDist = distance[elementI, elementJ];
                 int[] delta = { -1, 0, 1 };
                 foreach (int dI in delta)
@@ -265,7 +273,6 @@ namespace AI
             // восстановление путей    
             if (prevHash[finishI, finishJ] == -1)
             {
-                Debug.LogError("Looool");
                 return null;
             }
 
@@ -351,8 +358,6 @@ namespace AI
                 Agent current = agentsQueue.Dequeue();
                 List<Vector3> tmp = FindPath(current.transform.position, current.Destination);
                 current.SetPath(tmp);
-                if (tmp == null)
-                    Debug.LogError("NOOOO");
                 _currentAgents.Remove(current);
                 yield return null;
             }

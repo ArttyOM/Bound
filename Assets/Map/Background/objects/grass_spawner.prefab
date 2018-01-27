@@ -52,7 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0172149c42cfc46948e28184c77e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInVision: 0
+  maxDistance: 350
+  minDIstance: 1
   T: 3
   chancePerType:
   - 100

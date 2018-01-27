@@ -77,15 +77,18 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFiltering: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousColorSigma: 1
-    m_PVRFilteringAtrousNormalSigma: 1
-    m_PVRFilteringAtrousPositionSigma: 1
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -107,6 +110,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    debug:
+      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1001 &215008061
 Prefab:
@@ -281,16 +286,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114558357579899070, guid: 361ba4984f3065446baee935546e01da,
-        type: 2}
-      propertyPath: enemyTypes.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114558357579899070, guid: 361ba4984f3065446baee935546e01da,
-        type: 2}
-      propertyPath: chancePerType.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4118922149107552, guid: 361ba4984f3065446baee935546e01da, type: 2}
       propertyPath: m_LocalPosition.x
       value: -6.788529
@@ -325,25 +320,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114558357579899070, guid: 361ba4984f3065446baee935546e01da,
         type: 2}
-      propertyPath: enemyContainer
-      value: 
-      objectReference: {fileID: 1987340525}
-    - target: {fileID: 114558357579899070, guid: 361ba4984f3065446baee935546e01da,
-        type: 2}
-      propertyPath: chancePerType.Array.data[0]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114558357579899070, guid: 361ba4984f3065446baee935546e01da,
-        type: 2}
-      propertyPath: enemyTypes.Array.data[0]
-      value: 
-      objectReference: {fileID: 1797891168200640, guid: 8fcbbd0902f756c4188617f29f03c1b9,
-        type: 2}
-    - target: {fileID: 114558357579899070, guid: 361ba4984f3065446baee935546e01da,
-        type: 2}
       propertyPath: transmission
       value: 
       objectReference: {fileID: 917283509}
+    - target: {fileID: 114558357579899070, guid: 361ba4984f3065446baee935546e01da,
+        type: 2}
+      propertyPath: enemyContainer
+      value: 
+      objectReference: {fileID: 1987340525}
+    - target: {fileID: 1047239713123458, guid: 361ba4984f3065446baee935546e01da, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 361ba4984f3065446baee935546e01da, type: 2}
   m_IsPrefabParent: 0
@@ -546,22 +534,22 @@ Prefab:
     - target: {fileID: 224080409933087204, guid: 0e71c507116910743ae7f2dec3a30ca8,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224080409933087204, guid: 0e71c507116910743ae7f2dec3a30ca8,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224259881656852384, guid: 0e71c507116910743ae7f2dec3a30ca8,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224259881656852384, guid: 0e71c507116910743ae7f2dec3a30ca8,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e71c507116910743ae7f2dec3a30ca8, type: 2}
@@ -604,6 +592,10 @@ Prefab:
     - target: {fileID: 4364201299770564, guid: 429bf687159e73347ac43a23c1ec0495, type: 2}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1099268055668676, guid: 429bf687159e73347ac43a23c1ec0495, type: 2}
+      propertyPath: m_TagString
+      value: Transmission
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 429bf687159e73347ac43a23c1ec0495, type: 2}
@@ -882,7 +874,7 @@ GameObject:
   - component: {fileID: 1987340526}
   m_Layer: 0
   m_Name: EnemyesContainer
-  m_TagString: Untagged
+  m_TagString: EnemyContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

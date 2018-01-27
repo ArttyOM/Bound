@@ -1,39 +1,18 @@
 fileFormatVersion: 2
-guid: a654a76faadb8064b9c7fe111da29ace
+guid: 8f63689ccdd28904fbfc7b002fe33019
+timeCreated: 1517067075
+licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: center
-    100002: jaw1
-    100004: jaw2
-    100006: Lamp
-    100008: //RootNode
-    400000: center
-    400002: jaw1
-    400004: jaw2
-    400006: Lamp
-    400008: //RootNode
-    2100000: trap-metal
-    2100002: No Name
-    2300000: center
-    2300002: jaw1
-    2300004: jaw2
-    3300000: center
-    3300002: jaw1
-    3300004: jaw2
-    4300000: center
-    4300002: jaw1
-    4300004: jaw2
-    7400000: center|jaw1Action
-    7400002: center|jaw2Action
-    7400004: jaw1|jaw1Action
-    7400006: jaw1|jaw2Action
-    7400008: Lamp|jaw1Action
-    7400010: Lamp|jaw2Action
-    7400012: jaw2|jaw1Action
-    7400014: jaw2|jaw2Action
-    9500000: //RootNode
-    10800000: Lamp
+    100000: //RootNode
+    400000: //RootNode
+    2100000: black_parts
+    2100002: knight_body
+    2100004: knight_head
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Sphere.000
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -108,7 +87,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
