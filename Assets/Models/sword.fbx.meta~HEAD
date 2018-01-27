@@ -1,7 +1,6 @@
 fileFormatVersion: 2
-guid: f35772da8baf06c45803af772b7a0275
-<<<<<<< HEAD
-timeCreated: 1517076884
+guid: feda76a1063d33a45bea70cab1755b7b
+timeCreated: 1517076179
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -10,30 +9,11 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Sphere.000
-=======
-ModelImporter:
-  serializedVersion: 22
-  fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: black_parts
-    2100002: knight_body
-    2100004: knight_head
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Sphere.000
-    9500000: //RootNode
-  externalObjects: {}
->>>>>>> 3b0446ef2b9a5e218a9cfd4cfc2ce36a1f8c0799
+    4300000: Cube.001
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-<<<<<<< HEAD
-=======
-    materialLocation: 1
->>>>>>> 3b0446ef2b9a5e218a9cfd4cfc2ce36a1f8c0799
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -46,20 +26,12 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-<<<<<<< HEAD
-=======
-    importAnimatedCustomProperties: 0
->>>>>>> 3b0446ef2b9a5e218a9cfd4cfc2ce36a1f8c0799
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-<<<<<<< HEAD
-=======
-    extraUserProperties: []
->>>>>>> 3b0446ef2b9a5e218a9cfd4cfc2ce36a1f8c0799
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -67,25 +39,13 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-<<<<<<< HEAD
     importBlendShapes: 1
-=======
-    importVisibility: 1
-    importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
->>>>>>> 3b0446ef2b9a5e218a9cfd4cfc2ce36a1f8c0799
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-<<<<<<< HEAD
-=======
-    preserveHierarchy: 0
-    indexFormat: 0
->>>>>>> 3b0446ef2b9a5e218a9cfd4cfc2ce36a1f8c0799
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -95,10 +55,6 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-<<<<<<< HEAD
-=======
-    normalCalculationMode: 4
->>>>>>> 3b0446ef2b9a5e218a9cfd4cfc2ce36a1f8c0799
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
@@ -118,7 +74,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

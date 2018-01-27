@@ -7,22 +7,20 @@ public class EnemySpawnPoint : MonoBehaviour {
 
 	public float maxDistance = 3f;
 	public float minDIstance = 1f;
-	public static GameObject transmission;
+
+    public bool online = false;
+    public bool dead = false;
 
 
 
-	public float T = 3f;
+    public float T = 3f;
 	public static GameObject enemyContainer;
 	public float[] chancePerType;
 	public GameObject[] enemyTypes;
 
 	// Use this for initialization
 	void Awake(){
-
-		if (transmission == null)transmission = GameObject.FindWithTag ("Transmission");
 		if (enemyContainer == null) enemyContainer = GameObject.FindWithTag ("EnemyContainer");
-
-		//transmission =
 	}
 
 	void Start () {
@@ -33,10 +31,6 @@ public class EnemySpawnPoint : MonoBehaviour {
 	void Update () {
 		
 	}
-
-	private float _distance;
-	private GameObject _enemy;
-
 
     public GameObject RandomEnemy()
     {
@@ -59,21 +53,17 @@ public class EnemySpawnPoint : MonoBehaviour {
 
 
     IEnumerator SpawnEnemy (float T){ //передаются все типы врагов и лист вероятностей спавна каждого, а также периодичность спавна
-
 		do{
-			_distance = Vector3.Distance(this.transform.position, transmission.transform.position);
-
-			if (_distance > maxDistance){
-				Debug.Log("The distance is:" +_distance+". It's too far to spawn a creep");
-				yield return null;
-			}
-			else{
-                _enemy = RandomEnemy();
-				Instantiate (_enemy, this.transform.position, Quaternion.identity, enemyContainer.transform);
+			if (online){
+                Instantiate(RandomEnemy(), this.transform.position, Quaternion.identity, enemyContainer.transform);
+                yield return new WaitForSeconds(T);
+            }
+            else
+            {
 				yield return new WaitForSeconds(T);
 			}
 		}
-		while (_distance> minDIstance);
+		while (!dead);
 		Destroy (gameObject);
 	}
 
