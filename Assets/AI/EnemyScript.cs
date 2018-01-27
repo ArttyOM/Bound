@@ -30,4 +30,12 @@ public class EnemyScript : MonoBehaviour {
         }
 	}
 
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "PlayerAttack")
+        {
+            Destroy(gameObject); // TODO: минус хп
+        }
+    }
+
 }

@@ -17,9 +17,9 @@ MonoBehaviour:
   TransmissionMaxThreshold: 1
   TransmissionBreakDamage: 5
   CameraHeight: -10
-  PathfindingCellSize: 0.5
-  LevelWidth: 50
-  LevelHeight: 50
+  PathfindingCellSize: 0.2
+  LevelWidth: 20
+  LevelHeight: 20
   GenerationCell: 5
   EnemyStandardSpeed: 5
   StandardEnemySize: 0.6

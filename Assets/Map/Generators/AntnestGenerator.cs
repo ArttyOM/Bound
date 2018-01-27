@@ -19,6 +19,9 @@ public class AntnestGenerator : AbstractGenerator
     const int PREVENT_OPENING = 700;
     const int TENSION = 50;
 
+    const float AVG_FREE_MONSTERS = 0.1f;
+
+
     Side opposite(Side side)
     {
         switch(side)
@@ -176,6 +179,9 @@ public class AntnestGenerator : AbstractGenerator
     override protected void GenerateLevel(Level alevel, LevelType typ, out VectorMyInt start, out VectorMyInt finish)
     {
         var config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
+        var enemyContainer = GameObject.FindWithTag("EnemyContainer");
+        var spawner = GameObject.Find("SpawnPoint").GetComponent<EnemySpawnPoint>();
+
         level = alevel;
         nx = config.LevelWidth;
         ny = config.LevelHeight;
@@ -199,7 +205,15 @@ public class AntnestGenerator : AbstractGenerator
             add_path(level.RandomIntPlace(), (config.LevelHeight + config.LevelWidth) * CFG_MID_PATH_LENGTH / 100, false);
         }
 
+        for (int i = 0; i < AVG_FREE_MONSTERS * config.LevelHeight * config.LevelWidth; i++)
+        {
+
+            GameObject.Instantiate(spawner.RandomEnemy(), level.RandomPlace(), Quaternion.identity, enemyContainer.transform);
+        }
+
+
         level.CellTypes[finish.x, finish.y] = CellType.Exit;
+        spawner.gameObject.SetActive(false);
     }
 
 }

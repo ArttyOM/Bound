@@ -25,7 +25,7 @@ public class Level : MonoBehaviour {
         var config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
         var gen = ServiceLocator.Instance.ResolveService<AntnestGenerator>();
 
-        var typ = Random.Range(0, 2) == 0 ? LevelType.Forest : LevelType.Dungeon;
+        var typ = LevelType.Forest;
         CellTypes = new CellType[config.LevelWidth, config.LevelHeight];
         Data = new GameObject[config.LevelWidth, config.LevelHeight];
         gen.Apply(this, typ);
@@ -35,7 +35,7 @@ public class Level : MonoBehaviour {
     {
         var config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
         var pos = RandomIntPlace();
-        return new Vector2(pos.x * config.GenerationCell + Random.Range(0.0f, config.GenerationCell), pos.x * config.GenerationCell + Random.Range(0.0f, config.GenerationCell));
+        return new Vector2(pos.x * config.GenerationCell + Random.Range(0.0f, config.GenerationCell), pos.y * config.GenerationCell + Random.Range(0.0f, config.GenerationCell));
     }
 
     public VectorMyInt RandomIntPlace()

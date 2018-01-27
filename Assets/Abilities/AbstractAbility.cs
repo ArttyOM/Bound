@@ -41,6 +41,10 @@ public abstract class AbstractAbility : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+	    if (Available() && Input.GetKeyDown(attacKeyCode))
+	    {
+	        last_use = Time.time;
+	        Execute();
+	    }
 	}
 }

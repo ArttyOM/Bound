@@ -20,7 +20,7 @@ namespace Assets.Core.Characters
 		
 		private WaitForSeconds _damagerUpdateRate = new WaitForSeconds(0.3f);
 
-		private Quaternion _wizardTargetRotation;
+		private Quaternion _wizardTargetRotation = new Quaternion(0,0,0,1);
 		
 		public void Awake()
 		{

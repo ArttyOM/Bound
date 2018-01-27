@@ -36,12 +36,30 @@ public class EnemySpawnPoint : MonoBehaviour {
 
 	private float _distance;
 	private GameObject _enemy;
-	IEnumerator SpawnEnemy (float T){ //передаются все типы врагов и лист вероятностей спавна каждого, а также периодичность спавна
 
-		float[] _chancePerTypeS = chancePerType;
-		for (int i = 1; i < chancePerType.Length; i++) {
-			_chancePerTypeS [i] +=  _chancePerTypeS[i-1];
-		}
+
+    public GameObject RandomEnemy()
+    {
+        float[] _chancePerTypeS = chancePerType;
+        for (int i = 1; i < chancePerType.Length; i++)
+        {
+            _chancePerTypeS[i] += _chancePerTypeS[i - 1];
+        }
+        float temp = Random.Range(0, _chancePerTypeS[_chancePerTypeS.Length - 1]);
+        for (int i = 0; i < _chancePerTypeS.Length; i++)
+        {
+            if (temp < _chancePerTypeS[i])
+            {
+                return enemyTypes[i];
+                break;
+            }
+        }
+        return enemyTypes[0];
+    }
+
+
+    IEnumerator SpawnEnemy (float T){ //передаются все типы врагов и лист вероятностей спавна каждого, а также периодичность спавна
+
 		do{
 			_distance = Vector3.Distance(this.transform.position, transmission.transform.position);
 
@@ -50,18 +68,7 @@ public class EnemySpawnPoint : MonoBehaviour {
 				yield return null;
 			}
 			else{
-			float temp = Random.Range(0,_chancePerTypeS[_chancePerTypeS.Length-1]);
-			for (int i=0; i<_chancePerTypeS.Length; i++){
-				if (temp<_chancePerTypeS[i])
-					{
-						_enemy= enemyTypes[i];
-						break;
-					}
-				}
-			//Debug.Log(_chancePerTypeS[0]+" "+_chancePerTypeS[1]+" "+_chancePerTypeS[2]);
-			//_enemy = null;
-			//Debug.Log (temp);
-				//Debug.Log(temp +" " + _enemy.name);
+                _enemy = RandomEnemy();
 				Instantiate (_enemy, this.transform.position, Quaternion.identity, enemyContainer.transform);
 				yield return new WaitForSeconds(T);
 			}
