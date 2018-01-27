@@ -17,6 +17,7 @@ public class ServiceLocator
 		{typeof(GameObjectsProvider), new GameObjectsProvider()},
         {typeof(BackgroundsProvider), new BackgroundsProvider()},
         {typeof(DummyGenerator), new DummyGenerator()},
+        {typeof(AntnestGenerator), new AntnestGenerator()},
     };
 
 	private Dictionary<Type, object> _singletons = new Dictionary<Type, object>();
