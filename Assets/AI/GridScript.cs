@@ -113,9 +113,6 @@ namespace AI
         {
             j = Mathf.RoundToInt((point.x - _left) / (_right - _left) * sizeX);
             i = Mathf.RoundToInt((point.y - _bottom) / (_top - _bottom) * sizeY);
-            /*Debug.LogError(point);
-            Debug.LogError(i + " " + j + " " + sizeX + " " + sizeY);
-            Debug.LogError(_left + " " + _top);*/
             if (i >= 0 && i < sizeY && j >= 0 && j < sizeX)
                 return true;
             return false;
@@ -276,7 +273,6 @@ namespace AI
             // восстановление путей    
             if (prevHash[finishI, finishJ] == -1)
             {
-                Debug.LogError("Looool");
                 return null;
             }
 
