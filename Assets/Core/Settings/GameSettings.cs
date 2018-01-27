@@ -26,5 +26,13 @@ public class GameSettings: ScriptableObject
     /// </summary>
     public float StandardEnemySize;
 
+    /// <summary>
+    /// Непроходимые объекты
+    /// </summary>
     public LayerMask NotWalkableMask;
+
+    /// <summary>
+    /// Промежуток, через который можно обновлять путь
+    /// </summary>
+    public float PathfindingUpdateDelta;
 }

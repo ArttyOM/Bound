@@ -6,15 +6,14 @@ namespace AI {
     public class Agent : MonoBehaviour {
 
         private Vector3 destination;
-        private List<Vector3> path, newPath;
-        private bool isUpdated;
-        private int index;
+        private List<Vector3> path;
         private float lastUpdateTime = -10;
-        private float delta = 0.3f;
+        private float delta;
 
         // Use this for initialization
         void Start() {
-            
+            delta = ServiceLocator.Instance.ResolveService<GameSettingsProvider>()
+                .GetSettings().PathfindingUpdateDelta;
         }
 
         /// <summary>
