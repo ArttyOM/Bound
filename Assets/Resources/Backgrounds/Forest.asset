@@ -11,7 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 327ae6d7ff52894439d9f0ae6002a907, type: 3}
   m_Name: Forest
   m_EditorClassIdentifier: 
-  data:
-  - {fileID: 1413623977093770, guid: 48f161d9276f871438c0a89696446437, type: 2}
-  - {fileID: 1133772414018012, guid: 7365b27ae7ab0eb429be686a2440cbfe, type: 2}
-  - {fileID: 1790464185396364, guid: 6a2d3e66e6a2e9e4eaa743b6b2a75615, type: 2}
+  Walls:
+  - obj: {fileID: 1133772414018012, guid: 7365b27ae7ab0eb429be686a2440cbfe, type: 2}
+    weight: 100
+  Floors:
+  - obj: {fileID: 1413623977093770, guid: 48f161d9276f871438c0a89696446437, type: 2}
+    weight: 100
+  - obj: {fileID: 1413623977093770, guid: 362a261b869210e40bff942371b1fc42, type: 2}
+    weight: 10
+  Exits:
+  - obj: {fileID: 1790464185396364, guid: 6a2d3e66e6a2e9e4eaa743b6b2a75615, type: 2}
+    weight: 100
