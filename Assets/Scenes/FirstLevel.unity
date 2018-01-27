@@ -593,6 +593,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1099268055668676, guid: 429bf687159e73347ac43a23c1ec0495, type: 2}
+      propertyPath: m_TagString
+      value: Transmission
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 429bf687159e73347ac43a23c1ec0495, type: 2}
   m_IsPrefabParent: 0
@@ -870,7 +874,7 @@ GameObject:
   - component: {fileID: 1987340526}
   m_Layer: 0
   m_Name: EnemyesContainer
-  m_TagString: Untagged
+  m_TagString: EnemyContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
