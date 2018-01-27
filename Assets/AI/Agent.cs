@@ -75,11 +75,20 @@ namespace AI {
                     destination = value;
                     lastUpdateTime = Time.time;
                     StopAllCoroutines();
-                    path = GridScript.Path(transform.position, destination);
-                    if (path != null && path.Count != 0)
-                        StartCoroutine(FollowPath());
+                    GridScript.AddToQueue(this);
                 }
             }
+        }
+
+        /// <summary>
+        /// Задаёт путь
+        /// </summary>
+        /// <param name="path"></param>
+        public void SetPath(List<Vector3> path)
+        {
+            this.path = path;
+            if (path != null && path.Count != 0)
+                StartCoroutine(FollowPath());
         }
 
         /*private void OnDrawGizmosSelected()
