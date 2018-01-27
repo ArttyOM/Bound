@@ -11,7 +11,10 @@ Material:
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
+<<<<<<< HEAD
+=======
   m_DoubleSidedGI: 0
+>>>>>>> 9bcdc8440dab2dc2946d9ec31a0ec6bf3b6389a4
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []

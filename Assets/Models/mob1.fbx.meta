@@ -1,4 +1,17 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: f35772da8baf06c45803af772b7a0275
+timeCreated: 1517067313
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Sphere.000
+=======
 guid: 8f63689ccdd28904fbfc7b002fe33019
 timeCreated: 1517067075
 licenseType: Free
@@ -14,11 +27,15 @@ ModelImporter:
     3300000: //RootNode
     4300000: Sphere.000
   externalObjects: {}
+>>>>>>> 9bcdc8440dab2dc2946d9ec31a0ec6bf3b6389a4
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+<<<<<<< HEAD
+=======
     materialLocation: 1
+>>>>>>> 9bcdc8440dab2dc2946d9ec31a0ec6bf3b6389a4
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -31,14 +48,20 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+<<<<<<< HEAD
+=======
     importAnimatedCustomProperties: 0
+>>>>>>> 9bcdc8440dab2dc2946d9ec31a0ec6bf3b6389a4
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+<<<<<<< HEAD
+=======
     extraUserProperties: []
+>>>>>>> 9bcdc8440dab2dc2946d9ec31a0ec6bf3b6389a4
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -46,18 +69,25 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+<<<<<<< HEAD
+    importBlendShapes: 1
+=======
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+>>>>>>> 9bcdc8440dab2dc2946d9ec31a0ec6bf3b6389a4
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+<<<<<<< HEAD
+=======
     preserveHierarchy: 0
     indexFormat: 0
+>>>>>>> 9bcdc8440dab2dc2946d9ec31a0ec6bf3b6389a4
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -67,7 +97,10 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+<<<<<<< HEAD
+=======
     normalCalculationMode: 4
+>>>>>>> 9bcdc8440dab2dc2946d9ec31a0ec6bf3b6389a4
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
