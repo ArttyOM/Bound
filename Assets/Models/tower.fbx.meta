@@ -15,7 +15,9 @@ ModelImporter:
     400006: //RootNode
     2000000: Camera
     2300000: Cylinder
+    2300002: //RootNode
     3300000: Cylinder
+    3300002: //RootNode
     4300000: Cylinder
     10800000: Lamp
   materials:
