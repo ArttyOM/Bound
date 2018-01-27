@@ -33,7 +33,6 @@ public class BackgroundsBase : ScriptableObject {
     public GameObject GetItem(CellType typ, int ax, int ay)
     {
         var config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
-        Debug.Log(data);
         var alist = data[typ];
         var result = Instantiate(alist[Random.Range(0, alist.Count)]);
         result.transform.position = (new Vector2(ax, ay)) * config.GenerationCell;
