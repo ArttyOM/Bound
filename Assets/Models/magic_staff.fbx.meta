@@ -1,17 +1,12 @@
 fileFormatVersion: 2
-guid: f35772da8baf06c45803af772b7a0275
+guid: dd3b6d0be53d5f0438cdef7ef7f4191a
+timeCreated: 1517072636
+licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: black_parts
-    2100002: knight_body
-    2100004: knight_head
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Sphere.000
-    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -86,7 +81,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
