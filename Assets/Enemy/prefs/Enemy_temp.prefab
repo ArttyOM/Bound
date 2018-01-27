@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 61209057188820266}
   m_Layer: 8
   m_Name: Enemy_temp
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,6 +221,7 @@ MonoBehaviour:
   LastDir: {x: 0, y: 0}
   Abilities: []
   _cooldown: 1
+  _attackDistance: 0
   _attackObj: {fileID: 1738844209751428, guid: 50dc8625a99934b4fb2fffaa7605b71e, type: 2}
 --- !u!114 &114524307789885872
 MonoBehaviour:

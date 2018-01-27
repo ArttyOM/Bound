@@ -6,14 +6,19 @@ public class ProjectileFlight : MonoBehaviour {
 
     public Vector2 direction = Vector2.zero;
 
-    [SerializeField]
-    float speed;
+    /// <summary>
+    /// Дамаг фаербола
+    /// </summary>
+    [SerializeField] private float _damage;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
+    /// <summary>
+    /// Скорость
+    /// </summary>
+    [SerializeField] private float speed;
 
+    /// <summary>
+    /// Начало работы
+    /// </summary>
     public void StartWork()
     {
         direction = direction.normalized;
@@ -27,14 +32,29 @@ public class ProjectileFlight : MonoBehaviour {
         StartCoroutine(Die());
     }
 
+    /// <summary>
+    /// Самоуничтожение через какое-то время
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Die()
     {
         yield return new WaitForSeconds(3f);
+        Destroy(this.gameObject);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = transform.position + new Vector3(direction.x, direction.y, 0.0f) * speed * Time.deltaTime;
-        //transform.Translate(new Vector3(direction.x, direction.y, 0.0f) * speed * Time.deltaTime);
+        transform.position = transform.position
+                             + new Vector3(direction.x, direction.y, 0.0f) * speed * Time.deltaTime;
 	}
+
+    private void FixedUpdate()
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.5f, Vector2.zero);
+        if (hit.collider != null && hit.collider.tag == "Enemy")
+        {
+            hit.collider.GetComponent<Character>().DealDamage(_damage);
+            Destroy(this.gameObject);
+        }
+    }
 }
