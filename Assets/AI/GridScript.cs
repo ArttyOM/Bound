@@ -36,6 +36,8 @@ namespace AI
         /// </summary>
         private bool[,] walkable;
 
+        private float _left, _top, _right, _bottom;
+
         // Use this for initialization
         void Start()
         {
@@ -70,6 +72,10 @@ namespace AI
 
             sizeX = (int)Mathf.Ceil(gridSize.x / cellSize);
             sizeY = (int)Mathf.Ceil(gridSize.y / cellSize);
+            _left = transform.position.x - sizeX / 2 * cellSize;
+            _top = transform.position.y + sizeY / 2 * cellSize;
+            _right = transform.position.x + sizeX / 2 * cellSize;
+            _bottom = transform.position.y - sizeY / 2 * cellSize;
 
             walkable = new bool[sizeY, sizeX];
             for (int i = 0; i < sizeY; i++)
@@ -105,10 +111,11 @@ namespace AI
         /// <param name="j">Столбец</param>
         private bool GetIndexiesFromPoint(Vector3 point, out int i, out int j)
         {
-            j = Mathf.RoundToInt((point.x / (transform.position.x + sizeX * cellSize)) * sizeX)/* + sizeX / 2*/;
-            i = Mathf.RoundToInt((point.y / (transform.position.y + sizeY * cellSize)) * sizeY)/* + sizeY / 2*/;
-            //Debug.LogError(point);
-            //Debug.LogError(i + " " + j + " " + sizeX + " " + sizeY);
+            j = Mathf.RoundToInt((point.x - _left) / (_right - _left) * sizeX);
+            i = Mathf.RoundToInt((point.y - _bottom) / (_top - _bottom) * sizeY);
+            /*Debug.LogError(point);
+            Debug.LogError(i + " " + j + " " + sizeX + " " + sizeY);
+            Debug.LogError(_left + " " + _top);*/
             if (i >= 0 && i < sizeY && j >= 0 && j < sizeX)
                 return true;
             return false;
