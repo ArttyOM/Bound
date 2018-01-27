@@ -10,7 +10,13 @@ public class Game : MonoBehaviour {
     Wizard wizard;
     Warrior warrior;
 
+    public int TotalTowers;
+    public int DestroyedTowers;
 
+    public void TowerBroken()
+    {
+        DestroyedTowers++;
+    }
 
     public void NewGame()
     {
