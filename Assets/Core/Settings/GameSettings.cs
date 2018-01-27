@@ -7,6 +7,12 @@ public class GameSettings: ScriptableObject
 
 	public float TransmissionMinLength;
 
+	public float TransmissionMinThreshold = 0.5f;
+
+	public float TransmissionMaxThreshold = 1f;
+
+	public float TransmissionBreakDamage = 5f;
+
 	public float CameraHeight;
 
     /// <summary>

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Assets.Core.Characters
 {
@@ -17,6 +18,8 @@ namespace Assets.Core.Characters
 		
 		private GameSettings _settings;
 		
+		private WaitForSeconds _damagerUpdateRate = new WaitForSeconds(0.3f);
+		
 		public void Awake()
 		{
 			ServiceLocator.Instance.RegisterSingleton(this);
@@ -25,6 +28,8 @@ namespace Assets.Core.Characters
 			_wizardTransform = _wizard.transform;
 			_warriorRigidbody2D = _warrior.GetComponent<Rigidbody2D>();
 			_wizardRigidbody2D = _wizard.GetComponent<Rigidbody2D>();
+
+			StartCoroutine(UpdateDamager());
 		}
 
 		private void Update()
@@ -33,6 +38,25 @@ namespace Assets.Core.Characters
 			UpdateSecondCharacterPosition();
 			UpdateTransmission();
 			UpdateCamera();
+		}
+
+		private IEnumerator UpdateDamager()
+		{
+			while (true)
+			{
+				yield return _damagerUpdateRate;
+				if (_settings.TransmissionMaxLength - (_wizardTransform.position - _warriorTransform.position).magnitude < _settings.TransmissionMaxThreshold)
+				{
+					_wizard.DealDamage(_settings.TransmissionBreakDamage);
+					_warrior.DealDamage(_settings.TransmissionBreakDamage);
+				}
+				
+				if ((_wizardTransform.position - _warriorTransform.position).magnitude - _settings.TransmissionMinLength < _settings.TransmissionMinThreshold)
+				{
+					_wizard.DealDamage(_settings.TransmissionBreakDamage);
+					_warrior.DealDamage(_settings.TransmissionBreakDamage);
+				}
+			}
 		}
 
 		private void UpdateCamera()
@@ -61,8 +85,7 @@ namespace Assets.Core.Characters
 
 			if (Input.GetMouseButton(0) &&
 			    ((Vector2) mousePos - (Vector2) _wizardTransform.position).sqrMagnitude > 0.2f * 0.2f &&
-			    WizardNewPositionLessThenMaxLength(targetPosition) &&
-			    WizardNewPositionMoreThenMinLength(targetPosition))
+			    WizardNewPositionLessThenMaxLength(targetPosition))
 				_wizardRigidbody2D.MovePosition(targetPosition);
 			else
 				_wizardRigidbody2D.MovePosition(_wizardTransform.position);
@@ -118,7 +141,7 @@ namespace Assets.Core.Characters
 
 			targetTransform = _warriorTransform.position + targetTransform * speed;
 			
-			if (WarriorNewPositionLessThenMaxLength(targetTransform) && WarriorNewPositionMoreThenMinLength(targetTransform))
+			if (WarriorNewPositionLessThenMaxLength(targetTransform))
 				_warriorRigidbody2D.MovePosition(targetTransform);
 		}
 	}

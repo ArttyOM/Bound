@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Core.Characters;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -79,15 +80,15 @@ public class UIManager : MonoBehaviour {
 	public void OnMageHealthChanged ()
 	{
 		//_healthMage = 30f;
-		healthMageTXT.text = _healthMage + " / 100";
-		healthMageSlider.value = _healthMage / 100f;
+		healthMageTXT.text = ServiceLocator.Instance.ResolveSingleton<CharactersController>()._wizard.Health + " / 100";
+		healthMageSlider.value = ServiceLocator.Instance.ResolveSingleton<CharactersController>()._wizard.Health / 100f;
 
 	}
 	public void OnWariorHealthChanged ()
 	{
 		//_healthWarrior = 65f;
-		healthWarriorTXT.text = _healthWarrior + " / 100";
-		healthWarriorSlider.value = _healthWarrior / 100f;
+		healthWarriorTXT.text = ServiceLocator.Instance.ResolveSingleton<CharactersController>()._warrior.Health + " / 100";
+		healthWarriorSlider.value = ServiceLocator.Instance.ResolveSingleton<CharactersController>()._warrior.Health / 100f;
 
 	}
 
