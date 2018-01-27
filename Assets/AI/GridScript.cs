@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Collections;
+using System.Threading;
 
 namespace AI
 {
@@ -36,6 +38,18 @@ namespace AI
         /// </summary>
         private bool[,] walkable;
 
+        private int _updateSize;
+
+        /// <summary>
+        /// Пути для первого и второго
+        /// </summary>
+        private int[,] _prevHashFirst, _prevHashSecond;
+
+        /// <summary>
+        /// Игроки
+        /// </summary>
+        private GameObject[] players;
+
         private float _left, _top, _right, _bottom;
 
         // Use this for initialization
@@ -49,14 +63,6 @@ namespace AI
             }
         }
 
-        public static List<Vector3> Path(Vector3 start, Vector3 finish)
-        {
-            if (instance != null)
-                return instance.FindPath(start, finish);
-            else
-                return null;
-        } 
-
 
         /// <summary>
         /// Задаёт сетку
@@ -69,13 +75,16 @@ namespace AI
                 .GetSettings().PathfindingCellSize;
             standardEnemySize = ServiceLocator.Instance.ResolveService<GameSettingsProvider>()
                 .GetSettings().StandardEnemySize;
+            players = GameObject.FindGameObjectsWithTag("Player");
 
             sizeX = (int)Mathf.Ceil(gridSize.x / cellSize);
             sizeY = (int)Mathf.Ceil(gridSize.y / cellSize);
+            print(sizeX + " " + sizeY);
             _left = transform.position.x - sizeX / 2 * cellSize;
             _top = transform.position.y + sizeY / 2 * cellSize;
             _right = transform.position.x + sizeX / 2 * cellSize;
             _bottom = transform.position.y - sizeY / 2 * cellSize;
+            _updateSize = Mathf.Min(sizeX, sizeY) / 10;
 
             walkable = new bool[sizeY, sizeX];
             for (int i = 0; i < sizeY; i++)
@@ -89,6 +98,8 @@ namespace AI
                         walkable[i, j] = true;
                 }
             }
+
+            StartCoroutine(UpdateGrid());
         }
 
         /// <summary>
@@ -192,16 +203,21 @@ namespace AI
             return Mathf.Abs(a - b) < 0.00001f;
         }
 
+        private int GetDistance(int i1, int j1, int i2, int j2)
+        {
+            return Mathf.Abs(i1 - i2) + Mathf.Abs(j1 - j2);
+        }
+
         /// <summary>
-        /// Находит путь, используя алгоритм Дейкстры(A*)
+        /// Находит путь, используя алгоритм Дейкстры
         /// </summary>
         /// <param name="start">Откуда</param>
-        /// <param name="finish">Куда</param>
+        /// <param name="prevHash">Новый массив</param>
         /// <returns>Путь по точкам</returns>
-        private List<Vector3> FindPath(Vector3 start, Vector3 finish)
+        private void InitPathes(Vector3 start, out int[,] prevHash)
         {
             float[,] distance = new float[sizeY, sizeX];
-            int[,] prevHash = new int[sizeY, sizeX];
+            prevHash = new int[sizeY, sizeX];
             for (int i = 0; i < distance.GetLength(0); i++)
                 for (int j = 0; j < distance.GetLength(1); j++)
                     distance[i, j] = INF;
@@ -212,18 +228,15 @@ namespace AI
 
             int startI, startJ;
             
-            int finishI, finishJ;
-            if (!GetIndexiesFromPoint(finish, out finishI, out finishJ)
-                || !GetIndexiesFromPoint(start, out startI, out startJ))
+            if (!GetIndexiesFromPoint(start, out startI, out startJ))
             {
                 Debug.LogError("Nothing points!");
-                return null;
+                return;
             }
 
-            if (!walkable[startI, startJ] || !walkable[finishI, finishJ])
+            if (!walkable[startI, startJ])
             {
-                //Debug.LogError(walkable[startI, startJ] + " " + walkable[finishI, finishJ]);
-                return null;
+                return;
             }
 
             distance[startI, startJ] = 0;
@@ -240,9 +253,6 @@ namespace AI
                 if (!EqualFloat(minElement.dist, distance[elementI, elementJ]))
                     continue;
 
-                if (finishJ == elementJ && finishI == elementI)
-                    break;
-
                 float updateDist = distance[elementI, elementJ];
                 int[] delta = { -1, 0, 1 };
                 foreach (int dI in delta)
@@ -255,6 +265,9 @@ namespace AI
                         if (elementI + dI >= 0 && elementI + dI < sizeY 
                             && elementJ + dJ >= 0 && elementJ + dJ < sizeX)
                         {
+                            if (GetDistance(startI, startJ, elementI + dI, elementJ + dJ) > _updateSize)
+                                continue;
+
                             if (!walkable[elementI + dI, elementJ + dJ])
                                 continue;
 
@@ -269,26 +282,41 @@ namespace AI
                     }
                 }
             }
+        }
 
-            // восстановление путей    
-            if (prevHash[finishI, finishJ] == -1)
-            {
+        /// <summary>
+        /// Находит путь
+        /// </summary>
+        /// <param name="start">Откуда</param>
+        /// <param name="number">Номер игрока</param>
+        /// <returns></returns>
+        private List<Vector3> GetPath(Vector3 start, int number)
+        {
+            int[,] tmp = number == 0 ? _prevHashFirst : _prevHashSecond;
+            int startI, startJ;
+            bool success = GetIndexiesFromPoint(start, out startI, out startJ);
+            if (!success)
                 return null;
-            }
 
-            int currI = finishI, currJ = finishJ;
+            if (tmp == null)
+                return null;
+
+            if (tmp[startI, startJ] == -1)
+                return null;
+
             List<Vector3> path = new List<Vector3>
             {
-                GetPointFromIndexies(currI, currJ)
+                GetPointFromIndexies(startI, startJ)
             };
 
-            while (!(currI == startI && currJ == startJ))
+            int currentI = startI, currentJ = startJ;
+            while (tmp[currentI, currentJ] != -1)
             {
-                int tmpHash = prevHash[currI, currJ];
-                GetIndexesFromHash(tmpHash, out currI, out currJ);
-                path.Add(GetPointFromIndexies(currI, currJ));
+                int hash = tmp[currentI, currentJ];
+                GetIndexesFromHash(hash, out currentI, out currentJ);
+                path.Add(GetPointFromIndexies(currentI, currentJ));
             }
-            path.Reverse();
+
             return path;
         }
         #endregion
@@ -331,14 +359,18 @@ namespace AI
         /// <param name="agent">Агент</param>
         public static void AddToQueue(Agent agent)
         {
-            if (!instance._currentAgents.Contains(agent))
+            /*if (!instance._currentAgents.Contains(agent))
             {
                 instance._currentAgents.Add(agent);
                 instance.agentsQueue.Enqueue(agent);
             }
 
             if (!instance.isFindPathes)
-                instance.StartCoroutine(instance.FindPathes());
+                instance.StartCoroutine(instance.FindPathes());*/
+
+            GameObject player = agent.Player;
+            List<Vector3> path = instance.GetPath(agent.transform.position, player == instance.players[0] ? 0 : 1);
+            agent.SetPath(path);
         }
 
         /// <summary>
@@ -347,18 +379,31 @@ namespace AI
         private bool isFindPathes = false;
 
         /// <summary>
-        /// Искать пути
+        /// Обновляет сетку
         /// </summary>
         /// <returns></returns>
-        private System.Collections.IEnumerator FindPathes()
+        private IEnumerator UpdateGrid()
+        {
+            yield return new WaitForSeconds(0.3f);
+            while (true)
+            {
+                InitPathes(players[0].transform.position, out _prevHashFirst);
+                yield return null;
+                InitPathes(players[1].transform.position, out _prevHashSecond);
+                yield return null;
+            }
+        }
+
+        private IEnumerator FindPathes()
         {
             isFindPathes = true;
             while (agentsQueue.Count != 0)
             {
-                Agent current = agentsQueue.Dequeue();
-                List<Vector3> tmp = FindPath(current.transform.position, current.Destination);
-                current.SetPath(tmp);
-                _currentAgents.Remove(current);
+                Agent agent = agentsQueue.Dequeue();
+                GameObject player = agent.Player;
+                List<Vector3> path = GetPath(agent.transform.position, player == instance.players[0] ? 0 : 1);
+                agent.SetPath(path);
+                _currentAgents.Remove(agent);
                 yield return null;
             }
             isFindPathes = false;

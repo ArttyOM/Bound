@@ -22,9 +22,12 @@ public class EnemyScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if ((transform.position - player.position).magnitude < 20.0f)
-            agent.Destination = player.position;
-        else
+	    if ((transform.position - player.position).magnitude < 20.0f)
+	    {
+	        agent.Player = player.gameObject;
+	        agent.Destination = player.position;
+	    }
+	    else
         {
             agent.Stop();
         }
