@@ -139,7 +139,7 @@ public class AntnestGenerator : AbstractGenerator
             apply(level, apos);
             prev = step;
             detect = at_border(apos);
-            Debug.Log(apos);
+//            Debug.Log(apos);
         } while (detect == null || detect == start_side);
         finish = apos;
         level.CellTypes[apos.x, apos.y] = CellType.Exit;
