@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemySpawnPoint : MonoBehaviour {
 	public bool isInVision = false;
 
+	public GameObject transmission;
+
 	public float T = 3f;
 	public GameObject enemyContainer;
 	public float[] chancePerType;
@@ -22,7 +24,10 @@ public class EnemySpawnPoint : MonoBehaviour {
 
 	private GameObject _enemy;
 	IEnumerator SpawnEnemy (float T){ //передаются все типы врагов и лист вероятностей спавна каждого, а также периодичность спавна
-		
+
+
+
+
 		float[] _chancePerTypeS = chancePerType;
 		for (int i = 1; i < chancePerType.Length; i++) {
 			_chancePerTypeS [i] +=  _chancePerTypeS[i-1];
