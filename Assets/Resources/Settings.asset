@@ -13,8 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransmissionMaxLength: 10
   TransmissionMinLength: 2
+  TransmissionMinThreshold: 0.5
+  TransmissionMaxThreshold: 1
+  TransmissionBreakDamage: 5
   CameraHeight: -10
-  PathfindingCellSize: 0.32
+  PathfindingCellSize: 0.3
   LevelWidth: 20
   LevelHeight: 20
   GenerationCell: 5
@@ -23,4 +26,4 @@ MonoBehaviour:
   NotWalkableMask:
     serializedVersion: 2
     m_Bits: 1
-  PathfindingUpdateDelta: 0.25
+  PathfindingUpdateDelta: 0.5
