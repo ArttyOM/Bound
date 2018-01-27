@@ -58,11 +58,38 @@ namespace Assets.Core.Characters
 			_wizardTransform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - _wizardTransform.position);
 
 			var targetPosition = _wizardTransform.position + _wizardTransform.up * _wizard.Speed;
-			
-			if (Input.GetMouseButton(0) && ((Vector2) mousePos - (Vector2) _wizardTransform.position).sqrMagnitude > 0.2f * 0.2f)
+
+			if (Input.GetMouseButton(0) &&
+			    ((Vector2) mousePos - (Vector2) _wizardTransform.position).sqrMagnitude > 0.2f * 0.2f &&
+			    WizardNewPositionLessThenMaxLength(targetPosition) &&
+			    WizardNewPositionMoreThenMinLength(targetPosition))
 				_wizardRigidbody2D.MovePosition(targetPosition);
 			else
 				_wizardRigidbody2D.MovePosition(_wizardTransform.position);
+		}
+
+		private bool WizardNewPositionLessThenMaxLength(Vector3 newPosition)
+		{
+			return (newPosition - _warriorTransform.position).sqrMagnitude <
+			       _settings.TransmissionMaxLength * _settings.TransmissionMaxLength;
+		}
+		
+		private bool WarriorNewPositionLessThenMaxLength(Vector3 newPosition)
+		{
+			return (newPosition - _wizardTransform.position).sqrMagnitude <
+			       _settings.TransmissionMaxLength * _settings.TransmissionMaxLength;
+		}
+		
+		private bool WizardNewPositionMoreThenMinLength(Vector3 newPosition)
+		{
+			return (newPosition - _warriorTransform.position).sqrMagnitude >
+			       _settings.TransmissionMinLength * _settings.TransmissionMinLength;
+		}
+		
+		private bool WarriorNewPositionMoreThenMinLength(Vector3 newPosition)
+		{
+			return (newPosition - _wizardTransform.position).sqrMagnitude >
+			       _settings.TransmissionMinLength * _settings.TransmissionMinLength;
 		}
 		
 		private void UpdateFirstCharacterPosition()
@@ -89,7 +116,10 @@ namespace Assets.Core.Characters
 				? Mathf.Sqrt(_warrior.Speed * _warrior.Speed / 2f)
 				: _warrior.Speed;
 
-			_warriorRigidbody2D.MovePosition(_warriorTransform.position + targetTransform * speed);
+			targetTransform = _warriorTransform.position + targetTransform * speed;
+			
+			if (WarriorNewPositionLessThenMaxLength(targetTransform) && WarriorNewPositionMoreThenMinLength(targetTransform))
+				_warriorRigidbody2D.MovePosition(targetTransform);
 		}
 	}
 }
