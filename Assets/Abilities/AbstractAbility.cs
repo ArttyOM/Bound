@@ -11,6 +11,9 @@ public abstract class AbstractAbility : MonoBehaviour {
     [SerializeField]
     float Cooldown;
 
+    [SerializeField]
+    private KeyCode attacKeyCode;
+
     float last_use = -1000;
 
     public bool Available()
