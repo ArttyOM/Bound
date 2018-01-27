@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4654073213045848}
   - component: {fileID: 212824419498791342}
   - component: {fileID: 58238950671036150}
+  - component: {fileID: 114453726828716674}
+  - component: {fileID: 114944764110796616}
   m_Layer: 0
   m_Name: Enemy3
   m_TagString: Untagged
@@ -116,6 +118,28 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3.5
+--- !u!114 &114453726828716674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1306956683253582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd00e0155b4f40442b6c3d660b9c4e28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114944764110796616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1306956683253582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2569dce71f950e141a2ef6b6133e994f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212328854995499310
 SpriteRenderer:
   m_ObjectHideFlags: 1

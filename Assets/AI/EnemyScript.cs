@@ -6,6 +6,7 @@ using AI;
 /// <summary>
 /// Тестовый класс
 /// </summary>
+[RequireComponent(typeof(Agent))]
 public class EnemyScript : MonoBehaviour {
     private Agent agent;
 

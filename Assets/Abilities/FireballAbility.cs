@@ -5,25 +5,17 @@ using UnityEngine;
 public class FireballAbility : AbstractAbility
 {
 
+    /// <summary>
+    /// Префаб для фаербола
+    /// </summary>
     [SerializeField]
     GameObject Projectile;
 
-    override protected void Execute()
+    protected override void Execute()
     {
-        var item = Instantiate(Projectile);
-        var delta = owner.LastDir;
-        item.transform.position = owner.transform.position + new Vector3(delta.x, delta.y)*0.5f;
-        item.transform.Rotate(new Vector3(0, 0, 1), Mathf.PI / 2);
-        item.GetComponent<ProjectileFlight>().direction = delta;
+        var obj = Instantiate(Projectile);
+        obj.transform.position = transform.position;
+        obj.GetComponent<ProjectileFlight>().direction = owner.LastDir;
+        obj.GetComponent<ProjectileFlight>().StartWork();
     }
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

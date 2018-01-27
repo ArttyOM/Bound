@@ -11,6 +11,9 @@ public abstract class AbstractAbility : MonoBehaviour {
     [SerializeField]
     float Cooldown;
 
+    [SerializeField]
+    private KeyCode attacKeyCode;
+
     float last_use = -1000;
 
     public bool Available()
@@ -38,6 +41,11 @@ public abstract class AbstractAbility : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+	    if (Available() && Input.GetKeyDown(attacKeyCode))
+	    {
+	        last_use = Time.time;
+	        Execute();
+            print("lol");
+	    }
 	}
 }

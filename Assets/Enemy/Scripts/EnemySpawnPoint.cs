@@ -46,7 +46,7 @@ public class EnemySpawnPoint : MonoBehaviour {
 			_distance = Vector3.Distance(this.transform.position, transmission.transform.position);
 
 			if (_distance > maxDistance){
-				Debug.Log("too far to spawn a creep");
+				Debug.Log("The distance is:" +_distance+". It's too far to spawn a creep");
 				yield return null;
 			}
 			else{
