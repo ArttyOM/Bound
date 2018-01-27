@@ -51,11 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0172149c42cfc46948e28184c77e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 15
+  maxDistance: 70
   minDIstance: 1
-  transmission: {fileID: 0}
   T: 3
-  enemyContainer: {fileID: 0}
   chancePerType:
   - 1
   enemyTypes:

@@ -7,16 +7,24 @@ public class EnemySpawnPoint : MonoBehaviour {
 
 	public float maxDistance = 3f;
 	public float minDIstance = 1f;
-	public GameObject transmission;
+	public static GameObject transmission;
 
 
 
 	public float T = 3f;
-	public GameObject enemyContainer;
+	public static GameObject enemyContainer;
 	public float[] chancePerType;
 	public GameObject[] enemyTypes;
 
 	// Use this for initialization
+	void Awake(){
+
+		if (transmission == null)transmission = GameObject.FindWithTag ("Transmission");
+		if (enemyContainer == null) enemyContainer = GameObject.FindWithTag ("EnemyContainer");
+
+		//transmission =
+	}
+
 	void Start () {
 		StartCoroutine (SpawnEnemy(T));
 	}
