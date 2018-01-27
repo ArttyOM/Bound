@@ -17,5 +17,6 @@ public class FireballAbility : AbstractAbility
         obj.transform.position = transform.position;
         obj.GetComponent<ProjectileFlight>().direction = owner.LastDir;
         obj.GetComponent<ProjectileFlight>().StartWork();
+        obj.transform.position += (Vector3)obj.GetComponent<ProjectileFlight>().direction * 0.2f;
     }
 }
