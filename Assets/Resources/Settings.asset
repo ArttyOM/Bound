@@ -23,3 +23,4 @@ MonoBehaviour:
   NotWalkableMask:
     serializedVersion: 2
     m_Bits: 1
+  PathfindingUpdateDelta: 0.25
