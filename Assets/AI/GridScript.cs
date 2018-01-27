@@ -61,11 +61,13 @@ namespace AI
         /// </summary>
         public void InitGrid()
         {
+            LayerMask layer = ServiceLocator.Instance.ResolveService<GameSettingsProvider>()
+                .GetSettings().NotWalkableMask;
             cellSize = ServiceLocator.Instance.ResolveService<GameSettingsProvider>()
                 .GetSettings().PathfindingCellSize;
             standardEnemySize = ServiceLocator.Instance.ResolveService<GameSettingsProvider>()
                 .GetSettings().StandardEnemySize;
-            print(standardEnemySize);
+
             sizeX = (int)Mathf.Ceil(gridSize.x / cellSize);
             sizeY = (int)Mathf.Ceil(gridSize.y / cellSize);
 
@@ -75,7 +77,7 @@ namespace AI
                 for (int j = 0; j < sizeX; j++)
                 {
                     RaycastHit2D raycastHitInfo = Physics2D.BoxCast(GetCoord(i, j),
-                        new Vector2(standardEnemySize, standardEnemySize), 0, Vector2.zero);
+                        new Vector2(standardEnemySize, standardEnemySize), 0, Vector2.zero, 0,layerMask:layer);
 
                     if (raycastHitInfo.collider == null)
                         walkable[i, j] = true;

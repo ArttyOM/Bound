@@ -25,4 +25,6 @@ public class GameSettings: ScriptableObject
     /// Размер врага
     /// </summary>
     public float StandardEnemySize;
+
+    public LayerMask NotWalkableMask;
 }
