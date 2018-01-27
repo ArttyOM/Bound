@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class DummyGenerator : AbstractGenerator
+public class AntnestGenerator : AbstractGenerator
 {
 
     override protected void GenerateLevel(Level level, LevelType typ, out Vector2 start, out Vector2 finish)
@@ -12,9 +11,8 @@ public class DummyGenerator : AbstractGenerator
         for (int x = 0; x < config.LevelWidth; x++)
             for (int y = 0; y < config.LevelHeight; y++)
                 level.CellTypes[x, y] = Random.Range(0, 2) == 0 ? WallType.Wall : WallType.Floor;
-        start = new Vector2(10.5f, 10.5f);
+        start = new Vector2(0.5f, 0.5f);
         finish = new Vector2(10.5f, 10.5f);
     }
-
 
 }

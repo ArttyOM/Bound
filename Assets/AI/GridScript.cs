@@ -6,17 +6,20 @@ namespace AI
 {
     public class GridScript : MonoBehaviour
     {
-
         /// <summary>
         /// Главный объект
         /// </summary>
         private static GridScript instance;
 
         /// <summary>
+        /// Стандартная скорость врага
+        /// </summary>
+        private float standardEnemySize = 1;
+
+        /// <summary>
         /// Размер сетки
         /// </summary>
-        [SerializeField]
-        private Vector2 gridSize;
+        public Vector2 gridSize;
 
         /// <summary>
         /// Размер клетки   
@@ -33,9 +36,6 @@ namespace AI
         /// </summary>
         private bool[,] walkable;
 
-        public Vector3 start;
-        public Vector3 finish;
-
         // Use this for initialization
         void Start()
         {
@@ -47,13 +47,27 @@ namespace AI
             }
         }
 
+        public static List<Vector3> Path(Vector3 start, Vector3 finish)
+        {
+            if (instance != null)
+                return instance.FindPath(start, finish);
+            else
+                return null;
+        } 
+
 
         /// <summary>
         /// Задаёт сетку
         /// </summary>
-        private void InitGrid()
+        public void InitGrid()
         {
-            cellSize = ServiceLocator.Instance.Resolve<GameSettingsProvider>().GetSettings().PathfindingCellSize;
+            LayerMask layer = ServiceLocator.Instance.ResolveService<GameSettingsProvider>()
+                .GetSettings().NotWalkableMask;
+            cellSize = ServiceLocator.Instance.ResolveService<GameSettingsProvider>()
+                .GetSettings().PathfindingCellSize;
+            standardEnemySize = ServiceLocator.Instance.ResolveService<GameSettingsProvider>()
+                .GetSettings().StandardEnemySize;
+
             sizeX = (int)Mathf.Ceil(gridSize.x / cellSize);
             sizeY = (int)Mathf.Ceil(gridSize.y / cellSize);
 
@@ -63,7 +77,7 @@ namespace AI
                 for (int j = 0; j < sizeX; j++)
                 {
                     RaycastHit2D raycastHitInfo = Physics2D.BoxCast(GetCoord(i, j),
-                        new Vector2(cellSize, cellSize), 0, Vector2.zero);
+                        new Vector2(standardEnemySize, standardEnemySize), 0, Vector2.zero, 0,layerMask:layer);
 
                     if (raycastHitInfo.collider == null)
                         walkable[i, j] = true;
@@ -89,10 +103,13 @@ namespace AI
         /// <param name="point">Точка</param>
         /// <param name="i">Строка</param>
         /// <param name="j">Столбец</param>
-        private void GetIndexiesFromPoint(Vector3 point, out int i, out int j)
+        private bool GetIndexiesFromPoint(Vector3 point, out int i, out int j)
         {
             j = Mathf.RoundToInt((point.x /  (transform.position.x + sizeX * cellSize)) * sizeX) + sizeX / 2;
             i = Mathf.RoundToInt((point.y / (transform.position.y + sizeY * cellSize)) * sizeY) + sizeY / 2;
+            if (i >= 0 && i < sizeY && j >= 0 && j < sizeX)
+                return true;
+            return false;
         }
 
         /// <summary>
@@ -188,9 +205,11 @@ namespace AI
                     prevHash[i, j] = -1;
 
             int startI, startJ;
-            GetIndexiesFromPoint(start, out startI, out startJ);
+            
             int finishI, finishJ;
-            GetIndexiesFromPoint(finish, out finishI, out finishJ);
+            if (!GetIndexiesFromPoint(finish, out finishI, out finishJ)
+                || !GetIndexiesFromPoint(start, out startI, out startJ))
+                return null;
 
             if (!walkable[startI, startJ] || !walkable[finishI, finishJ])
                 return null;
@@ -247,7 +266,6 @@ namespace AI
 
             while (!(currI == startI && currJ == startJ))
             {
-                //print(currI + " " + currJ + "\n" + startI + " " + startJ); 
                 int tmpHash = prevHash[currI, currJ];
                 GetIndexesFromHash(tmpHash, out currI, out currJ);
                 path.Add(GetPointFromIndexies(currI, currJ));
@@ -264,39 +282,20 @@ namespace AI
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawWireCube(transform.position, new Vector3(gridSize.x, gridSize.y, 0.1f));
-            
+
             if (walkable != null)
             {
-                int ii, iii, jj, jjj;
-                GetIndexiesFromPoint(start, out ii, out jj);
-                GetIndexiesFromPoint(finish, out iii, out jjj);
                 for (int i = 0; i < sizeY; i++)
                     for (int j = 0; j < sizeX; j++)
                     {
-                        if (i == ii && j == jj)
-                            Gizmos.color = Color.black;
-                        else if (i == iii && j == jjj)
-                            Gizmos.color = Color.cyan;
-                        else if (walkable[i, j])
+                        if (walkable[i, j])
                             Gizmos.color = Color.green;
                         else
                             Gizmos.color = Color.red;
 
                         Gizmos.DrawCube(GetCoord(i, j), Vector3.one * cellSize * 0.9f);
                     }
-
-                List<Vector3> path = FindPath(start, finish);
-                if (path != null)
-                {
-                    foreach(Vector3 point in path)
-                    {
-                        Gizmos.color = Color.magenta;
-                        Gizmos.DrawCube(point, Vector3.one * cellSize * 0.9f);
-                    }
-                }
             }
-            Gizmos.color = Color.black;
-            Gizmos.DrawCube(start, Vector3.one * 0.2f);
         }
     }
 }

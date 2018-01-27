@@ -1,18 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 	[SerializeField] private SettingPopup settingPopup;
+	[SerializeField] private SettingPopup startMenu;
 
-	[SerializeField] private Texture scoreLabel;
+	private int _scores = 0;
+	[SerializeField] private Text scoreLabel;
+
+	[SerializeField] private Slider healthMageSlider;
+	[SerializeField] private Text healthMageTXT;
+
+	[SerializeField] private Slider healthWarriorSlider;
+	[SerializeField] private Text healthWarriorTXT;
+
+
+	private float _healthMage=100;
+	private float _healthWarrior=100;
+
+	void Awake(){
+		Messenger.AddListener(GameEvent.MAGE_HEALTH_CHANGED, OnMageHealthChanged);
+		Messenger.AddListener (GameEvent.WARRIOT_HEALTH_CHANGED, OnWariorHealthChanged);
+		Messenger.AddListener (GameEvent.SCORE_INCREASED, OnScoreIncreased);
+	}
+
+	void OnDestroy(){
+		Messenger.RemoveListener (GameEvent.MAGE_HEALTH_CHANGED,OnMageHealthChanged);
+		Messenger.RemoveListener (GameEvent.WARRIOT_HEALTH_CHANGED,OnMageHealthChanged);
+		Messenger.RemoveListener (GameEvent.SCORE_INCREASED, OnScoreIncreased);
+	}
 
 	void Start(){
 		//settingPopup.Open();
 	}
 	// Update is called once per frame
 
-	private bool isPopupOpen = true;
+	private bool isPopupOpen = false;
 	void Update () {
 
 		//isPopupOpen = settingPopup.isActiveAndEnabled ();
@@ -26,6 +51,18 @@ public class UIManager : MonoBehaviour {
 			}
 			//isPopupOpen = !isPopupOpen;
 		}
+			
+		//if (Input.GetButtonDown ("Fire1")) {
+		//	OnMageHealthChanged ();
+		//	OnWariorHealthChanged ();
+		//	_healthMage -= 30f;
+		//	_healthWarrior -= 25f;
+		//
+		//}
+	}
+
+	public void OnStartButton(){
+		startMenu.Close ();
 	}
 
 	public void OnOpenSettings(){
@@ -39,7 +76,26 @@ public class UIManager : MonoBehaviour {
 		isPopupOpen = !isPopupOpen;
 	}
 		
+	public void OnMageHealthChanged ()
+	{
+		//_healthMage = 30f;
+		healthMageTXT.text = _healthMage + " / 100";
+		healthMageSlider.value = _healthMage / 100f;
 
+	}
+	public void OnWariorHealthChanged ()
+	{
+		//_healthWarrior = 65f;
+		healthWarriorTXT.text = _healthWarrior + " / 100";
+		healthWarriorSlider.value = _healthWarrior / 100f;
+
+	}
+
+	public void OnScoreIncreased()
+	{
+		_scores++;
+		scoreLabel.text = "Score: " + _scores.ToString ();
+	}
 	//public void ExitGame(){
 		//Application.Quit ();
 	//	SceneManager.Quit();

@@ -16,4 +16,15 @@ public class GameSettings: ScriptableObject
     public int LevelWidth;
     public int LevelHeight;
     public int GenerationCell;
+
+    /// <summary>
+    /// Скорость врагов по умолчанию
+    /// </summary>
+    public float EnemyStandardSpeed;
+    /// <summary>
+    /// Размер врага
+    /// </summary>
+    public float StandardEnemySize;
+
+    public LayerMask NotWalkableMask;
 }
