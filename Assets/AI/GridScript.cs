@@ -222,7 +222,7 @@ namespace AI
 
             if (!walkable[startI, startJ] || !walkable[finishI, finishJ])
             {
-                Debug.LogError(walkable[startI, startJ] + " " + walkable[finishI, finishJ]);
+                //Debug.LogError(walkable[startI, startJ] + " " + walkable[finishI, finishJ]);
                 return null;
             }
 

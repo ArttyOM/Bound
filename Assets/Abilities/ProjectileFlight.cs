@@ -35,5 +35,6 @@ public class ProjectileFlight : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         transform.position = transform.position + new Vector3(direction.x, direction.y, 0.0f) * speed * Time.deltaTime;
+        //transform.Translate(new Vector3(direction.x, direction.y, 0.0f) * speed * Time.deltaTime);
 	}
 }
