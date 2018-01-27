@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4639917586380558}
   - component: {fileID: 114979239629870852}
   m_Layer: 0
-  m_Name: RotateMage
+  m_Name: ShootFireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
