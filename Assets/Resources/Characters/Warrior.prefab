@@ -11,6 +11,23 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1399468166454674}
   m_IsPrefabParent: 1
+--- !u!1 &1182539157081040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4437185436661966}
+  - component: {fileID: 33873070816363672}
+  - component: {fileID: 23979310099055998}
+  m_Layer: 9
+  m_Name: warrior
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1399468166454674
 GameObject:
   m_ObjectHideFlags: 0
@@ -21,7 +38,9 @@ GameObject:
   - component: {fileID: 4224767375494012}
   - component: {fileID: 212505354637031094}
   - component: {fileID: 114207686194255898}
-  m_Layer: 0
+  - component: {fileID: 50477363052808650}
+  - component: {fileID: 58630456761669834}
+  m_Layer: 9
   m_Name: Warrior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,12 +54,107 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1399468166454674}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.21, y: 0.02, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
-  m_Children: []
+  m_Children:
+  - {fileID: 4437185436661966}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4437185436661966
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1182539157081040}
+  m_LocalRotation: {x: -0.9848078, y: -0, z: -0, w: -0.17364807}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1334}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_Children: []
+  m_Father: {fileID: 4224767375494012}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -200, y: 0, z: 0}
+--- !u!23 &23979310099055998
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1182539157081040}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 6e285f2a847a16644a138739ba1f228f, type: 2}
+  - {fileID: 2100000, guid: cc9052e755ceac5478d0cb4eafdde9fc, type: 2}
+  - {fileID: 2100000, guid: 35786dab9d976be4d8351f1f8b62484a, type: 2}
+  - {fileID: 2100000, guid: 9b8c47734d5aca849ac995b480a60a33, type: 2}
+  - {fileID: 2100000, guid: 404e10c12dcf8c64499f7daa915732c2, type: 2}
+  - {fileID: 2100000, guid: eb3175fc5ed0eff4faa0cf815383902a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &33873070816363672
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1182539157081040}
+  m_Mesh: {fileID: 4300000, guid: be9f28e3b3b8b514889a00db732ae4b2, type: 3}
+--- !u!50 &50477363052808650
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1399468166454674}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 5
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &58630456761669834
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1399468166454674}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!114 &114207686194255898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -53,9 +167,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Warrior
-  Damage: 10
+  Damage: 100
   Speed: 0.1
-  Health: 0
+  Health: 100
   Abilities:
   - {fileID: 114893587271217538, guid: fb179dcfda7373d4a910f24797e04dfc, type: 2}
   - {fileID: 114979239629870852, guid: 946b8b6ba72914943bd98bd787a788da, type: 2}
@@ -65,7 +179,7 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1399468166454674}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
