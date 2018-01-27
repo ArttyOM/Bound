@@ -16,10 +16,9 @@ public class RangeEnemy : EnemyScript {
         _currentAttackObj = Instantiate(_attackObj);
         _currentAttackObj.transform.position = transform.position;
         _currentAttackObj.GetComponent<EnemyArrowScript>().Direction = Direction;
+        _currentAttackObj.GetComponent<EnemyArrowScript>().Damage = Damage;
         _lastAttack = Time.time;
-        print(_currentAttackObj);
-        yield return new WaitForSeconds(3f);
-        Destroy(_currentAttackObj);
+        yield break;
     }
 
     private Vector2 Direction
