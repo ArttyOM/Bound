@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 	[SerializeField] private SettingPopup settingPopup;
+	[SerializeField] private SettingPopup startMenu;
 
+	private int _scores = 0;
 	[SerializeField] private Text scoreLabel;
 
 	[SerializeField] private Slider healthMageSlider;
@@ -21,11 +23,13 @@ public class UIManager : MonoBehaviour {
 	void Awake(){
 		Messenger.AddListener(GameEvent.MAGE_HEALTH_CHANGED, OnMageHealthChanged);
 		Messenger.AddListener (GameEvent.WARRIOT_HEALTH_CHANGED, OnWariorHealthChanged);
+		Messenger.AddListener (GameEvent.SCORE_INCREASED, OnScoreIncreased);
 	}
 
 	void OnDestroy(){
 		Messenger.RemoveListener (GameEvent.MAGE_HEALTH_CHANGED,OnMageHealthChanged);
 		Messenger.RemoveListener (GameEvent.WARRIOT_HEALTH_CHANGED,OnMageHealthChanged);
+		Messenger.RemoveListener (GameEvent.SCORE_INCREASED, OnScoreIncreased);
 	}
 
 	void Start(){
@@ -33,7 +37,7 @@ public class UIManager : MonoBehaviour {
 	}
 	// Update is called once per frame
 
-	private bool isPopupOpen = true;
+	private bool isPopupOpen = false;
 	void Update () {
 
 		//isPopupOpen = settingPopup.isActiveAndEnabled ();
@@ -47,14 +51,18 @@ public class UIManager : MonoBehaviour {
 			}
 			//isPopupOpen = !isPopupOpen;
 		}
+			
+		//if (Input.GetButtonDown ("Fire1")) {
+		//	OnMageHealthChanged ();
+		//	OnWariorHealthChanged ();
+		//	_healthMage -= 30f;
+		//	_healthWarrior -= 25f;
+		//
+		//}
+	}
 
-		if (Input.GetButtonDown ("Fire1")) {
-			OnMageHealthChanged ();
-			OnWariorHealthChanged ();
-			_healthMage -= 30f;
-			_healthWarrior -= 25f;
-
-		}
+	public void OnStartButton(){
+		startMenu.Close ();
 	}
 
 	public void OnOpenSettings(){
@@ -83,6 +91,11 @@ public class UIManager : MonoBehaviour {
 
 	}
 
+	public void OnScoreIncreased()
+	{
+		_scores++;
+		scoreLabel.text = "Score: " + _scores.ToString ();
+	}
 	//public void ExitGame(){
 		//Application.Quit ();
 	//	SceneManager.Quit();
