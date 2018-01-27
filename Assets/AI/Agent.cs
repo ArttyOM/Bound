@@ -14,6 +14,7 @@ namespace AI {
         void Start() {
             delta = ServiceLocator.Instance.ResolveService<GameSettingsProvider>()
                 .GetSettings().PathfindingUpdateDelta;
+            //transform.transform.parent = null;
         }
 
         /// <summary>
@@ -90,7 +91,7 @@ namespace AI {
                 StartCoroutine(FollowPath());
         }
 
-        /*private void OnDrawGizmosSelected()
+        private void OnDrawGizmos()
         {
             if (path != null)
             {
@@ -102,6 +103,6 @@ namespace AI {
             }
             Gizmos.color = Color.green;
             Gizmos.DrawCube(destination, Vector3.one / 2);
-        }*/
+        }
     }
 }
