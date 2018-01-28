@@ -293,6 +293,11 @@ Prefab:
       propertyPath: Abilities.Array.data[0]
       value: 
       objectReference: {fileID: 970397138}
+    - target: {fileID: 114192742314796460, guid: 638bb4120e1051648a1badade9a11319,
+        type: 2}
+      propertyPath: _cameraTransform
+      value: 
+      objectReference: {fileID: 831202917}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 638bb4120e1051648a1badade9a11319, type: 2}
   m_IsPrefabParent: 0

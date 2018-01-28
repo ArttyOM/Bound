@@ -36,21 +36,8 @@ public class Warrior : Character
 	void Update()
 	{
 		_attackObj.transform.position = transform.position;
-		if (_cooldown > 0) {
-			_cooldown -= Time.deltaTime;
-		}
-		else {
-			_canAttack = true;
-
-		}
-		if ((Input.GetButtonDown("Fire1"))&&(_canAttack)) {
-			_canAttack = false;
-			_cooldown = _maxCooldown;
-			//Debug.Log ("halo");
-			StartCoroutine(Attack());
-		}
 	}
-	IEnumerator Attack()
+	public IEnumerator Attack()
 	{
 		_attackObj.SetActive (true);
 
