@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Warrior : Character
 {
@@ -114,6 +115,13 @@ public class Warrior : Character
 		mage.transform.SetParent (oldParent);
 
 		//yield return null;
+	}
+
+	protected override IEnumerator Die()
+	{
+		Messenger.Broadcast(GameEvent.YOU_DEAD);
+		yield return new WaitForSeconds (3f);
+		SceneManager.LoadScene ("FirstLevel");
 	}
 	/// <summary>
 	/// Проверяет атаки
