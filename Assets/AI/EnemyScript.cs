@@ -56,7 +56,8 @@ public class EnemyScript : Character{
     {
         if (collider.gameObject.tag == "PlayerAttack")
         {
-            Destroy(gameObject); // TODO: минус хп
+            //Destroy(gameObject); // TODO: минус хп
+            //DealDamage(1.0f);
         }
     }
 

@@ -124,48 +124,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4806559273170588, guid: 638bb4120e1051648a1badade9a11319,
     type: 2}
   m_PrefabInternal: {fileID: 591493432}
---- !u!1001 &99989120
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4155977583239136, guid: d9c289e08bfea9a4da7b997630d61d55, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0.724
-      objectReference: {fileID: 0}
-    - target: {fileID: 4155977583239136, guid: d9c289e08bfea9a4da7b997630d61d55, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.032
-      objectReference: {fileID: 0}
-    - target: {fileID: 4155977583239136, guid: d9c289e08bfea9a4da7b997630d61d55, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4155977583239136, guid: d9c289e08bfea9a4da7b997630d61d55, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4155977583239136, guid: d9c289e08bfea9a4da7b997630d61d55, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4155977583239136, guid: d9c289e08bfea9a4da7b997630d61d55, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4155977583239136, guid: d9c289e08bfea9a4da7b997630d61d55, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4155977583239136, guid: d9c289e08bfea9a4da7b997630d61d55, type: 2}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: d9c289e08bfea9a4da7b997630d61d55, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &335146245
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,11 +298,6 @@ Prefab:
       propertyPath: _cameraTransform
       value: 
       objectReference: {fileID: 831202917}
-    - target: {fileID: 114092475358783690, guid: 638bb4120e1051648a1badade9a11319,
-        type: 2}
-      propertyPath: Cooldown
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 638bb4120e1051648a1badade9a11319, type: 2}
   m_IsPrefabParent: 0
