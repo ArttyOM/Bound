@@ -49,7 +49,11 @@ namespace AI {
         /// <param name="point">куда смотреть</param>
         private void SetRotation(Vector3 point)
         {
+
             Vector3 direction = (point - transform.position).normalized;
+
+//            direction = new Vector3(Random.Range(-2,2)+0.1f, Random.Range(-2, 2), 0).normalized;
+
             Vector3 rot = new Vector3();
             if (direction.y > 0)
                 rot.z = Mathf.Acos(direction.x) * Mathf.Rad2Deg;

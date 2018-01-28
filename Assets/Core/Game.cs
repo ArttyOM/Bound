@@ -84,10 +84,8 @@ public class Game : MonoBehaviour {
         var best = 1000.0f;
         Tower best_tower = null;
         var pl = PlayerPos();
-        Debug.Log(Towers);
         foreach (var tower in Towers)
         {
-            Debug.Log(tower);
             if (tower.status == TowerStatus.Broken)
                 continue;
             var d = Vector2.Distance(tower.towerpos, pl);
