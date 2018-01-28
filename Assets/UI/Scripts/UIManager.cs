@@ -27,8 +27,9 @@ public class UIManager : MonoBehaviour {
 		Messenger.AddListener(GameEvent.MAGE_HEALTH_CHANGED, OnMageHealthChanged);
 		Messenger.AddListener (GameEvent.WARRIOT_HEALTH_CHANGED, OnWariorHealthChanged);
 		Messenger.AddListener (GameEvent.SCORE_INCREASED, OnScoreIncreased);
-		Messenger.AddListener (GameEvent.YOU_DEAD, OnDead);
-		Messenger.AddListener (GameEvent.GAME_WON, OnWon);
+        Messenger.AddListener(GameEvent.YOU_DEAD, OnDead);
+        Messenger.AddListener(GameEvent.NOT_DEAD, NotDead);
+        Messenger.AddListener (GameEvent.GAME_WON, OnWon);
 	}
 
 	void OnDestroy(){
@@ -36,7 +37,8 @@ public class UIManager : MonoBehaviour {
 		Messenger.RemoveListener (GameEvent.WARRIOT_HEALTH_CHANGED,OnMageHealthChanged);
 		Messenger.RemoveListener (GameEvent.SCORE_INCREASED, OnScoreIncreased);
 		Messenger.RemoveListener (GameEvent.YOU_DEAD, OnDead);
-		Messenger.RemoveListener (GameEvent.GAME_WON, OnWon);
+        Messenger.RemoveListener(GameEvent.NOT_DEAD, NotDead);
+        Messenger.RemoveListener (GameEvent.GAME_WON, OnWon);
 	}
 
 	void Start(){
@@ -115,7 +117,12 @@ public class UIManager : MonoBehaviour {
 		dieMenu.Open ();
 	}
 
-	public void OnScoreIncreased()
+    public void NotDead()
+    {
+        dieMenu.Close();
+    }
+
+    public void OnScoreIncreased()
 	{
         var game = ServiceLocator.Instance.ResolveSingleton<Game>();
 		scoreLabel.text = System.String.Format("{0}/{1}", game.DestroyedTowers, game.TotalTowers);
