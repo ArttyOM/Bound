@@ -5,7 +5,13 @@ using UnityEngine;
 public class FireController : MonoBehaviour
 {
 	public Light Fire;
+	
+	public float maxIntencity;
+	
+	public float minIntencity;
 
+	public bool modeSwitcher;
+	
 	void Start()
 	{
 		StartCoroutine(UpdateFire());
@@ -16,7 +22,8 @@ public class FireController : MonoBehaviour
 		while (true)
 		{
 			yield return new WaitForSeconds(Random.value);
-			Fire.enabled = !Fire.enabled;
+			modeSwitcher = !modeSwitcher;
+			Fire.intensity = modeSwitcher ? maxIntencity : minIntencity;
 		}
 	}
 }
