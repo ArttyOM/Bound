@@ -17,6 +17,11 @@ public class Game : MonoBehaviour {
 
     public Image TheArrow;
 
+    public List<Slider> WarSliders;
+    public List<Slider> WizSliders;
+
+
+
     public void UpdateLabel()
     {
         Messenger.Broadcast(GameEvent.SCORE_INCREASED);
@@ -113,9 +118,20 @@ public class Game : MonoBehaviour {
         TheArrow.transform.rotation = Quaternion.AngleAxis(angle-90, new Vector3(0, 0, 1));
     }
 
-	
-	// Update is called once per frame
-	void Update () {
+
+    void UpdateCooldowns()
+    {
+        for (int i = 0; i < WarSliders.Count; i++)
+            WarSliders[i].value = 1-warrior.Abilities[i].RemainingCooldown();
+        for (int i = 0; i < WizSliders.Count; i++)
+            WizSliders[i].value = 1 - wizard.Abilities[i].RemainingCooldown();
+
+    }
+
+
+    // Update is called once per frame
+    void Update () {
         UpdateArrow();
+        UpdateCooldowns();
     }
 }
