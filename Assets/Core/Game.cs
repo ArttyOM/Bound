@@ -133,9 +133,9 @@ public class Game : MonoBehaviour {
     void UpdateCooldowns()
     {
         for (int i = 0; i < WarSliders.Count; i++)
-            WarSliders[i].fillAmount = warrior.Abilities[i].RemainingCooldown();
+            WarSliders[i].fillAmount = 1 - warrior.Abilities[i].RemainingCooldown();
         for (int i = 0; i < WizSliders.Count - 1; i++)
-            WizSliders[i].fillAmount = wizard.Abilities[i].RemainingCooldown();
+            WizSliders[i].fillAmount = 1 - wizard.Abilities[i].RemainingCooldown();
 
     }
 
