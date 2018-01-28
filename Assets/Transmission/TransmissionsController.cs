@@ -35,7 +35,7 @@ public class TransmissionsController : MonoBehaviour {
 
 	        if (distance >= _dangerZone)
 	        {
-	            _transmission.startColor = Color.red;
+				_transmission.startColor = Color.white;
 	            _transmission.endColor = Color.red;
 	        }
 	        else
