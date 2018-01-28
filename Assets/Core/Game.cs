@@ -19,8 +19,8 @@ public class Game : MonoBehaviour {
     public AudioClip GameWinClip;
     public Image TheArrow;
 
-    public List<Slider> WarSliders;
-    public List<Slider> WizSliders;
+    public List<Image> WarSliders;
+    public List<Image> WizSliders;
 
 
 
@@ -133,9 +133,9 @@ public class Game : MonoBehaviour {
     void UpdateCooldowns()
     {
         for (int i = 0; i < WarSliders.Count; i++)
-            WarSliders[i].value = 1-warrior.Abilities[i].RemainingCooldown();
+            WarSliders[i].fillAmount = warrior.Abilities[i].RemainingCooldown();
         for (int i = 0; i < WizSliders.Count - 1; i++)
-            WizSliders[i].value = 1 - wizard.Abilities[i].RemainingCooldown();
+            WizSliders[i].fillAmount = wizard.Abilities[i].RemainingCooldown();
 
     }
 
