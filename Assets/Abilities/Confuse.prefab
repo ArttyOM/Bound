@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4639917586380558}
-  - component: {fileID: 114465571821836356}
+  - component: {fileID: 114946540976557004}
   m_Layer: 0
-  m_Name: RotateWarrior
+  m_Name: Confuse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114465571821836356
+--- !u!114 &114946540976557004
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -48,9 +48,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1297006168128076}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca4e0a8b6049b044f8c947a2c59fac2f, type: 3}
+  m_Script: {fileID: 11500000, guid: f77cb5d9883ae274b92d4209df7d63b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   Cooldown: 10
-  attacKeyCode: 259
+  attacKeyCode: 260
+  ConfuseTime: 5
