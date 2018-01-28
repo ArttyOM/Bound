@@ -54,7 +54,7 @@ public class EnemyScript : Character{
 	void Update () {
 	    if (Player != null)
 	    {
-	        if ((transform.position - Player.position).magnitude < 15.0f)
+	        if ((transform.position - Player.position).magnitude < 15.0f && !IsDead)
 	        {
 	            agent.Player = Player.gameObject;
 	            agent.Destination = Player.position;
@@ -100,7 +100,7 @@ public class EnemyScript : Character{
     /// <returns></returns>
     private IEnumerator CheckAttack()
     {
-        while (isActiveAndEnabled)
+        while (isActiveAndEnabled && !IsDead)
         {
             if (_lastAttack + _cooldown < Time.time && _canAttack)
             {
