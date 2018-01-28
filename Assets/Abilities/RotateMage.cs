@@ -7,7 +7,8 @@ public class RotateMage : AbstractAbility
 
     override protected void Execute()
     {
-        Debug.Log("RotateMage");
+        StartCoroutine((owner as Warrior).SpecialAttack());
+
     }
 
 

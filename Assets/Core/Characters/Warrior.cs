@@ -74,12 +74,6 @@ public class Warrior : Character
 	            _canSpetialAttack = true;
 	        }
 
-	        if ((Input.GetButtonDown("Fire2") && (_canSpetialAttack)))
-	        {
-	            _canSpetialAttack = false;
-	            _cooldownSpetial = _maxCooldownSpetial;
-	            StartCoroutine(SpecialAttack());
-	        }
 	    }
 	}
 	public IEnumerator Attack()
@@ -114,7 +108,7 @@ public class Warrior : Character
 //	}
 
 
-	IEnumerator SpecialAttack(){
+	public IEnumerator SpecialAttack(){
 		//дописать вызов отключения движения магом
 		float distance = Vector3.Distance (this.transform.position, mage.transform.position);
 		Transform oldParent = mage.transform.parent;
