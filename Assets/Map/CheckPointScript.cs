@@ -7,14 +7,19 @@ public class CheckPointScript : MonoBehaviour {
     public static Vector2 PlayersPosition1 { get; set; }
     public static Vector2 PlayersPosition2 { get; set; }
 
+    private Wizard wizard;
+    private Warrior warrior;
+
     public const float DIST = 2f;
 
     public static CheckPointScript lastVisited = null;
 
     // Use this for initialization
-    void Start () {
-		
-	}
+    void Start ()
+    {
+        wizard = GameObject.Find("Wizard").GetComponent<Wizard>();
+        warrior = GameObject.Find("Warrior").GetComponent<Warrior>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -24,6 +29,8 @@ public class CheckPointScript : MonoBehaviour {
 	    if (minDistance < DIST)
 	    {
 	        lastVisited = this;
+	        wizard.Health = 100;
+	        warrior.Health = 100;
 	    }
 	}
 }
