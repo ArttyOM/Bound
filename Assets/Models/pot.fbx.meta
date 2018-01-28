@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: e2564efac64b219458685ec550d9b053
 timeCreated: 1517141329
 licenseType: Free
@@ -12,11 +13,27 @@ ModelImporter:
     3300000: //RootNode
     4300000: pot
   externalObjects: {}
+=======
+guid: 20d9386d72d81554b90f1b99182921c2
+timeCreated: 1517141553
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: pot
+>>>>>>> be712bb1a7ba151cd4438115c2179a22cc23c4c3
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+<<<<<<< HEAD
     materialLocation: 1
+=======
+>>>>>>> be712bb1a7ba151cd4438115c2179a22cc23c4c3
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -29,7 +46,10 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+<<<<<<< HEAD
     importAnimatedCustomProperties: 0
+=======
+>>>>>>> be712bb1a7ba151cd4438115c2179a22cc23c4c3
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -54,8 +74,11 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+<<<<<<< HEAD
     preserveHierarchy: 0
     indexFormat: 0
+=======
+>>>>>>> be712bb1a7ba151cd4438115c2179a22cc23c4c3
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
