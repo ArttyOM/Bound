@@ -660,9 +660,12 @@ MonoBehaviour:
   - {fileID: 114075933137844612}
   attackRadius: 1.4
   attackdmg: 5
+  attackdmgSpetial: 5
+  spetialAttackDuration: 15
   mage: {fileID: 1934670090953456}
   _cooldown: 0.5
   _attackObj: {fileID: 1417939243918122}
+  _cooldownSpetial: 15
 --- !u!114 &114075933137844612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -690,7 +693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   Cooldown: 1
-  attacKeyCode: 113
+  attacKeyCode: 257
   Projectile: {fileID: 1428432336032028, guid: 91fcc7fc39456f146ad35bce42d27715, type: 2}
 --- !u!114 &114192742314796460
 MonoBehaviour:
@@ -723,6 +726,7 @@ MonoBehaviour:
   owner: {fileID: 114810558134471554}
   Cooldown: 5
   attacKeyCode: 258
+  Radius: 10
 --- !u!114 &114397166859025312
 MonoBehaviour:
   m_ObjectHideFlags: 1
