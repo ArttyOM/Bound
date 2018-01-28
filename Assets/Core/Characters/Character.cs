@@ -26,7 +26,6 @@ public class Character : MonoBehaviour
 		{
 			Health = 0;
 		}
-        print(amount + " AAAY");
 		
 		Messenger.Broadcast(GameEvent.MAGE_HEALTH_CHANGED);
 		Messenger.Broadcast(GameEvent.WARRIOT_HEALTH_CHANGED);
@@ -47,5 +46,17 @@ public class Character : MonoBehaviour
 		yield return new WaitForSeconds (1.5f);
 		Destroy (this.gameObject); //закомментил чтобы было проще тестить (не умирая)
 	}
+
+    /// <summary>
+    /// Не меняйте, не удаляйте, это очень нужно
+    /// </summary>
+    public Vector2 RotationDirection
+    {
+        get
+        {
+            return new Vector2(-Mathf.Sin(transform.eulerAngles.z * Mathf.Deg2Rad),
+                Mathf.Cos(transform.eulerAngles.z * Mathf.Deg2Rad));
+        }
+    }
 
 }
