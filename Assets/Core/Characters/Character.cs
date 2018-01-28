@@ -16,7 +16,7 @@ public class Character : MonoBehaviour
 
     public List<AbstractAbility> Abilities;
 
-    public bool IsDead { get; set; }
+    public bool IsDead = false;
 
     public static bool Restarted = false;
 
@@ -31,17 +31,16 @@ public class Character : MonoBehaviour
 		else
 		{
 			Health = 0;
-		    IsDead = true;
 		}
 		
 		Messenger.Broadcast(GameEvent.MAGE_HEALTH_CHANGED);
 		Messenger.Broadcast(GameEvent.WARRIOT_HEALTH_CHANGED);
 	}
-	bool isDead = false;
+
 	void LateUpdate()
 	{
-		if ((Health == 0)&&(!isDead)) {
-            isDead = true;
+		if ((Health <= 0)&&(!IsDead)) {
+            IsDead = true;
             StartCoroutine(Die());
         }
 	}
