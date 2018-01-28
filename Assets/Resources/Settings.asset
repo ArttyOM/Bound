@@ -16,7 +16,7 @@ MonoBehaviour:
   TransmissionDangerZone: 5
   TransmissionMinThreshold: 0.5
   TransmissionMaxThreshold: 1
-  TransmissionBreakDamage: 5
+  TransmissionBreakDamage: 1
   CameraHeight: -10
   PathfindingCellSize: 0.4
   LevelWidth: 40

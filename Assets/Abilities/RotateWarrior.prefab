@@ -51,4 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4e0a8b6049b044f8c947a2c59fac2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
   Cooldown: 10
+  attacKeyCode: 259

@@ -27,6 +27,10 @@ public class Game : MonoBehaviour {
     public void TowerBroken()
     {
         DestroyedTowers++;
+        wizard.Health = 100.0f;
+        warrior.Health = 100.0f;
+        Messenger.Broadcast(GameEvent.MAGE_HEALTH_CHANGED);
+        Messenger.Broadcast(GameEvent.WARRIOT_HEALTH_CHANGED);
         UpdateLabel();
 
     }
@@ -84,10 +88,8 @@ public class Game : MonoBehaviour {
         var best = 1000.0f;
         Tower best_tower = null;
         var pl = PlayerPos();
-        Debug.Log(Towers);
         foreach (var tower in Towers)
         {
-            Debug.Log(tower);
             if (tower.status == TowerStatus.Broken)
                 continue;
             var d = Vector2.Distance(tower.towerpos, pl);
@@ -102,6 +104,11 @@ public class Game : MonoBehaviour {
         {
             var v = best_tower.towerpos - (Vector2)pl;
             angle = Mathf.Atan2(v.y, v.x) * 180 / Mathf.PI; 
+        }
+        else
+        {
+            var v = new Vector2(level.finish.x+0.5f, level.finish.y+0.5f) * config.GenerationCell;
+            angle = Mathf.Atan2(v.y, v.x) * 180 / Mathf.PI;
         }
         TheArrow.transform.rotation = Quaternion.AngleAxis(angle-90, new Vector3(0, 0, 1));
     }

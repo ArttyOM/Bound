@@ -56,7 +56,8 @@ public class EnemyScript : Character{
     {
         if (collider.gameObject.tag == "PlayerAttack")
         {
-            Destroy(gameObject); // TODO: минус хп
+            //Destroy(gameObject); // TODO: минус хп
+            //DealDamage(1.0f);
         }
     }
 
@@ -66,7 +67,7 @@ public class EnemyScript : Character{
     protected virtual IEnumerator Attack()
     {
         _currentAttackObj = Instantiate(_attackObj, transform);
-        _currentAttackObj.transform.localPosition = (Vector3)LastDir * 0.2f;
+        _currentAttackObj.transform.localPosition = (Vector3)Direction * 0.2f;
         _lastAttack = Time.time;
         player.GetComponent<Character>().DealDamage(Damage);       
         yield return new WaitForSeconds(0.3f);

@@ -10,7 +10,11 @@ namespace Assets.Core.Characters
 		[SerializeField] private LineRenderer _transmission;
 		[SerializeField] private Transform _cameraTransform;
 
-		private Transform _warriorTransform;
+        public float ConfusedTo = -1;
+        public float ConfusedDelta = 0;
+
+
+        private Transform _warriorTransform;
 		private Transform _wizardTransform;
 
 		private Rigidbody2D _warriorRigidbody2D;
@@ -67,8 +71,7 @@ namespace Assets.Core.Characters
 
 		private void UpdateCamera()
 		{
-			var targetPosition = Vector3.Lerp(_warriorTransform.position, _wizardTransform.position,
-				0.5f);
+            var targetPosition = _warriorTransform.position;
 			targetPosition.z = _settings.CameraHeight;
 			_cameraTransform.position = targetPosition;
 		}
@@ -86,11 +89,13 @@ namespace Assets.Core.Characters
 		{
 			var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			_warriorTransform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - _warriorTransform.position);
+            if (Time.time < ConfusedTo)
+                _warriorTransform.Rotate(new Vector3(0, 0, 1), ConfusedDelta);
 
-			var targetPosition = _warriorTransform.position + _warriorTransform.up * _warrior.Speed;
+                var targetPosition = _warriorTransform.position + _warriorTransform.up * _warrior.Speed;
 
 
-            _warrior.LastDir = (Vector2)mousePos - (Vector2)_warriorTransform.position;
+            _warrior.Direction = (Vector2)mousePos - (Vector2)_warriorTransform.position;
 
 
             if (((Vector2)mousePos - (Vector2)_warriorTransform.position).sqrMagnitude > 0.2f * 0.2f &&
@@ -146,7 +151,7 @@ namespace Assets.Core.Characters
 				targetTransform += Vector3.right;
 
             if (up || down || left || right)
-                _wizard.LastDir = targetTransform;
+                _wizard.Direction = targetTransform;
 
 
             var speed = up && left || up && right || down && left || down && right
@@ -177,12 +182,6 @@ namespace Assets.Core.Characters
                 _warrior.Abilities[0].Perform();
             if (Input.GetMouseButton(1))
                 _warrior.Abilities[1].Perform();
-            for(int i=1; i<12; i++)
-            {
-                if (Input.GetKey((KeyCode)((int)KeyCode.F1+i-1)))
-                    _wizard.Abilities[i-1].Perform();
-            }
-
         }
 
         void InitAbilities()
