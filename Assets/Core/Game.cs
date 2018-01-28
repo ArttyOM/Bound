@@ -134,7 +134,7 @@ public class Game : MonoBehaviour {
     {
         for (int i = 0; i < WarSliders.Count; i++)
             WarSliders[i].fillAmount = 1 - warrior.Abilities[i].RemainingCooldown();
-        for (int i = 0; i < WizSliders.Count - 1; i++)
+        for (int i = 0; i < WizSliders.Count; i++)
             WizSliders[i].fillAmount = 1 - wizard.Abilities[i].RemainingCooldown();
 
     }
@@ -145,7 +145,7 @@ public class Game : MonoBehaviour {
         wizard.IsDead = false;
         warrior.Health = 100.0f;
         wizard.Health = 100.0f;
-        if (CheckPointScript.lastVisited != null)
+        if (CheckPointScript.lastVisited == null)
             TeleportTo(level.start);
         else
             TeleportTo(CheckPointScript.lastVisited.transform.position);
