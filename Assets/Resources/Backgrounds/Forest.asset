@@ -15,11 +15,21 @@ MonoBehaviour:
   - obj: {fileID: 1604246398726922, guid: 94428d9291c785a4da9d20c03d2445ba, type: 2}
     weight: 100
   Floors:
-  - obj: {fileID: 1367147820844674, guid: ef06b1501f86e414b8e91970865c8ce5, type: 2}
+  - obj: {fileID: 1819430904851738, guid: d9c289e08bfea9a4da7b997630d61d55, type: 2}
     weight: 50
   - obj: {fileID: 1819430904851738, guid: d1c86b4cb4d317644b95abd90c9b35da, type: 2}
     weight: 50
-  - obj: {fileID: 1819430904851738, guid: d9c289e08bfea9a4da7b997630d61d55, type: 2}
+  - obj: {fileID: 1367147820844674, guid: ef06b1501f86e414b8e91970865c8ce5, type: 2}
+    weight: 50
+  - obj: {fileID: 1819430904851738, guid: 2e2db7ef6cfc83448b88bcef30c2782b, type: 2}
+    weight: 50
+  - obj: {fileID: 1819430904851738, guid: 11313a4497a5d1649afdc94b48da0ac5, type: 2}
+    weight: 50
+  - obj: {fileID: 1819430904851738, guid: 72cc119be69a1b544976c4444fa6a755, type: 2}
+    weight: 50
+  - obj: {fileID: 1367147820844674, guid: aa8c43cea9be65f4ab339cfd1236dc2c, type: 2}
+    weight: 50
+  - obj: {fileID: 1367147820844674, guid: f6ed9fe37b54bdc4cbf41df19b4b0367, type: 2}
     weight: 50
   Exits:
   - obj: {fileID: 1540957358835430, guid: ccf30e85a5a5a0c44aae8273c5d55152, type: 2}

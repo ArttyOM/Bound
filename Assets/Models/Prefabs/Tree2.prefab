@@ -21,7 +21,9 @@ GameObject:
   - component: {fileID: 4717824583914504}
   - component: {fileID: 33000113264138708}
   - component: {fileID: 23311949681775990}
-  m_Layer: 0
+  - component: {fileID: 58801949812270270}
+  - component: {fileID: 114337030318703116}
+  m_Layer: 8
   m_Name: Tree2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,13 +36,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1057761636167342}
-  m_LocalRotation: {x: -0.9396926, y: 0, z: 0, w: 0.34202018}
-  m_LocalPosition: {x: 0, y: 0, z: -0.2}
+  m_LocalRotation: {x: -0.9396926, y: -0, z: 0, w: 0.34202018}
+  m_LocalPosition: {x: -0.281, y: -0.322, z: -0.227}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -140, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -114, y: 7, z: 119}
 --- !u!23 &23311949681775990
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -50,6 +52,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -66,6 +69,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -81,3 +85,29 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1057761636167342}
   m_Mesh: {fileID: 4300000, guid: df8552f2d23487944b4f552b96b4320c, type: 3}
+--- !u!58 &58801949812270270
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1057761636167342}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.001704526, y: 0.014644585}
+  serializedVersion: 2
+  m_Radius: 0.0052527427
+--- !u!114 &114337030318703116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1057761636167342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd052d8fccb4a0b49861b42bab9395d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
