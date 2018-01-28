@@ -19,12 +19,10 @@ public class Tower : MonoBehaviour {
 
     public ParticleSystem EffActive;
     public ParticleSystem EffDestroyed;
-    public ParticleSystem EffBreaking;
     public GameObject MeshActive;
 
     public Vector2 towerpos;
     float breaking_started = 0.0f;
-    float last_emit = 0.0f;
     EnemySpawnPoint spawn;
     Game game;
 
@@ -57,18 +55,10 @@ public class Tower : MonoBehaviour {
                 else if(distance < break_distance)
                 {
                     breaking_started = Time.time;
-                    last_emit = Time.time;
                     SetStatus(TowerStatus.Breaking);
                 }
                 break;
             case TowerStatus.Breaking:
-
-                if(Time.time - last_emit > 1.0)
-                {
-                    EffBreaking.Emit(15);
-                    last_emit = Time.time;
-                }
-
                 if (distance > break_distance)
                     SetStatus(TowerStatus.Active);
                 else if (Time.time - breaking_started > break_time)
