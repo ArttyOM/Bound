@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using Assets.Core.Characters;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour {
 	[SerializeField] private SettingPopup settingPopup;
 	[SerializeField] private SettingPopup startMenu;
 	[SerializeField] private SettingPopup dieMenu;
+	[SerializeField] private SettingPopup wonMenu;
 
 	[SerializeField] private Text scoreLabel;
 
@@ -26,6 +28,7 @@ public class UIManager : MonoBehaviour {
 		Messenger.AddListener (GameEvent.WARRIOT_HEALTH_CHANGED, OnWariorHealthChanged);
 		Messenger.AddListener (GameEvent.SCORE_INCREASED, OnScoreIncreased);
 		Messenger.AddListener (GameEvent.YOU_DEAD, OnDead);
+		Messenger.AddListener (GameEvent.GAME_WON, OnWon);
 	}
 
 	void OnDestroy(){
@@ -33,6 +36,7 @@ public class UIManager : MonoBehaviour {
 		Messenger.RemoveListener (GameEvent.WARRIOT_HEALTH_CHANGED,OnMageHealthChanged);
 		Messenger.RemoveListener (GameEvent.SCORE_INCREASED, OnScoreIncreased);
 		Messenger.RemoveListener (GameEvent.YOU_DEAD, OnDead);
+		Messenger.RemoveListener (GameEvent.GAME_WON, OnWon);
 	}
 
 	void Start(){
@@ -91,6 +95,19 @@ public class UIManager : MonoBehaviour {
 		//_healthWarrior = 65f;
 		healthWarriorTXT.text = ServiceLocator.Instance.ResolveSingleton<CharactersController>()._warrior.Health + " / 100";
 		healthWarriorSlider.value = ServiceLocator.Instance.ResolveSingleton<CharactersController>()._warrior.Health / 100f;
+
+	}
+	public void OnWon(){
+		if (!wonMenu.isActiveAndEnabled) {
+			wonMenu.Open ();
+			StartCoroutine (Restart());
+		}
+		//
+	}
+	IEnumerator Restart()
+	{
+		yield return new WaitForSeconds (7f);
+		SceneManager.LoadScene ("FirstLevel");
 
 	}
 

@@ -44,7 +44,7 @@ public class EnemyScript : Character{
 	// Use this for initialization
 	void Start () {
         agent = GetComponent<Agent>();
-        agent.Speed = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings().EnemyStandardSpeed; ;
+        agent.Speed = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings().EnemyStandardSpeed;
 	    _players = GameObject.FindGameObjectsWithTag("Player");
 	    Player = _players[Random.Range(0, _players.Length)].transform;
 	    StartCoroutine(CheckAttack());
