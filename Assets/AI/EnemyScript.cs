@@ -71,6 +71,7 @@ public class EnemyScript : Character{
 	            var tmp = _players[Random.Range(0, _players.Length)];
 	            if (tmp != null)
 	                Player = tmp.transform;
+	            _canAttack = false;
 	        }
 	    }
 	}
