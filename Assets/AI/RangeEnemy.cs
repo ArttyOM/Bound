@@ -15,18 +15,9 @@ public class RangeEnemy : EnemyScript {
     {
         _currentAttackObj = Instantiate(_attackObj);
         _currentAttackObj.transform.position = transform.position;
-        _currentAttackObj.GetComponent<EnemyArrowScript>().Direction = Direction;
+        _currentAttackObj.GetComponent<EnemyArrowScript>().Direction = RotationDirection;
         _currentAttackObj.GetComponent<EnemyArrowScript>().Damage = Damage;
         _lastAttack = Time.time;
         yield break;
-    }
-
-    private Vector2 Direction
-    {
-        get
-        {
-            return new Vector2(-Mathf.Sin(transform.eulerAngles.z * Mathf.Deg2Rad),
-                Mathf.Cos(transform.eulerAngles.z * Mathf.Deg2Rad));
-        }
     }
 }

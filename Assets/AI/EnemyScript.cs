@@ -39,17 +39,22 @@ public class EnemyScript : Character{
 	
 	// Update is called once per frame
 	void Update () {
-	    if ((transform.position - player.position).magnitude < 15.0f)
+	    if (player != null)
 	    {
-	        agent.Player = player.gameObject;
-	        agent.Destination = player.position;
-	        _canAttack = (transform.position - player.position).magnitude < _attackDistance;
+	        if ((transform.position - player.position).magnitude < 15.0f)
+	        {
+	            agent.Player = player.gameObject;
+	            agent.Destination = player.position;
+	            _canAttack = (transform.position - player.position).magnitude < _attackDistance;
+	        }
+	        else
+	        {
+	            agent.Stop();
+	            var tmp = _players[Random.Range(0, _players.Length)];
+	            if (tmp != null)
+	                player = tmp.transform;
+	        }
 	    }
-	    else
-        {
-            agent.Stop();
-            player = _players[Random.Range(0, _players.Length)].transform;
-        }
 	}
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -67,9 +72,11 @@ public class EnemyScript : Character{
     protected virtual IEnumerator Attack()
     {
         _currentAttackObj = Instantiate(_attackObj, transform);
-        _currentAttackObj.transform.localPosition = (Vector3)Direction * 0.2f;
+        _currentAttackObj.transform.localPosition = (Vector3)RotationDirection * 5f;
+
         _lastAttack = Time.time;
-        player.GetComponent<Character>().DealDamage(Damage);       
+        if (player != null)
+            player.GetComponent<Character>().DealDamage(Damage);       
         yield return new WaitForSeconds(0.3f);
         Destroy(_currentAttackObj);
     }
