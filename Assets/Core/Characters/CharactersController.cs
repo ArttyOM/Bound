@@ -176,9 +176,9 @@ namespace Assets.Core.Characters
                 _warrior.Abilities[0].Perform();
             if (Input.GetMouseButton(1))
                 _warrior.Abilities[1].Perform();
-            for(int i=1; i<12; i++)
+            for(int i=1; i<9; i++)
             {
-                if (Input.GetKey((KeyCode)((int)KeyCode.F1+i-1)))
+                if (Input.GetKey((KeyCode)((int)KeyCode.F1+i-1)) || Input.GetKey((KeyCode)((int)KeyCode.Keypad0 + i)))
                     _wizard.Abilities[i-1].Perform();
             }
 
