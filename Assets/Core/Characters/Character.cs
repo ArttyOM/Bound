@@ -26,7 +26,6 @@ public class Character : MonoBehaviour
 		{
 			Health = 0;
 		}
-        print(amount + " AAAY");
 		
 		Messenger.Broadcast(GameEvent.MAGE_HEALTH_CHANGED);
 		Messenger.Broadcast(GameEvent.WARRIOT_HEALTH_CHANGED);
@@ -48,6 +47,9 @@ public class Character : MonoBehaviour
 		Destroy (this.gameObject); //закомментил чтобы было проще тестить (не умирая)
 	}
 
+    /// <summary>
+    /// Не меняйте, не удаляйте, это очень нужно
+    /// </summary>
     public Vector2 RotationDirection
     {
         get
