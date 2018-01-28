@@ -18,6 +18,8 @@ public class Character : MonoBehaviour
 
     public bool IsDead = false;
 
+    public static bool Restarted = false;
+
     public AudioClip AttackClip; 
 
 	public void DealDamage(float amount)

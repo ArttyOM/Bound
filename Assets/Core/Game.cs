@@ -146,9 +146,15 @@ public class Game : MonoBehaviour {
         warrior.Health = 100.0f;
         wizard.Health = 100.0f;
         TeleportTo(level.start);
+        StartCoroutine(UnrestartGame());
     }
 
-
+    private IEnumerator UnrestartGame()
+    {
+        Character.Restarted = true;
+        yield return new WaitForSeconds(0.2f);
+        Character.Restarted = false;
+    }
 
     // Update is called once per frame
     void Update () {
