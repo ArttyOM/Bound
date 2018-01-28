@@ -7,7 +7,7 @@ public class RotateWarrior : AbstractAbility
 
     override protected void Execute()
     {
-        Debug.Log("RotateWarrior");
+        StartCoroutine((owner as Wizard).SpecialAttack());
     }
 
 
