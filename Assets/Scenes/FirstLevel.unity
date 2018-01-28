@@ -259,6 +259,11 @@ Prefab:
       propertyPath: _cameraTransform
       value: 
       objectReference: {fileID: 831202917}
+    - target: {fileID: 114042384454010032, guid: 638bb4120e1051648a1badade9a11319,
+        type: 2}
+      propertyPath: attackRadius
+      value: 1.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 638bb4120e1051648a1badade9a11319, type: 2}
   m_IsPrefabParent: 0
