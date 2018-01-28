@@ -145,7 +145,7 @@ public class Game : MonoBehaviour {
         wizard.IsDead = false;
         warrior.Health = 100.0f;
         wizard.Health = 100.0f;
-        if (CheckPointScript.lastVisited != null)
+        if (CheckPointScript.lastVisited == null)
             TeleportTo(level.start);
         else
             TeleportTo(CheckPointScript.lastVisited.transform.position);
