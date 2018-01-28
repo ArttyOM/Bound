@@ -67,8 +67,7 @@ namespace Assets.Core.Characters
 
 		private void UpdateCamera()
 		{
-			var targetPosition = Vector3.Lerp(_warriorTransform.position, _wizardTransform.position,
-				0.5f);
+            var targetPosition = _warriorTransform.position;
 			targetPosition.z = _settings.CameraHeight;
 			_cameraTransform.position = targetPosition;
 		}

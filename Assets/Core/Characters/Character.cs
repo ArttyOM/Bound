@@ -12,7 +12,7 @@ public class Character : MonoBehaviour
 
 	public float Health;
 
-    public Vector2 LastDir = new Vector2(0, 0);
+    public Vector2 LastDir = new Vector2(0, 1);
 
     public List<AbstractAbility> Abilities;
 
