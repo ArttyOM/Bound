@@ -43,7 +43,6 @@ public class Tower : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         float distance = Vector2.Distance(towerpos, game.PlayerPos());
-        status = TowerStatus.Broken;
         switch (status)
         {
             case TowerStatus.Waiting:
