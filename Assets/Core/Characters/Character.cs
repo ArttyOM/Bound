@@ -43,7 +43,7 @@ public class Character : MonoBehaviour
 	}
 
 
-	private IEnumerator Die() {
+	protected virtual IEnumerator Die() {
 		this.transform.Rotate (-75, 0, 0);
 
 		yield return new WaitForSeconds (1.5f);
