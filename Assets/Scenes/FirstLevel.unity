@@ -221,6 +221,8 @@ MonoBehaviour:
   TotalTowers: 0
   DestroyedTowers: 0
   Towers: []
+  TowerAudioClip: {fileID: 8300000, guid: 83148b02d087ee94298efb1ff7340678, type: 3}
+  GameWinClip: {fileID: 8300000, guid: 5228a6d541b2de54883ec47ae705c806, type: 3}
   TheArrow: {fileID: 847881705}
   WarSliders: []
   WizSliders: []
@@ -428,6 +430,16 @@ Prefab:
       propertyPath: AttackClip
       value: 
       objectReference: {fileID: 8300000, guid: 360dc944a01983f4e8047e8509816b86, type: 3}
+    - target: {fileID: 114810558134471554, guid: 638bb4120e1051648a1badade9a11319,
+        type: 2}
+      propertyPath: AttackClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ec430679c1ba61945b646160a24a9bfd, type: 3}
+    - target: {fileID: 114092475358783690, guid: 638bb4120e1051648a1badade9a11319,
+        type: 2}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 1459347335}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 638bb4120e1051648a1badade9a11319, type: 2}
   m_IsPrefabParent: 0
@@ -642,6 +654,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1459347335 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114810558134471554, guid: 638bb4120e1051648a1badade9a11319,
+    type: 2}
+  m_PrefabInternal: {fileID: 591493432}
+  m_Script: {fileID: 11500000, guid: b1c2c1a38e7cb7341ad8855d84b6ebbb, type: 3}
 --- !u!1001 &1477692834
 Prefab:
   m_ObjectHideFlags: 0

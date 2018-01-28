@@ -89,7 +89,11 @@ public class EnemyScript : Character{
 
         _lastAttack = Time.time;
         if (Player != null)
-            Player.GetComponent<Character>().DealDamage(Damage);       
+        {
+            Player.GetComponent<Character>().DealDamage(Damage);
+            AudioSource.PlayClipAtPoint(AttackClip, Camera.main.transform.position);
+        }
+
         yield return new WaitForSeconds(0.3f);
         Destroy(_currentAttackObj);
     }

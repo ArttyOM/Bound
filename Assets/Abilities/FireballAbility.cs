@@ -18,5 +18,6 @@ public class FireballAbility : AbstractAbility
 		obj.GetComponent<ProjectileFlight>().direction = owner.Direction; 
         obj.GetComponent<ProjectileFlight>().StartWork();
         obj.transform.position += (Vector3)obj.GetComponent<ProjectileFlight>().direction * 0.2f;
+        AudioSource.PlayClipAtPoint(owner.AttackClip, Camera.main.transform.position);
     }
 }

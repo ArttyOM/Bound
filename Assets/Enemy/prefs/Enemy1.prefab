@@ -416,6 +416,7 @@ MonoBehaviour:
   Health: 1
   Direction: {x: 0, y: 1}
   Abilities: []
+  AttackClip: {fileID: 8300000, guid: c46755d9839caeb4c82aaed14cc5f1c9, type: 3}
   _cooldown: 1
   _attackDistance: 1
   _attackObj: {fileID: 1738844209751428, guid: 50dc8625a99934b4fb2fffaa7605b71e, type: 2}

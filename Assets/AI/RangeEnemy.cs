@@ -18,6 +18,7 @@ public class RangeEnemy : EnemyScript {
         _currentAttackObj.GetComponent<EnemyArrowScript>().Direction = RotationDirection;
         _currentAttackObj.GetComponent<EnemyArrowScript>().Damage = Damage;
         _lastAttack = Time.time;
+        AudioSource.PlayClipAtPoint(AttackClip, Camera.main.transform.position);
         yield break;
     }
 }

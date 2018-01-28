@@ -16,6 +16,7 @@ public class Game : MonoBehaviour {
     public int DestroyedTowers;
     public List<Tower> Towers = new List<Tower>();
     public AudioClip TowerAudioClip;
+    public AudioClip GameWinClip;
     public Image TheArrow;
 
     public List<Slider> WarSliders;
@@ -118,6 +119,7 @@ public class Game : MonoBehaviour {
             if (!Won && v.magnitude < 2.0f)
             {
                 Messenger.Broadcast(GameEvent.GAME_WON);
+                AudioSource.PlayClipAtPoint(GameWinClip, Camera.main.transform.position);
                 Won = true;
             }
 
