@@ -423,6 +423,11 @@ Prefab:
       propertyPath: _cameraTransform
       value: 
       objectReference: {fileID: 831202917}
+    - target: {fileID: 114042384454010032, guid: 638bb4120e1051648a1badade9a11319,
+        type: 2}
+      propertyPath: AttackClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 360dc944a01983f4e8047e8509816b86, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 638bb4120e1051648a1badade9a11319, type: 2}
   m_IsPrefabParent: 0

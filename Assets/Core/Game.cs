@@ -15,7 +15,7 @@ public class Game : MonoBehaviour {
     public int TotalTowers;
     public int DestroyedTowers;
     public List<Tower> Towers = new List<Tower>();
-
+    public AudioClip TowerAudioClip;
     public Image TheArrow;
 
     public List<Slider> WarSliders;
@@ -38,7 +38,7 @@ public class Game : MonoBehaviour {
         Messenger.Broadcast(GameEvent.MAGE_HEALTH_CHANGED);
         Messenger.Broadcast(GameEvent.WARRIOT_HEALTH_CHANGED);
         UpdateLabel();
-
+        AudioSource.PlayClipAtPoint(TowerAudioClip, Camera.main.transform.position);
     }
 
     public void NewGame()

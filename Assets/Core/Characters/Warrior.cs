@@ -81,6 +81,7 @@ public class Warrior : Character
 				} else
 				{
 					hitCollider.SendMessage ("DealDamage", attackdmg, SendMessageOptions.DontRequireReceiver);
+                    AudioSource.PlayClipAtPoint(AttackClip, Camera.main.transform.position);
 				}
 			//}
 		}      
