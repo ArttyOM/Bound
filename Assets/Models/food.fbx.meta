@@ -1,4 +1,20 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 05836974cc273954fbccf42595bac77e
+timeCreated: 1517141329
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Material.009
+    2100002: Material.002
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: food
+  externalObjects: {}
+=======
 guid: f29fb26110dd34b46b6cc484e09b71e8
 timeCreated: 1517141554
 licenseType: Free
@@ -10,10 +26,15 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: food
+>>>>>>> be712bb1a7ba151cd4438115c2179a22cc23c4c3
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+<<<<<<< HEAD
+    materialLocation: 1
+=======
+>>>>>>> be712bb1a7ba151cd4438115c2179a22cc23c4c3
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -26,6 +47,10 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+<<<<<<< HEAD
+    importAnimatedCustomProperties: 0
+=======
+>>>>>>> be712bb1a7ba151cd4438115c2179a22cc23c4c3
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -50,6 +75,11 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+<<<<<<< HEAD
+    preserveHierarchy: 0
+    indexFormat: 0
+=======
+>>>>>>> be712bb1a7ba151cd4438115c2179a22cc23c4c3
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88

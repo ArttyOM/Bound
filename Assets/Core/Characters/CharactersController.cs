@@ -49,7 +49,14 @@ namespace Assets.Core.Characters
 		        UpdateTransmission();
 		        UpdateCamera();
 		        ApplyAbilities();
+		        CheckPointScript.PlayersPosition1 = _wizard.transform.position;
+		        CheckPointScript.PlayersPosition2 = _warrior.transform.position;
 		    }
+		    else
+		    {
+		        CheckPointScript.PlayersPosition1 = Vector2.down * 10000; 
+		        CheckPointScript.PlayersPosition2 = Vector2.down * 10000;
+            }
 		}
 
 		private IEnumerator UpdateDamager()
