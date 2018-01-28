@@ -50,6 +50,19 @@ namespace AI {
         }
 
         /// <summary>
+        /// Пытается идти
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator TryPath()
+        {
+            while (!stopped)
+            {
+                transform.Translate((Destination - transform.position) * Speed * Time.deltaTime);
+                yield return null;
+            }
+        }
+
+        /// <summary>
         /// Поворачивает агента
         /// </summary>
         /// <param name="point">куда смотреть</param>

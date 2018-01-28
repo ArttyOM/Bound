@@ -14,7 +14,6 @@ public class EnemyScript : Character{
     /// </summary>
     public Transform Player { get; set; }
 
-
     private GameObject[] _players;
 
     [SerializeField]
@@ -52,6 +51,12 @@ public class EnemyScript : Character{
 	
 	// Update is called once per frame
 	void Update () {
+	    if (Restarted)
+	    {
+	        var tmp = _players[Random.Range(0, _players.Length)];
+	        if (tmp != null)
+	            Player = tmp.transform;
+        }
 	    if (Player != null)
 	    {
 	        if ((transform.position - Player.position).magnitude < 15.0f && !IsDead)
