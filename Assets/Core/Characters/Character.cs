@@ -18,6 +18,8 @@ public class Character : MonoBehaviour
 
     public bool IsDead { get; private set; }
 
+    public AudioClip AttackClip; 
+
 	public void DealDamage(float amount)
 	{
 		if (Health - amount > 0)
