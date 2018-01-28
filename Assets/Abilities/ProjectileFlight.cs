@@ -59,7 +59,6 @@ public class ProjectileFlight : MonoBehaviour {
         {
             hit.collider.GetComponent<Character>().DealDamage(_damage);
             Destroy(this.gameObject);
-            Debug.LogAssertion("AAAAA");
         }
     }
 }
