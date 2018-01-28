@@ -16,6 +16,8 @@ public class Character : MonoBehaviour
 
     public List<AbstractAbility> Abilities;
 
+    public bool IsDead { get; private set; }
+
 	public void DealDamage(float amount)
 	{
 		if (Health - amount > 0)
@@ -25,6 +27,7 @@ public class Character : MonoBehaviour
 		else
 		{
 			Health = 0;
+		    IsDead = true;
 		}
 		
 		Messenger.Broadcast(GameEvent.MAGE_HEALTH_CHANGED);
