@@ -48,4 +48,13 @@ public class Character : MonoBehaviour
 		Destroy (this.gameObject); //закомментил чтобы было проще тестить (не умирая)
 	}
 
+    public Vector2 RotationDirection
+    {
+        get
+        {
+            return new Vector2(-Mathf.Sin(transform.eulerAngles.z * Mathf.Deg2Rad),
+                Mathf.Cos(transform.eulerAngles.z * Mathf.Deg2Rad));
+        }
+    }
+
 }
