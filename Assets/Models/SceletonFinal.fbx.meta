@@ -16,7 +16,9 @@ ModelImporter:
     2100002: dark_bone
     2100004: red
     2300000: Sceleton
+    2300002: //RootNode
     3300000: Sceleton
+    3300002: //RootNode
     4300000: Sceleton
     7400000: Sceleton|Head|Head|ribs|Take 001|Layer0|Head|ribs|Take 001|Layer0
     7400002: Sceleton|Jaw|Jaw|ribs|Take 001|Layer0|Jaw|ribs|Take 001|Layer0
