@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour {
 
@@ -10,11 +11,31 @@ public class Game : MonoBehaviour {
     Wizard wizard;
     Warrior warrior;
 
+    public int TotalTowers;
+    public int DestroyedTowers;
+    public List<Tower> Towers = new List<Tower>();
 
+    public Image TheArrow;
+
+    public void UpdateLabel()
+    {
+        Messenger.Broadcast(GameEvent.SCORE_INCREASED);
+    }
+
+
+
+    public void TowerBroken()
+    {
+        DestroyedTowers++;
+        UpdateLabel();
+
+    }
 
     public void NewGame()
     {
         NextLevel();
+        UpdateLabel();
+
     }
 
 
@@ -22,6 +43,11 @@ public class Game : MonoBehaviour {
     {
         wizard.transform.position = position - new Vector2(-1,0);
         warrior.transform.position = position + new Vector2(1, 0);
+    }
+
+    public Vector2 PlayerPos()
+    {
+        return (Vector2)(warrior.transform.position + wizard.transform.position) / 2;
     }
 
     public void NextLevel()
@@ -52,9 +78,42 @@ public class Game : MonoBehaviour {
     void Start () {
         NewGame();
 	}
+
+    void UpdateArrow()
+    {
+        var best = 1000.0f;
+        Tower best_tower = null;
+        var pl = PlayerPos();
+        Debug.Log(Towers);
+        foreach (var tower in Towers)
+        {
+            Debug.Log(tower);
+            if (tower.status == TowerStatus.Broken)
+                continue;
+            var d = Vector2.Distance(tower.towerpos, pl);
+            if (d < best)
+            {
+                best = d;
+                best_tower = tower;
+            }
+        }
+        var angle = 0.0f;
+        if (best_tower != null)
+        {
+            var v = best_tower.towerpos - (Vector2)pl;
+            angle = Mathf.Atan2(v.y, v.x) * 180 / Mathf.PI; 
+        }
+        else
+        {
+            var v = new Vector2(level.finish.x+0.5f, level.finish.y+0.5f) * config.GenerationCell;
+            angle = Mathf.Atan2(v.y, v.x) * 180 / Mathf.PI;
+        }
+        TheArrow.transform.rotation = Quaternion.AngleAxis(angle-90, new Vector3(0, 0, 1));
+    }
+
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        UpdateArrow();
+    }
 }

@@ -11,6 +11,8 @@ namespace AI {
         private float delta;
         private bool stopped = false;
 
+        public GameObject Player;
+
         // Use this for initialization
         void Start() {
             delta = ServiceLocator.Instance.ResolveService<GameSettingsProvider>()

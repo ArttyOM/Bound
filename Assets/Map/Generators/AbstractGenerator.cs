@@ -32,11 +32,21 @@ public abstract class AbstractGenerator  {
         VectorMyInt finish;
         var config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
         var backs = ServiceLocator.Instance.ResolveService<BackgroundsProvider>().GetValue(typ);
+        var game = ServiceLocator.Instance.ResolveSingleton<Game>();
 
         GenerateLevel(level, typ, out start, out finish);
         for (int x = 0; x < config.LevelWidth; x++)
             for (int y = 0; y < config.LevelHeight; y++)
-                level.Data[x, y] = backs.GetItem(level, level.CellTypes[x,y], x, y);
+            {
+                level.Data[x, y] = backs.GetItem(level, level.CellTypes[x, y], x, y);
+                if (level.CellTypes[x, y] == CellType.Tower)
+                {
+                    var tower = level.Data[x, y].GetComponentInChildren<Tower>();
+                    tower.towerpos = (Vector2)level.Data[x, y].transform.position;
+                    game.Towers.Add(tower);
+                }
+
+            }
         level.start = start.ToF() * config.GenerationCell + new Vector2(0.5f, 0.5f);
         level.finish = finish.ToF() * config.GenerationCell + new Vector2(0.5f, 0.5f);
     }

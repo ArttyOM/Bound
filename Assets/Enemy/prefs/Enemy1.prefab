@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4775302125425620}
   - component: {fileID: 212213124797329894}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: round_white_big (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4720612373181970}
   - component: {fileID: 212480146983643852}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: round_white_big (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4762851463868980}
   - component: {fileID: 33826484368306408}
   - component: {fileID: 23508902079616612}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: beholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,9 +71,10 @@ GameObject:
   - component: {fileID: 212611966365628534}
   - component: {fileID: 114684921602593542}
   - component: {fileID: 114644780951897140}
-  m_Layer: 0
+  - component: {fileID: 58845719890320552}
+  m_Layer: 8
   m_Name: Enemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,6 +143,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -160,6 +162,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -175,6 +178,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1457641846073864}
   m_Mesh: {fileID: 4300000, guid: f4bfc0bc0c259ee42bd94d45fa09cbf5, type: 3}
+--- !u!58 &58845719890320552
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1797891168200640}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3.5
 --- !u!114 &114644780951897140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd00e0155b4f40442b6c3d660b9c4e28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
 --- !u!114 &114684921602593542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,6 +216,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2569dce71f950e141a2ef6b6133e994f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: 
+  Damage: 10
+  Speed: 0
+  Health: 0
+  LastDir: {x: 0, y: 0}
+  Abilities: []
+  _cooldown: 1
+  _attackDistance: 1
+  _attackObj: {fileID: 1738844209751428, guid: 50dc8625a99934b4fb2fffaa7605b71e, type: 2}
 --- !u!212 &212213124797329894
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -206,6 +234,7 @@ SpriteRenderer:
   m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -221,6 +250,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -248,6 +278,7 @@ SpriteRenderer:
   m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -263,6 +294,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -290,6 +322,7 @@ SpriteRenderer:
   m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -305,6 +338,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

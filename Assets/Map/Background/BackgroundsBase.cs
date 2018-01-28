@@ -25,6 +25,9 @@ public class BackgroundsBase : ScriptableObject {
     [SerializeField]
     List<WeightedItem> Exits;
 
+    [SerializeField]
+    List<WeightedItem> Towers;
+
     Dictionary<CellType, List<WeightedItem>> data;
 
     public void Prepare()
@@ -35,6 +38,7 @@ public class BackgroundsBase : ScriptableObject {
                 { CellType.Wall, Walls},
                 { CellType.Floor, Floors},
                 { CellType.Exit, Exits},
+                { CellType.Tower, Towers},
             };
         }
 

@@ -14,12 +14,13 @@ public class AntnestGenerator : AbstractGenerator
 
     const int CFG_START_PATHS = 0;
     const int CFG_START_PATH_LENGTH = 100;
-    const int CFG_MID_PATHS = 5;
+    const int CFG_TOWERS_MIN = 10;
+    const int CFG_TOWERS_MAX = 15;
     const int CFG_MID_PATH_LENGTH = 100;
     const int PREVENT_OPENING = 700;
     const int TENSION = 50;
 
-    const float AVG_FREE_MONSTERS = 0.1f;
+    const float AVG_FREE_MONSTERS = 0.15f;
 
 
     Side opposite(Side side)
@@ -181,6 +182,7 @@ public class AntnestGenerator : AbstractGenerator
         var config = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings();
         var enemyContainer = GameObject.FindWithTag("EnemyContainer");
         var spawner = GameObject.Find("SpawnPoint").GetComponent<EnemySpawnPoint>();
+        var game = ServiceLocator.Instance.ResolveSingleton<Game>();
 
         level = alevel;
         nx = config.LevelWidth;
@@ -200,20 +202,22 @@ public class AntnestGenerator : AbstractGenerator
         for (int i = 0; i < CFG_START_PATHS; i++)
             add_path(start, (config.LevelHeight + config.LevelWidth) * CFG_START_PATH_LENGTH / 100, false);
 
-        for (int i = 0; i < CFG_MID_PATHS; i++)
-        { 
-            add_path(level.RandomIntPlace(), (config.LevelHeight + config.LevelWidth) * CFG_MID_PATH_LENGTH / 100, false);
+        game.TotalTowers = Random.Range(CFG_TOWERS_MIN, CFG_TOWERS_MAX);
+        game.DestroyedTowers = 0;
+        game.Towers.Clear();
+
+        for (int i = 0; i < game.TotalTowers; i++)
+        {
+            var apos = add_path(level.RandomIntPlace(), (config.LevelHeight + config.LevelWidth) * CFG_MID_PATH_LENGTH / 100, false);
+            level.CellTypes[apos.x, apos.y] = CellType.Tower;
         }
 
         for (int i = 0; i < AVG_FREE_MONSTERS * config.LevelHeight * config.LevelWidth; i++)
         {
-
             GameObject.Instantiate(spawner.RandomEnemy(), level.RandomPlace(), Quaternion.identity, enemyContainer.transform);
         }
 
-
         level.CellTypes[finish.x, finish.y] = CellType.Exit;
-        spawner.gameObject.SetActive(false);
     }
 
 }

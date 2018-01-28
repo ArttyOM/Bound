@@ -11,19 +11,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5e9d83ce977124e84a8b1519a3517a, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  TransmissionMaxLength: 10
-  TransmissionMinLength: 2
+  TransmissionMaxLength: 7.5
+  TransmissionMinLength: 0.1
+  TransmissionDangerZone: 5
   TransmissionMinThreshold: 0.5
   TransmissionMaxThreshold: 1
-  TransmissionBreakDamage: 5
+  TransmissionBreakDamage: 1
   CameraHeight: -10
-  PathfindingCellSize: 0.2
-  LevelWidth: 20
-  LevelHeight: 20
+  PathfindingCellSize: 0.4
+  LevelWidth: 40
+  LevelHeight: 40
   GenerationCell: 5
   EnemyStandardSpeed: 5
-  StandardEnemySize: 0.6
+  StandardEnemySize: 0.4
   NotWalkableMask:
     serializedVersion: 2
     m_Bits: 1
-  PathfindingUpdateDelta: 0.8
+  PathfindingUpdateDelta: 0.1
