@@ -89,7 +89,7 @@ namespace Assets.Core.Characters
 			var targetPosition = _warriorTransform.position + _warriorTransform.up * _warrior.Speed;
 
 
-            _warrior.LastDir = (Vector2)mousePos - (Vector2)_warriorTransform.position;
+            _warrior.Direction = (Vector2)mousePos - (Vector2)_warriorTransform.position;
 
 
             if (((Vector2)mousePos - (Vector2)_warriorTransform.position).sqrMagnitude > 0.2f * 0.2f &&
@@ -145,7 +145,7 @@ namespace Assets.Core.Characters
 				targetTransform += Vector3.right;
 
             if (up || down || left || right)
-                _wizard.LastDir = targetTransform;
+                _wizard.Direction = targetTransform;
 
 
             var speed = up && left || up && right || down && left || down && right
