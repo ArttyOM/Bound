@@ -196,7 +196,7 @@ public class AntnestGenerator : AbstractGenerator
         //draw one random path
         start = StartAtSide(start_side);
         apply(start);
-        finish = add_path(start, 1, true);
+        finish = add_path(start, 100, true);
 
         //additional start paths
         for (int i = 0; i < CFG_START_PATHS; i++)
