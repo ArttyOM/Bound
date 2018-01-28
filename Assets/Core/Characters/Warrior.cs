@@ -11,6 +11,8 @@ public class Warrior : Character
 	public float spetialAttackDuration = 3f;
 	public float spetialAttackSpeed = 360f;
 
+    [SerializeField] private GameObject trail;
+
 	//[SerializeField] private GameObject warrior;
 	[SerializeField] private GameObject mage;
 
@@ -124,6 +126,7 @@ public class Warrior : Character
 		do 
 		{	
 			mage.GetComponent<Collider2D>().isTrigger =true;
+            trail.SetActive(true);
 			//наносим урон всем в радиусе
 			Collider2D[] hitColliders = Physics2D.OverlapCircleAll (transform.position, attackRadius);
 			foreach (Collider2D hitCollider in hitColliders) {
@@ -139,6 +142,7 @@ public class Warrior : Character
 			duration+=0.2f;
 		} while (duration<= spetialAttackDuration);
 		mage.GetComponent<Collider2D>().isTrigger = false;
+        trail.SetActive(false);
 		mage.transform.SetParent (oldParent);
 
 		//yield return null;
