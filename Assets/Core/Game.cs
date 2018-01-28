@@ -27,6 +27,10 @@ public class Game : MonoBehaviour {
     public void TowerBroken()
     {
         DestroyedTowers++;
+        wizard.Health = 100.0f;
+        warrior.Health = 100.0f;
+        Messenger.Broadcast(GameEvent.MAGE_HEALTH_CHANGED);
+        Messenger.Broadcast(GameEvent.WARRIOT_HEALTH_CHANGED);
         UpdateLabel();
 
     }
