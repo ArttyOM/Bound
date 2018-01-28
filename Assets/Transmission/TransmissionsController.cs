@@ -29,14 +29,20 @@ public class TransmissionsController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float distance =Vector3.Distance (_warriorTransform.position, _wizardTransform.position);
+	    if (_wizard != null && _warrior != null && !_warrior.IsDead && !_wizard.IsDead)
+	    {
+	        float distance = Vector3.Distance(_warriorTransform.position, _wizardTransform.position);
 
-		if (distance >= _dangerZone) {
-			_transmission.startColor = Color.red;
-			_transmission.endColor = Color.red;
-		} else {
-			_transmission.startColor = Color.blue;
-			_transmission.endColor = Color.blue;
-		}
+	        if (distance >= _dangerZone)
+	        {
+	            _transmission.startColor = Color.red;
+	            _transmission.endColor = Color.red;
+	        }
+	        else
+	        {
+	            _transmission.startColor = Color.blue;
+	            _transmission.endColor = Color.blue;
+	        }
+	    }
 	}
 }
