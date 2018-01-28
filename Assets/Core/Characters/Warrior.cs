@@ -8,7 +8,8 @@ public class Warrior : Character
 	public float attackRadius = 1.4f;
 	public float attackdmg = 5f;
 	public float attackdmgSpetial = 5f;
-	public float spetialAttackDuration = 15f;
+	public float spetialAttackDuration = 3f;
+	public float spetialAttackSpeed = 360f;
 
 	//[SerializeField] private GameObject warrior;
 	[SerializeField] private GameObject mage;
@@ -77,7 +78,7 @@ public class Warrior : Character
 	        {
 	            _canSpetialAttack = false;
 	            _cooldownSpetial = _maxCooldownSpetial;
-	            StartCoroutine(SpetialAttack());
+	            StartCoroutine(SpecialAttack());
 	        }
 	    }
 	}
@@ -101,17 +102,34 @@ public class Warrior : Character
 		yield return new WaitForSeconds(0.2f);
 		_attackObj.SetActive (false);
 	}
-		
-	IEnumerator SpetialAttack(){
+
+	public GameObject pivotForSpetialAtack;
+	void FixedUpdate(){
+		pivotForSpetialAtack.transform.position = this.transform.position;
+		pivotForSpetialAtack.transform.Rotate(Vector3.forward*spetialAttackSpeed*Time.fixedDeltaTime);
+
+	}
+//	public void OnDrawGizmos(){
+		//Gizmos.DrawCube.
+//	}
+
+
+	IEnumerator SpecialAttack(){
 		//дописать вызов отключения движения магом
 		float distance = Vector3.Distance (this.transform.position, mage.transform.position);
 		Transform oldParent = mage.transform.parent;
-		mage.transform.SetParent (this.transform);
 
+
+
+		//pivotForSpetialAtack.transform.rotation = this.transform.rotation;
+		mage.transform.SetParent (pivotForSpetialAtack.transform);
+
+		//StartCoroutine (RotateMage());
 		// вращаем spetialAttackDuration секунд
 		float duration = 0f;
 		do 
-		{
+		{	
+			mage.GetComponent<Collider2D>().isTrigger =true;
 			//наносим урон всем в радиусе
 			Collider2D[] hitColliders = Physics2D.OverlapCircleAll (transform.position, attackRadius);
 			foreach (Collider2D hitCollider in hitColliders) {
@@ -124,12 +142,15 @@ public class Warrior : Character
 
 			}
 			yield return new WaitForSeconds(0.2f);
-			duration+=2f;
+			duration+=0.2f;
 		} while (duration<= spetialAttackDuration);
+		mage.GetComponent<Collider2D>().isTrigger = false;
 		mage.transform.SetParent (oldParent);
 
 		//yield return null;
 	}
+
+
 
 	protected override IEnumerator Die()
 	{

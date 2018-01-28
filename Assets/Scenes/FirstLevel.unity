@@ -1990,6 +1990,46 @@ Prefab:
       propertyPath: owner
       value: 
       objectReference: {fileID: 1459347335}
+    - target: {fileID: 114042384454010032, guid: 638bb4120e1051648a1badade9a11319,
+        type: 2}
+      propertyPath: pivotForSpetialAtack
+      value: 
+      objectReference: {fileID: 1816031721}
+    - target: {fileID: 4144607367988720, guid: 638bb4120e1051648a1badade9a11319, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586924732537876, guid: 638bb4120e1051648a1badade9a11319, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4341390000501378, guid: 638bb4120e1051648a1badade9a11319, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4150843428190732, guid: 638bb4120e1051648a1badade9a11319, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4806559273170588, guid: 638bb4120e1051648a1badade9a11319, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114042384454010032, guid: 638bb4120e1051648a1badade9a11319,
+        type: 2}
+      propertyPath: spetialAttackSpeed
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 114042384454010032, guid: 638bb4120e1051648a1badade9a11319,
+        type: 2}
+      propertyPath: spetialAttackDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114042384454010032, guid: 638bb4120e1051648a1badade9a11319,
+        type: 2}
+      propertyPath: _cooldown
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 638bb4120e1051648a1badade9a11319, type: 2}
   m_IsPrefabParent: 0
@@ -4607,6 +4647,11 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1528573190}
+--- !u!4 &1541480318 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4238274969532212, guid: 638bb4120e1051648a1badade9a11319,
+    type: 2}
+  m_PrefabInternal: {fileID: 591493432}
 --- !u!1 &1552393721
 GameObject:
   m_ObjectHideFlags: 0
@@ -5545,6 +5590,34 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1792614429}
+--- !u!1 &1816031721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1816031722}
+  m_Layer: 0
+  m_Name: PivotForSpetialAtack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1816031722
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1816031721}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.70886743, y: 0.13522668, z: -0.29686278}
+  m_LocalScale: {x: 12.5, y: 12.500005, z: 12.500005}
+  m_Children: []
+  m_Father: {fileID: 1541480318}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1837557448
 GameObject:
   m_ObjectHideFlags: 0
