@@ -42,13 +42,15 @@ namespace Assets.Core.Characters
 
 		private void Update()
 		{
-			UpdateFirstCharacterPosition();
-			UpdateSecondCharacterPosition();
-			UpdateTransmission();
-			UpdateCamera();
-            ApplyAbilities();
-
-        }
+		    if (_wizard != null && _warrior != null && !_wizard.IsDead && !_warrior.IsDead)
+		    {
+		        UpdateFirstCharacterPosition();
+		        UpdateSecondCharacterPosition();
+		        UpdateTransmission();
+		        UpdateCamera();
+		        ApplyAbilities();
+		    }
+		}
 
 		private IEnumerator UpdateDamager()
 		{
