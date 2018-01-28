@@ -19,6 +19,8 @@ public class Warrior : Character
 	[SerializeField]
 	private GameObject _attackObj;
 
+    private Character mageCharacter;
+
 	private bool _canAttack = true;
 
 	[SerializeField] private float _cooldownSpetial = 15f;
@@ -38,35 +40,46 @@ public class Warrior : Character
 	void Start(){
 		_attackObj.transform.position = transform.position;
 		//transform.rotation = new Quaternion(0, 180, 0);
+	    mageCharacter = mage.GetComponent<Character>();
 	}
 	void Update()
 	{
-		_attackObj.transform.position = transform.position;
-		if (_cooldown > 0) {
-			_cooldown -= Time.deltaTime;
-		}
-		else {
-			_canAttack = true;
-		}
-			
-		if ((Input.GetButtonDown("Fire1"))&&(_canAttack)) {
-			_canAttack = false;
-			_cooldown = _maxCooldown;
-			//Debug.Log ("halo");
-			StartCoroutine(Attack());
-		}
+	    if (mageCharacter != null && !mageCharacter.IsDead && !IsDead)
+	    {
+	        _attackObj.transform.position = transform.position;
+	        if (_cooldown > 0)
+	        {
+	            _cooldown -= Time.deltaTime;
+	        }
+	        else
+	        {
+	            _canAttack = true;
+	        }
 
-		if (_cooldownSpetial > 0) {
-			_cooldownSpetial -= Time.deltaTime;
-		} else {
-			_canSpetialAttack = true;
-		}
-		if ((Input.GetButtonDown("Fire2")&&(_canSpetialAttack)))
-		{
-			_canSpetialAttack = false;
-			_cooldownSpetial = _maxCooldownSpetial;
-			StartCoroutine(	SpetialAttack());
-		}
+	        if ((Input.GetButtonDown("Fire1")) && (_canAttack))
+	        {
+	            _canAttack = false;
+	            _cooldown = _maxCooldown;
+	            //Debug.Log ("halo");
+	            StartCoroutine(Attack());
+	        }
+
+	        if (_cooldownSpetial > 0)
+	        {
+	            _cooldownSpetial -= Time.deltaTime;
+	        }
+	        else
+	        {
+	            _canSpetialAttack = true;
+	        }
+
+	        if ((Input.GetButtonDown("Fire2") && (_canSpetialAttack)))
+	        {
+	            _canSpetialAttack = false;
+	            _cooldownSpetial = _maxCooldownSpetial;
+	            StartCoroutine(SpetialAttack());
+	        }
+	    }
 	}
 	public IEnumerator Attack()
 	{

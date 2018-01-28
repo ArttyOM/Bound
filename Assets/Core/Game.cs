@@ -58,7 +58,9 @@ public class Game : MonoBehaviour {
 
     public Vector2 PlayerPos()
     {
-        return (Vector2)(warrior.transform.position + wizard.transform.position) / 2;
+        if (warrior != null && wizard != null)
+            return (Vector2)(warrior.transform.position + wizard.transform.position) / 2;
+        return Vector2.zero;
     }
 
     public void NextLevel()
@@ -132,7 +134,7 @@ public class Game : MonoBehaviour {
     {
         for (int i = 0; i < WarSliders.Count; i++)
             WarSliders[i].value = 1-warrior.Abilities[i].RemainingCooldown();
-        for (int i = 0; i < WizSliders.Count; i++)
+        for (int i = 0; i < WizSliders.Count - 1; i++)
             WizSliders[i].value = 1 - wizard.Abilities[i].RemainingCooldown();
 
     }
