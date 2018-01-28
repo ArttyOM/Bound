@@ -112,8 +112,10 @@ public class Game : MonoBehaviour {
         }
         else
         {
-            var v = new Vector2(level.finish.x+0.5f, level.finish.y+0.5f) * config.GenerationCell;
+            var v = new Vector2(level.finish.x+0.5f, level.finish.y+0.5f) * config.GenerationCell - (Vector2)pl;
             angle = Mathf.Atan2(v.y, v.x) * 180 / Mathf.PI;
+            if(v.magnitude < 2.0f)
+                Messenger.Broadcast(GameEvent.GAME_WON);
         }
         TheArrow.transform.rotation = Quaternion.AngleAxis(angle-90, new Vector3(0, 0, 1));
     }

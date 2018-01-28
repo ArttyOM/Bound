@@ -77,7 +77,8 @@ public class Warrior : Character
 			//if (Vector3.Dot (transform.forward, direction) > .5f) {
 				//Debug.Log (hitCollider.name);
 				if ((hitCollider.gameObject == mage) || (hitCollider.gameObject == this.gameObject)) {
-				} else {
+				} else
+				{
 					hitCollider.SendMessage ("DealDamage", attackdmg, SendMessageOptions.DontRequireReceiver);
 				}
 			//}

@@ -17,6 +17,10 @@ public class Tower : MonoBehaviour {
 
     public TowerStatus status = TowerStatus.Active;
 
+    public ParticleSystem EffActive;
+    public ParticleSystem EffDestroyed;
+    public GameObject MeshActive;
+
     public Vector2 towerpos;
     float breaking_started = 0.0f;
     EnemySpawnPoint spawn;
@@ -39,7 +43,7 @@ public class Tower : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         float distance = Vector2.Distance(towerpos, game.PlayerPos());
-
+        status = TowerStatus.Broken;
         switch (status)
         {
             case TowerStatus.Waiting:
@@ -67,7 +71,15 @@ public class Tower : MonoBehaviour {
             default:
                 break;
         }
+        
         spawn.dead = status == TowerStatus.Broken;
         spawn.online = status == TowerStatus.Active || status == TowerStatus.Breaking;
+
+        EffActive.gameObject.SetActive(spawn.online);
+        EffDestroyed.gameObject.SetActive(spawn.dead);
+
+        if (spawn.dead)
+            MeshActive.GetComponent<MeshRenderer>().materials[0].color = new Color(98/255.0f, 86 / 255.0f, 86 / 255.0f, 255 / 255.0f);
+
     }
 }
