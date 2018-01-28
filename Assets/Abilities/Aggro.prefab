@@ -54,3 +54,4 @@ MonoBehaviour:
   owner: {fileID: 0}
   Cooldown: 5
   attacKeyCode: 258
+  Radius: 10
