@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Core.Characters;
 
 namespace AI {
     public class Agent : MonoBehaviour {
@@ -32,13 +33,18 @@ namespace AI {
             {
                 if (stopped)
                     yield break;
-                if (path[currentIndex] == transform.position)
+
+                var contr = ServiceLocator.Instance.ResolveSingleton<CharactersController>();
+                if (Time.time > contr.ConfusedTo)
                 {
-                    currentIndex++;
-                    SetRotation(path[currentIndex]);
+                    if (path[currentIndex] == transform.position)
+                    {
+                        currentIndex++;
+                        SetRotation(path[currentIndex]);
+                    }
+                    transform.position = Vector3.MoveTowards(transform.position, path[currentIndex],
+                        Speed * Time.deltaTime);
                 }
-                transform.position = Vector3.MoveTowards(transform.position, path[currentIndex],
-                    Speed * Time.deltaTime);
                 yield return null;
             }
         }
@@ -52,7 +58,9 @@ namespace AI {
 
             Vector3 direction = (point - transform.position).normalized;
 
-//            direction = new Vector3(Random.Range(-2,2)+0.1f, Random.Range(-2, 2), 0).normalized;
+            var contr = ServiceLocator.Instance.ResolveSingleton<CharactersController>();
+            if(Time.time < contr.ConfusedTo)
+                direction = new Vector3(Random.Range(-2,2)+0.1f, Random.Range(-2, 2), 0).normalized;
 
             Vector3 rot = new Vector3();
             if (direction.y > 0)
