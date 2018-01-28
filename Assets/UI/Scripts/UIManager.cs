@@ -94,7 +94,7 @@ public class UIManager : MonoBehaviour {
 	public void OnScoreIncreased()
 	{
         var game = ServiceLocator.Instance.ResolveSingleton<Game>();
-		scoreLabel.text = System.String.Format("towers: {0} / {1}", game.DestroyedTowers, game.TotalTowers);
+		scoreLabel.text = System.String.Format("{0}/{1}", game.DestroyedTowers, game.TotalTowers);
     }
 	//public void ExitGame(){
 		//Application.Quit ();
