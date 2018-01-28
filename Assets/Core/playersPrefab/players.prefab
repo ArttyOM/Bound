@@ -965,7 +965,7 @@ MonoBehaviour:
   - {fileID: 114525826202451348}
   IsDead: 0
   AttackClip: {fileID: 8300000, guid: ec430679c1ba61945b646160a24a9bfd, type: 3}
-  warrior: {fileID: 0}
+  warrior: {fileID: 1293091822639150}
   spetialAttackSpeed: 360
   attackRadius: 1.4
   attackdmgSpetial: 5
