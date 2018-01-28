@@ -122,11 +122,12 @@ public class Warrior : Character
 	{
 		Messenger.Broadcast(GameEvent.YOU_DEAD);
 		yield return new WaitForSeconds (3f);
-		SceneManager.LoadScene ("FirstLevel");
-	}
-	/// <summary>
-	/// Проверяет атаки
-	/// </summary>
-	/// <returns></returns>
+        var game = ServiceLocator.Instance.ResolveSingleton<Game>();
+        game.RestartGame();
+    }
+    /// <summary>
+    /// Проверяет атаки
+    /// </summary>
+    /// <returns></returns>
 
 }

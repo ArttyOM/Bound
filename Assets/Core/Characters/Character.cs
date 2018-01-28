@@ -16,7 +16,7 @@ public class Character : MonoBehaviour
 
     public List<AbstractAbility> Abilities;
 
-    public bool IsDead { get; private set; }
+    public bool IsDead { get; set; }
 
     public AudioClip AttackClip; 
 
@@ -39,9 +39,9 @@ public class Character : MonoBehaviour
 	void LateUpdate()
 	{
 		if ((Health == 0)&&(!isDead)) {
-			isDead = true;
-			StartCoroutine (Die());
-		}
+            isDead = true;
+            StartCoroutine(Die());
+        }
 	}
 
 
@@ -49,7 +49,7 @@ public class Character : MonoBehaviour
 		this.transform.Rotate (-75, 0, 0);
 
 		yield return new WaitForSeconds (1.5f);
-		Destroy (this.gameObject); //закомментил чтобы было проще тестить (не умирая)
+        Destroy(this.gameObject); //закомментил чтобы было проще тестить (не умирая)
 	}
 
     /// <summary>

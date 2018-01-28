@@ -9,6 +9,7 @@ public class Wizard : Character
 	{
 		Messenger.Broadcast(GameEvent.YOU_DEAD);
 		yield return new WaitForSeconds (3f);
-		SceneManager.LoadScene ("FirstLevel");
+        var game = ServiceLocator.Instance.ResolveSingleton<Game>();
+        game.RestartGame();
 	}
 }

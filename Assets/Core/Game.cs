@@ -137,6 +137,16 @@ public class Game : MonoBehaviour {
 
     }
 
+    public void RestartGame()
+    {
+        warrior.IsDead = false;
+        wizard.IsDead = false;
+        warrior.Health = 100.0f;
+        wizard.Health = 100.0f;
+        TeleportTo(level.start);
+    }
+
+
 
     // Update is called once per frame
     void Update () {
