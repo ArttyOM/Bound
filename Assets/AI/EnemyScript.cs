@@ -9,7 +9,12 @@ using AI;
 public class EnemyScript : Character{
     private Agent agent;
 
-    private Transform player;
+    /// <summary>
+    /// Игрок
+    /// </summary>
+    public Transform Player { get; set; }
+
+
     private GameObject[] _players;
 
     [SerializeField]
@@ -27,32 +32,40 @@ public class EnemyScript : Character{
 
     protected GameObject _currentAttackObj;
 
+    /// <summary>
+    /// Назначить игрока
+    /// </summary>
+    /// <param name="player">Трансформ игрока</param>
+    public void SetPlayer(Transform player)
+    {
+        Player = player;
+    }
 
 	// Use this for initialization
 	void Start () {
         agent = GetComponent<Agent>();
         agent.Speed = ServiceLocator.Instance.ResolveService<GameSettingsProvider>().GetSettings().EnemyStandardSpeed; ;
 	    _players = GameObject.FindGameObjectsWithTag("Player");
-	    player = _players[Random.Range(0, _players.Length)].transform;
+	    Player = _players[Random.Range(0, _players.Length)].transform;
 	    StartCoroutine(CheckAttack());
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	    if (player != null)
+	    if (Player != null)
 	    {
-	        if ((transform.position - player.position).magnitude < 15.0f)
+	        if ((transform.position - Player.position).magnitude < 15.0f)
 	        {
-	            agent.Player = player.gameObject;
-	            agent.Destination = player.position;
-	            _canAttack = (transform.position - player.position).magnitude < _attackDistance;
+	            agent.Player = Player.gameObject;
+	            agent.Destination = Player.position;
+	            _canAttack = (transform.position - Player.position).magnitude < _attackDistance;
 	        }
 	        else
 	        {
 	            agent.Stop();
 	            var tmp = _players[Random.Range(0, _players.Length)];
 	            if (tmp != null)
-	                player = tmp.transform;
+	                Player = tmp.transform;
 	        }
 	    }
 	}
@@ -75,8 +88,8 @@ public class EnemyScript : Character{
         _currentAttackObj.transform.localPosition = (Vector3)RotationDirection * 5f;
 
         _lastAttack = Time.time;
-        if (player != null)
-            player.GetComponent<Character>().DealDamage(Damage);       
+        if (Player != null)
+            Player.GetComponent<Character>().DealDamage(Damage);       
         yield return new WaitForSeconds(0.3f);
         Destroy(_currentAttackObj);
     }

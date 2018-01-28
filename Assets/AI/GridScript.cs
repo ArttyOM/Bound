@@ -79,7 +79,6 @@ namespace AI
 
             sizeX = (int)Mathf.Ceil(gridSize.x / cellSize);
             sizeY = (int)Mathf.Ceil(gridSize.y / cellSize);
-            print(sizeX + " " + sizeY);
             _left = transform.position.x - sizeX / 2 * cellSize;
             _top = transform.position.y + sizeY / 2 * cellSize;
             _right = transform.position.x + sizeX / 2 * cellSize;

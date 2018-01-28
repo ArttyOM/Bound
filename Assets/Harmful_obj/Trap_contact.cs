@@ -10,7 +10,7 @@ public class Trap_contact : MonoBehaviour {
 
 
 	void OnTriggetEnter (Collider other){
-		if (other.gameObject.tag == "player") {
+		if (other.gameObject.tag == "Player") {
 			Trap_effect (other.gameObject);	
 		}
 		if (other.gameObject.tag == "enemy") {
@@ -22,7 +22,7 @@ public class Trap_contact : MonoBehaviour {
 	}
 
 	void Trap_effect (GameObject someone) {
-		if (someone.tag == "player") {
+		if (someone.tag == "Player") {
 			Health_script health_ref = someone.GetComponent<Health_script> ();
 			health_ref.HP -= damage_for_player;
 		}
