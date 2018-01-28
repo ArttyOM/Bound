@@ -194,6 +194,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1647069588193050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4921983703448274}
+  m_Layer: 0
+  m_Name: PivotForSpetialAtackMage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1665391290682272
 GameObject:
   m_ObjectHideFlags: 1
@@ -205,6 +220,21 @@ GameObject:
   - component: {fileID: 114525826202451348}
   m_Layer: 0
   m_Name: Confuse
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1703015932622818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4622128689828360}
+  m_Layer: 0
+  m_Name: PivotForSpetialAtack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -296,7 +326,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4238274969532212}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4150843428190732
 Transform:
@@ -314,7 +344,7 @@ Transform:
   - {fileID: 4938042031300826}
   - {fileID: 4026589293282126}
   m_Father: {fileID: 4238274969532212}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4238274969532212
 Transform:
@@ -326,11 +356,13 @@ Transform:
   m_LocalPosition: {x: -1.5011326, y: -0.11522668, z: 0.29686278}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4622128689828360}
+  - {fileID: 4921983703448274}
+  - {fileID: 4586924732537876}
   - {fileID: 4806559273170588}
   - {fileID: 4150843428190732}
-  - {fileID: 4586924732537876}
-  - {fileID: 4341390000501378}
   - {fileID: 4144607367988720}
+  - {fileID: 4341390000501378}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -371,7 +403,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 4238274969532212}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4586924732537876
 Transform:
@@ -385,6 +417,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4238274969532212}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4622128689828360
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1703015932622818}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.70886743, y: 0.13522668, z: -0.29686278}
+  m_LocalScale: {x: 12.5, y: 12.500005, z: 12.500005}
+  m_Children: []
+  m_Father: {fileID: 4238274969532212}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4681027909360882
 Transform:
@@ -440,7 +485,20 @@ Transform:
   - {fileID: 4322941391678444}
   - {fileID: 4681027909360882}
   m_Father: {fileID: 4238274969532212}
-  m_RootOrder: 0
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4921983703448274
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1647069588193050}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.70886743, y: 0.13522668, z: -0.29686278}
+  m_LocalScale: {x: 12.5, y: 12.50001, z: 12.50001}
+  m_Children: []
+  m_Father: {fileID: 4238274969532212}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4938042031300826
 Transform:
@@ -768,14 +826,18 @@ MonoBehaviour:
   Abilities:
   - {fileID: 114397166859025312}
   - {fileID: 114075933137844612}
+  IsDead: 0
+  AttackClip: {fileID: 8300000, guid: 360dc944a01983f4e8047e8509816b86, type: 3}
   attackRadius: 1.3
   attackdmg: 5
   attackdmgSpetial: 5
-  spetialAttackDuration: 15
+  spetialAttackDuration: 3
+  spetialAttackSpeed: 360
   mage: {fileID: 1934670090953456}
-  _cooldown: 0.5
+  _cooldown: 3
   _attackObj: {fileID: 1417939243918122}
   _cooldownSpetial: 15
+  pivotForSpetialAtack: {fileID: 1703015932622818}
 --- !u!114 &114075933137844612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -801,7 +863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4fba93ba0855714380d5e74d5692f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
+  owner: {fileID: 114810558134471554}
   Cooldown: 0.5
   attacKeyCode: 257
   Projectile: {fileID: 1428432336032028, guid: 91fcc7fc39456f146ad35bce42d27715, type: 2}
@@ -901,6 +963,14 @@ MonoBehaviour:
   - {fileID: 114341951469927496}
   - {fileID: 114421336474714718}
   - {fileID: 114525826202451348}
+  IsDead: 0
+  AttackClip: {fileID: 8300000, guid: ec430679c1ba61945b646160a24a9bfd, type: 3}
+  warrior: {fileID: 0}
+  spetialAttackSpeed: 360
+  attackRadius: 1.4
+  attackdmgSpetial: 5
+  spetialAttackDuration: 3
+  pivotForSpetialAtack: {fileID: 1647069588193050}
 --- !u!114 &114962401388576758
 MonoBehaviour:
   m_ObjectHideFlags: 1
