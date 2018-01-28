@@ -10,6 +10,7 @@ public class Game : MonoBehaviour {
     GameSettings config;
     Wizard wizard;
     Warrior warrior;
+    bool Won = false;
 
     public int TotalTowers;
     public int DestroyedTowers;
@@ -112,10 +113,14 @@ public class Game : MonoBehaviour {
         }
         else
         {
-            var v = new Vector2(level.finish.x+0.5f, level.finish.y+0.5f) * config.GenerationCell - (Vector2)pl;
+            var v = level.finish - (Vector2)pl;
             angle = Mathf.Atan2(v.y, v.x) * 180 / Mathf.PI;
-            if(v.magnitude < 2.0f)
+            if (!Won && v.magnitude < 2.0f)
+            {
                 Messenger.Broadcast(GameEvent.GAME_WON);
+                Won = true;
+            }
+
         }
         TheArrow.transform.rotation = Quaternion.AngleAxis(angle-90, new Vector3(0, 0, 1));
     }
