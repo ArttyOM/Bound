@@ -139,6 +139,8 @@ MonoBehaviour:
   DestroyedTowers: 0
   Towers: []
   TheArrow: {fileID: 847881705}
+  WarSliders: []
+  WizSliders: []
 --- !u!4 &335146247
 Transform:
   m_ObjectHideFlags: 0
@@ -364,22 +366,22 @@ Prefab:
     - target: {fileID: 224080409933087204, guid: 0e71c507116910743ae7f2dec3a30ca8,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224080409933087204, guid: 0e71c507116910743ae7f2dec3a30ca8,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224259881656852384, guid: 0e71c507116910743ae7f2dec3a30ca8,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224259881656852384, guid: 0e71c507116910743ae7f2dec3a30ca8,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e71c507116910743ae7f2dec3a30ca8, type: 2}
@@ -390,25 +392,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 835003981}
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!1 &873226289 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1479315117203668, guid: 0e71c507116910743ae7f2dec3a30ca8,
-    type: 2}
-  m_PrefabInternal: {fileID: 835003981}
---- !u!114 &873226290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 873226289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!1 &1081495432
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,44 +475,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1650fb6233cbe3342bf43646eb7f8969, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1488155243 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1790887222575268, guid: 0e71c507116910743ae7f2dec3a30ca8,
-    type: 2}
-  m_PrefabInternal: {fileID: 835003981}
---- !u!114 &1488155244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1488155243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2, y: -1}
-  m_UseGraphicAlpha: 1
---- !u!1 &1709798585 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1106137052415662, guid: 0e71c507116910743ae7f2dec3a30ca8,
-    type: 2}
-  m_PrefabInternal: {fileID: 835003981}
---- !u!114 &1709798586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1709798585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!1 &1987340525
 GameObject:
   m_ObjectHideFlags: 0
