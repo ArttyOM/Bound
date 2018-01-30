@@ -126,6 +126,7 @@ public class UIManager : MonoBehaviour {
 	{
         var game = ServiceLocator.Instance.ResolveSingleton<Game>();
 		scoreLabel.text = System.String.Format("{0}/{1}", game.DestroyedTowers, game.TotalTowers);
+		Debug.Log ("Count of towers =" +game.TotalTowers);
     }
 	//public void ExitGame(){
 		//Application.Quit ();

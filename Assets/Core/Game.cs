@@ -97,6 +97,7 @@ public class Game : MonoBehaviour {
         var best = 1000.0f;
         Tower best_tower = null;
         var pl = PlayerPos();
+
         foreach (var tower in Towers)
         {
             if (tower.status == TowerStatus.Broken)
@@ -145,6 +146,10 @@ public class Game : MonoBehaviour {
         wizard.IsDead = false;
         warrior.Health = 100.0f;
         wizard.Health = 100.0f;
+
+		Messenger.Broadcast(GameEvent.MAGE_HEALTH_CHANGED);
+		Messenger.Broadcast(GameEvent.WARRIOT_HEALTH_CHANGED);
+
         if (CheckPointScript.lastVisited == null)
             TeleportTo(level.start);
         else

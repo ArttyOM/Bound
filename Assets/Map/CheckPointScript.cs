@@ -31,6 +31,9 @@ public class CheckPointScript : MonoBehaviour {
 	        lastVisited = this;
 	        wizard.Health = 100;
 	        warrior.Health = 100;
+
+			Messenger.Broadcast(GameEvent.MAGE_HEALTH_CHANGED);
+			Messenger.Broadcast(GameEvent.WARRIOT_HEALTH_CHANGED);
 	    }
 	}
 }
