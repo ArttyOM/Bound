@@ -34,7 +34,9 @@ public class EnemySpawnPoint : MonoBehaviour {
 
     public GameObject RandomEnemy()
     {
-        float[] _chancePerTypeS = chancePerType;
+        float[] _chancePerTypeS = new float[chancePerType.Length];
+        for (int i = 0; i < chancePerType.Length; i++)
+            _chancePerTypeS[i] = chancePerType[i];
         for (int i = 1; i < chancePerType.Length; i++)
             _chancePerTypeS[i] += _chancePerTypeS[i - 1];
         float temp = Random.Range(0, _chancePerTypeS[_chancePerTypeS.Length - 1]);
