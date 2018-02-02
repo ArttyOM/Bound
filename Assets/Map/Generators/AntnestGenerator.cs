@@ -14,8 +14,8 @@ public class AntnestGenerator : AbstractGenerator
 
     const int CFG_START_PATHS = 0;
     const int CFG_START_PATH_LENGTH = 100;
-    const int CFG_TOWERS_MIN = 10;
-    const int CFG_TOWERS_MAX = 15;
+    const int CFG_TOWERS_MIN = 4;
+    const int CFG_TOWERS_MAX = 6;
     const int CFG_MID_PATH_LENGTH = 100;
     const int PREVENT_OPENING = 700;
     const int TENSION = 50;
