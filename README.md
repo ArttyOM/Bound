@@ -1,13 +1,25 @@
-# Bound
-This game was created for 48 hours on GGJ2018 using Unity3d, so there is many bugs and project architecture is awfull=)
+#Bound 
+This game was created on Unity3d for GGJ2018 in 48 hours, 
+so there may be swarms of bugs. Project architecture is awful too.=)
 
-Rules:
-Player (or players) plays as Wizard and Warrior, each with own uniq abilities
 
-Use mouse for moving Warrior, left click to attack, right click for using mage as weapon
 
-Use WASD for moving Wizard, Q - cast fireball, E - aggro, R - confuse enemies (Warning! Warrior will be confused too!), 
-Space - to revenge to warrior for rotating you
+Rules: 
 
-Your win condition:
-Destroy all enemy towers (for this you should seat on em for 3 seconds)
+Can be played by 1 or 2 players as Wizard and Warrior, 
+each one with his own set of unique abilities.
+
+
+
+Use mouse for moving Warrior, left click to perform an attack, right click to use mage as rotating weapon
+
+.
+Use WASD for moving Wizard, Space - cast fireball, E - aggro, R - confuse enemies 
+(Warning! Warrior will be confused too!), 
+Q - revenge warrior for rotation
+
+
+
+Victory condition:
+ Destroy all enemy towers (to destroy the one, you should stand beneath it for 3 seconds)
+.
